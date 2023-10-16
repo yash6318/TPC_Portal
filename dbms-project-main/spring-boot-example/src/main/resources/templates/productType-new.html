@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Product New'})}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+<!-- Add page content here within a div tag -->
+<div>
+
+    <div class="p-4 bg-light">
+<form th:action="@{/product}" method="post" th:object="${productType}">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 needs-validation" th:classappend="${productType.name!=null}?is-filled">
+          <label class="form-label">Product Name</label>
+          <input type="text" class="form-control" th:field="*{name}" required maxlength="25">
+        </div>
+        <div th:each="err : ${#fields.errors('name')}" class="fs-6">
+          <span th:text="${err}"></span>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${productType.warrantyPeriod!=null}?is-filled">
+        <label class="form-label">
+            Warranty Period
+        </label>
+        <input type="number" class="form-control" th:field="*{warrantyPeriod}" required>
+        </div>
+        <div th:each="err : ${#fields.errors('warrantyPeriod')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${productType.price!=null}?is-filled">
+        <label class="form-label">
+            Price
+        </label>
+        <input type="text" class="form-control" th:field="*{price}" required>
+        </div>
+        <div th:each="err : ${#fields.errors('price')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+ 
+
+  <div>
+    <!-- <a href="/profile/edit">   -->
+      <button class="btn btn-icon btn- btn-primary" type="submit">
+        <span class="btn-inner--text">SUBMIT</span>
+      </button>
+    <!-- </a> -->
+  </div>
+
+
+</form>
+</div>
+
+</div>
+</body>
+
+</html>

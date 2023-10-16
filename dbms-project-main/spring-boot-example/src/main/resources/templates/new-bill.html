@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Bill'})}"
+    xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+    <!-- Add page content here within a div tag -->
+    <div>
+        <div class="p-4 bg-light">
+            <form th:action="@{'/order/customer/' + ${customerOrder.id} + '/bill'}" method="post" th:object="${bill}">
+                <input type="number" th:field="*{amount}" hidden>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="input-group input-group-outline my-3"
+                            th:classappend="${bill.amount!=null}?is-filled">
+                            <label class="form-label">Amount</label>
+                            <input type="number" class="form-control" th:field="*{amount}" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="input-group input-group-outline my-3 is-filled">
+                            <label class="form-label">
+                                GST Number
+                            </label>
+                            <input type="text" class="form-control" th:field="*{gstNumber}" minlength="12" maxlength="12" required>
+                        </div>
+                        <div th:each="err : ${#fields.errors('gstNumber')}" class="fs-6">
+                            <span th:text="${err}"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="input-group input-group-outline my-3">
+                            <label class="form-label">
+                                Discount Percentage
+                            </label>
+                            <input type="number" class="form-control" th:field="*{discount}" required  min="0" max="100">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="text-center">
+                    <button class="btn btn-icon btn btn-primary " type="submit">
+                        <span class="btn-inner--text">SUBMIT</span>
+                    </button>
+                </div>
+
+
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>

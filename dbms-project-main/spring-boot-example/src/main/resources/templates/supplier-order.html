@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Suppliers'})}">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+<!-- Add page content here within a div tag -->
+
+
+<div>
+  <div class="card">
+      <div class="table-responsive">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr. No.</th>
+              <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Customer ID</th> -->
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Product Name</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Product Price</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Warranty Period</th>
+              <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th> -->
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ordered Quantity</th>
+            </tr>
+          </thead>
+          <tbody th:each = "ptype, status : ${productTypesOrdered}">
+            <tr th:if="${ptype.quantity > 0}">
+
+              <td>
+                <div class="d-flex px-2">
+                  <div class="my-auto">
+                    <h6 class="mb-0 text-xs">
+                      <span th:text="${status.index}+1"></span>
+                    </h6>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="badge badge-dot me-4">
+                  <i class="bg-info"></i>
+                  <span class="text-dark text-xs">
+                      <span th:text="${ptype.name}"></span>
+                  </span>
+                </span>
+              </td>
+
+
+              <td class="align-middle">
+                <div class="d-flex align-items-center">
+                  <span class="me-2 text-xs">
+                      <span th:text="${ptype.price}"></span>
+                  </span>
+                </div>
+              </td>
+
+              <td class="align-middle">
+                <div class="d-flex align-items-center">
+                  <span class="me-2 text-xs">
+                      <span th:text="${ptype.warrantyPeriod}"></span>
+                  </span>
+                </div>
+              </td>
+
+              <td class="align-middle">
+                <div class="d-flex align-items-center">
+                  <span class="me-2 text-xs">
+                      <span th:text="${ptype.quantity}"></span>
+                  </span>
+                </div>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+</div>
+
+<div class="mt-3">
+  <form th:action="@{'/order/supplier/'+${supplierOrder.Id}+'/complete'}" method="post" th:if="${supplierOrder.status == 'Confirmed'}">
+    <button class="btn btn-icon btn-primary" type="submit">
+      <span class="btn-inner--text">Mark Order As Completed</span>
+    </button>
+  </form>
+</div> 
+
+
+</body>
+
+</html>

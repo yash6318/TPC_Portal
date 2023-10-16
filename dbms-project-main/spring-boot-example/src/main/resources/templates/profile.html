@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Profile'})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<body class="g-sidenav-show  bg-gray-200">
+    <div>
+        <div>
+            <a href="/profile/edit">
+                <button class="btn btn-icon btn- btn-primary" type="button">
+                    <span class="btn-inner--text">EDIT PROFILE</span>
+                </button>
+            </a>
+        </div>
+
+        <div>
+            <a href="/profile/password">
+                <button class="btn btn-icon btn- btn-primary" type="button">
+                    <span class="btn-inner--text">change password</span>
+                </button>
+            </a>
+        </div>
+
+
+        <section style="background-color: #f4f5f7;">
+            <div class="container py-5">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                  <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0">
+                      <div class="col-md-4 gradient-custom text-center text-white"
+                        style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                          alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                          <h5 th:text="${principal.username}"></h5>
+                          <!-- <h5 th:text="${#authentication.principal.firstName}+' '+${#authentication.principal.middleName==null?'':#authentication.principal.middleName}+' '+${#authentication.principal.lastName==null?'':#authentication.principal.lastName}"></h5> -->
+                        <!-- <p>Web Designer</p> -->
+                        <i class="far fa-edit mb-5"></i>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body p-4">
+                          <h6>Information</h6>
+                          <hr class="mt-0 mb-4">
+                          <div class="row pt-1">
+
+                            <div class="col-6 mb-3">
+                              <h6>Name</h6>
+                              <p class="text-muted">
+                                <span th:text="${principal.firstName}+' '+${principal.middleName==null?'':principal.middleName}+' '+${principal.lastName==null?'':principal.lastName}"></span>
+                              </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>Employee ID</h6>
+                                <p class="text-muted">
+                                  <span th:text="${principal.id}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>Designation</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.designation}"></span>
+                                </p>
+                            </div>
+
+
+                            <div class="col-6 mb-3">
+                                <h6>Salary</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.salary}"></span>
+                                </p>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <h6>Contact Number</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.contactNumber}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>Date of Birth</h6>
+                                <p class="text-muted">
+
+                                    <span th:text="${#dates.format(principal.dateOfBirth, 'dd/MM/yyyy')}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>Email ID</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.emailId}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>City</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.city}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>State</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.state}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>Postal Code</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.postalCode}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>Country</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.country}"></span>
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <h6>Street</h6>
+                                <p class="text-muted">
+                                    <span th:text="${principal.street}"></span>
+                                </p>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

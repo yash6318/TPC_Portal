@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${supplier.firstName})}"
+  xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+  <!-- Add page content here within a div tag -->
+
+  <div>
+    <a th:href="@{'/supplier/' + ${supplier.id} + '/edit'}">
+      <button class="btn btn-icon btn- btn-primary" type="button">
+        <span class="btn-inner--text">EDIT SUPPLIER</span>
+      </button>
+    </a>
+  </div>
+
+
+  <div>
+    <!--    <h1 th:text="${supplier.username}"></h1>-->
+    <!--    <h3 th:text="${supplier.authorities}"></h3>-->
+
+
+    <section style="background-color: #f4f5f7;" class="py-2">
+      <div class="container py-5 col-sm">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-lg-6 mb-4 mb-lg-0">
+            <div class="card mb-3" style="border-radius: .5rem;">
+              <div class="row g-0">
+                <div class="text-center">
+                  <div class="card-body p-4">
+                    <h4>Information</h6>
+                      <hr class="mt-0 mb-4">
+                      <div class="row pt-1">
+
+                        <div class="col-6 mb-3">
+                          <h6>Name</h6>
+                          <p class="text-muted">
+                            <span
+                              th:text="${supplier.firstName}+' '+${supplier.middleName==null?'':supplier.middleName}+' '+${supplier.lastName==null?'':supplier.lastName}"></span>
+                          </p>
+                        </div>
+
+                        <div class="col-6 mb-3">
+                          <h6>Supplier ID</h6>
+                          <p class="text-muted">
+                            <span th:text="${supplier.id}"></span>
+                          </p>
+                        </div>
+
+
+                        <div class="col-6 mb-3">
+                          <h6>Contact Number</h6>
+                          <p class="text-muted">
+                            <span th:text="${supplier.contactNumber}"></span>
+                          </p>
+                        </div>
+
+
+                        <div class="col-6 mb-3">
+                          <h6>City</h6>
+                          <p class="text-muted">
+                            <span th:text="${supplier.city}"></span>
+                          </p>
+                        </div>
+
+                        <div class="col-6 mb-3">
+                          <h6>State</h6>
+                          <p class="text-muted">
+                            <span th:text="${supplier.state}"></span>
+                          </p>
+                        </div>
+
+                        <div class="col-6 mb-3">
+                          <h6>Postal Code</h6>
+                          <p class="text-muted">
+                            <span th:text="${supplier.postalCode}"></span>
+                          </p>
+                        </div>
+
+                        <div class="col-6 mb-3">
+                          <h6>Country</h6>
+                          <p class="text-muted">
+                            <span th:text="${supplier.country}"></span>
+                          </p>
+                        </div>
+
+                        <div class="col-6 mb-3">
+                          <h6>Street</h6>
+                          <p class="text-muted">
+                            <span th:text="${supplier.street}"></span>
+                          </p>
+                        </div>
+
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-secondary font-weight-bolder mt-4">
+        <h4>Supplier Orders</h4>
+      </div>
+      <div class="card mx-8 my-2">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0 datatable">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr. No.</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date of Order</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+<!--                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Supplier Id</th>-->
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="order, status : ${orders}">
+
+                <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-xs">
+                        <span th:text="${status.index}+1"></span>
+                      </h6>
+                    </div>
+                  </div>
+                </td>
+
+
+                <td class="align-middle">
+                  <div class="d-flex align-items-center">
+                    <span class="me-2 text-xs">
+                      <span th:text="${order.dateOfOrder}"></span>
+                    </span>
+                  </div>
+                </td>
+
+                <td class="align-middle">
+                  <div class="d-flex align-items-center">
+                    <span class="me-2 text-xs">
+                      <span th:text="${order.status}"></span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

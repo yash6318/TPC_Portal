@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Employee Edit'})}">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+<!-- Add page content here within a div tag -->
+<div>
+
+    <div class="p-4 bg-light">
+<form th:action="@{'/employee/' + ${employee.id} + '/edit'}" method="post" th:object="${employee}">
+    <input type="text" th:field="*{id}" hidden>
+    <input type="number" th:field="*{salary}" hidden>
+    <input type="text" th:field="*{designation}" hidden>
+    <input type="text" th:field="*{username}" hidden>
+    <input type="text" th:field="*{password}" hidden>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 is-filled">
+          <label class="form-label">First Name</label>
+          <input required type="text" class="form-control" th:field="*{firstName}" maxlength="25">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3">
+          <label class="form-label">
+              <span th:text="${employee.firstName}"></span>
+          </label>
+          <input type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 is-filled">
+          <label class="form-label">Middle Name</label>
+          <input type="text" class="form-control" th:field="*{middleName}" maxlength="50">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3">
+          <label class="form-label">
+              <span th:text="${employee.middleName}"></span>
+          </label>
+          <input type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 is-filled">
+          <label class="form-label"> Last Name </label>
+          <input type="text" class="form-control" th:field="*{lastName}" maxlength="25">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3">
+          <label class="form-label">
+              <span th:text="${employee.lastName}"></span>
+          </label>
+          <input type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Contact Number</label>
+      <input required type="text" class="form-control" th:field="*{contactNumber}" maxlength="20">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${employee.contactNumber}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-6">
+      <div class="input-group input-group-static my-3" th:classappend="${employee.dateOfBirth!=null}?is-filled">
+          <label class="form-label">
+              Date of Birth
+          </label>
+          <input type="date" class="form-control" th:field="*{dateOfBirth}" required>
+      </div>
+      <div th:each="err : ${#fields.errors('dateOfBirth')}" class="fs-6">
+          <span th:text="${err}"></span>
+      </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-static my-3" th:classappend="${employee.dateOfBirth!=null}?is-filled">
+        <label class="form-label">
+            Date of Birth
+        </label>
+        <input type="date" class="form-control" th:field="*{dateOfBirth}" disabled>
+    </div>
+    <div th:each="err : ${#fields.errors('dateOfBirth')}" class="fs-6">
+        <span th:text="${err}"></span>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Email Id</label>
+      <input type="email" class="form-control" th:field="*{emailId}" required maxlength="255">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+        <span th:text="${employee.emailId}"></span>
+      </label>
+      <input type="email" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Street</label>
+      <input required type="text" class="form-control" th:field="*{street}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${employee.street}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">City</label>
+      <input required type="text" class="form-control" th:field="*{city}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${employee.city}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">State</label>
+      <input required type="text" class="form-control" th:field="*{state}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${employee.state}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Postal Code</label>
+      <input required type="text" class="form-control" th:field="*{postalCode}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${employee.postalCode}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Country</label>
+      <input required type="text" class="form-control" th:field="*{country}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${employee.country}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
+
+<!-- <div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline is-valid my-3">
+      <label class="form-label">Success</label>
+      <input type="email" class="form-control">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline is-invalid my-3">
+      <label class="form-label">Error</label>
+      <input type="email" class="form-control">
+    </div>
+  </div>
+</div> -->
+</form>
+</div>
+
+</div>
+</body>
+
+</html>

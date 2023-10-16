@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'leave New'})}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+<!-- Add page content here within a div tag -->
+<div>
+
+    <div class="p-4 bg-light">
+<form th:action="@{/employee/leaves/add}" method="post" th:object="${leave}">
+
+    <input type="number" th:field="*{employeeId}" hidden>
+    <!-- <span th:text="*{employeeId}"></span> -->
+
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 needs-validation" th:classappend="${leave.month!=null}?is-filled">
+          <label class="form-label">Month</label>
+          <input type="number" class="form-control" th:field="*{month}" required maxlength="25">
+        </div>
+        <div th:each="err : ${#fields.errors('month')}" class="fs-6">
+          <span th:text="${err}"></span>
+        </div>
+      </div>
+    </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${leave.year!=null}?is-filled">
+        <label class="form-label">
+            Year
+        </label>
+        <input type="number" class="form-control" th:field="*{year}" maxlength="50">
+        </div>
+        <div th:each="err : ${#fields.errors('year')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${leave.leavesTaken!=null}?is-filled">
+        <label class="form-label">
+            Leaves Taken
+        </label>
+        <input type="number" class="form-control" th:field="*{leavesTaken}" maxlength="25">
+        </div>
+        <div th:each="err : ${#fields.errors('leavesTaken')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${leave.leavesAllowed!=null}?is-filled">
+        <label class="form-label">
+            Leaves Allowed
+        </label>
+        <input type="number" class="form-control" th:field="*{leavesAllowed}" required maxlength="20">
+        </div>
+        <div th:each="err : ${#fields.errors('leavesAllowed')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${leave.overtime!=null}?is-filled">
+        <label class="form-label">
+            Overtime
+        </label>
+        <input type="number" class="form-control" th:field="*{overtime}" required maxlength="20">
+        </div>
+        <div th:each="err : ${#fields.errors('overtime')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${leave.bonus!=null}?is-filled">
+        <label class="form-label">
+            Bonus
+        </label>
+        <input type="number" class="form-control" th:field="*{bonus}" required maxlength="255">
+        </div>
+      <div th:each="err : ${#fields.errors('bonus')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${leave.penalty!=null}?is-filled">
+        <label class="form-label">
+            Penalty
+        </label>
+        <input type="text" class="form-control" th:field="*{penalty}" required maxlength="50">
+        </div>
+      <div th:each="err : ${#fields.errors('penalty')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <!-- <a href="/employee/leaves/add">   -->
+      <button class="btn btn-icon btn- btn-primary" type="submit">
+        <span class="btn-inner--text">SUBMIT</span>
+      </button>
+    <!-- </a> -->
+  </div>
+
+
+</form>
+</div>
+
+</div>
+</body>
+
+</html>

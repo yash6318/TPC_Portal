@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Supplier Edit'})}">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+<!-- Add page content here within a div tag -->
+<div>
+
+    <div class="p-4 bg-light">
+<form th:action="@{'/supplier/' + ${supplier.id} + '/edit'}" method="post" th:object="${supplier}">
+    <input type="text" th:field="*{id}" hidden>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 is-filled">
+          <label class="form-label">First Name</label>
+          <input required type="text" class="form-control" th:field="*{firstName}" maxlength="25">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3">
+          <label class="form-label">
+              <span th:text="${supplier.firstName}"></span>
+          </label>
+          <input required type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 is-filled">
+          <label class="form-label">Middle Name</label>
+          <input type="text" class="form-control" th:field="*{middleName}" maxlength="50">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3">
+          <label class="form-label">
+              <span th:text="${supplier.middleName}"></span>
+          </label>
+          <input type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 is-filled">
+          <label class="form-label"> Last Name </label>
+          <input type="text" class="form-control" th:field="*{lastName}" maxlength="25">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3">
+          <label class="form-label">
+              <span th:text="${supplier.lastName}"></span>
+          </label>
+          <input type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Contact Number</label>
+      <input required type="text" class="form-control" th:field="*{contactNumber}" maxlength="20">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${supplier.contactNumber}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Street</label>
+      <input required type="text" class="form-control" th:field="*{street}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${supplier.street}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">City</label>
+      <input required type="text" class="form-control" th:field="*{city}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${supplier.city}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">State</label>
+      <input required type="text" class="form-control" th:field="*{state}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${supplier.state}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Postal Code</label>
+      <input required type="text" class="form-control" th:field="*{postalCode}" maxlength="10">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${supplier.postalCode}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3 is-filled">
+      <label class="form-label">Country</label>
+      <input required type="text" class="form-control" th:field="*{country}" maxlength="50">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline my-3">
+      <label class="form-label">
+          <span th:text="${supplier.country}"></span>
+      </label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+
+
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
+
+<!-- <div class="row">
+  <div class="col-md-6">
+    <div class="input-group input-group-outline is-valid my-3">
+      <label class="form-label">Success</label>
+      <input type="email" class="form-control">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-group-outline is-invalid my-3">
+      <label class="form-label">Error</label>
+      <input type="email" class="form-control">
+    </div>
+  </div>
+</div> -->
+</form>
+</div>
+
+</div>
+</body>
+
+</html>

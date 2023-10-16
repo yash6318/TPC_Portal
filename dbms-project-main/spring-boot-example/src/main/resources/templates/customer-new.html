@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Customer New'})}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+<!-- Add page content here within a div tag -->
+<div>
+
+    <div class="p-4 bg-light">
+<form th:action="@{/customer}" method="post" th:object="${customer}">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="input-group input-group-outline my-3 needs-validation" th:classappend="${customer.firstName!=null}?is-filled">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" th:field="*{firstName}" required maxlength="25">
+        </div>
+        <div th:each="err : ${#fields.errors('firstName')}" class="fs-6">
+          <span th:text="${err}"></span>
+        </div>
+      </div>
+    </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.middleName!=null}?is-filled">
+        <label class="form-label">
+            Middle Name
+        </label>
+        <input type="text" class="form-control" th:field="*{middleName}" maxlength="50">
+        </div>
+        <div th:each="err : ${#fields.errors('middleName')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.lastName!=null}?is-filled">
+        <label class="form-label">
+            Last Name
+        </label>
+        <input type="text" class="form-control" th:field="*{lastName}" maxlength="25">
+        </div>
+        <div th:each="err : ${#fields.errors('lastName')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.contactNumber!=null}?is-filled">
+        <label class="form-label">
+            Contact Number
+        </label>
+        <input type="text" class="form-control" th:field="*{contactNumber}" required maxlength="20">
+        </div>
+        <div th:each="err : ${#fields.errors('contactNumber')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-static my-3" th:classappend="${customer.dateOfBirth!=null}?is-filled">
+        <label>
+            Date of Birth
+        </label>
+        <input type="date" class="form-control" th:field="*{dateOfBirth}" required>
+        </div>
+        <div th:each="err : ${#fields.errors('dateOfBirth')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.emailId!=null}?is-filled">
+        <label class="form-label">
+            Email ID
+        </label>
+        <input type="email" class="form-control" th:field="*{emailId}" required maxlength="255">
+        </div>
+      <div th:each="err : ${#fields.errors('emailId')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.city!=null}?is-filled">
+        <label class="form-label">
+            City
+        </label>
+        <input type="text" class="form-control" th:field="*{city}" required maxlength="50">
+        </div>
+      <div th:each="err : ${#fields.errors('city')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.state!=null}?is-filled">
+        <label class="form-label">
+            state
+        </label>
+        <input type="text" class="form-control" th:field="*{state}" required maxlength="50">
+        </div>
+       <div th:each="err : ${#fields.errors('state')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.postalCode!=null}?is-filled">
+        <label class="form-label">
+            Postal Code
+        </label>
+        <input type="text" class="form-control"  th:field="*{postalCode}" required maxlength="10">
+        </div>
+      <div th:each="err : ${#fields.errors('postalCode')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.country!=null}?is-filled">
+        <label class="form-label">
+            Country
+        </label>
+        <input type="text" class="form-control"  th:field="*{country}" required maxlength="50">
+
+        </div>
+      <div th:each="err : ${#fields.errors('country')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3" th:classappend="${customer.street!=null}?is-filled">
+        <label class="form-label">
+            Street
+        </label>
+        <input type="text" class="form-control"  th:field="*{street}" required maxlength="50">
+
+        </div>
+      <div th:each="err : ${#fields.errors('street')}" class="fs-6">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <!-- <a href="/profile/edit">   -->
+      <button class="btn btn-icon btn- btn-primary" type="submit">
+        <span class="btn-inner--text">SUBMIT</span>
+      </button>
+    <!-- </a> -->
+  </div>
+
+
+</form>
+</div>
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Customers'})}">
+
+<body class="g-sidenav-show  bg-gray-200">
+
+<!-- Add page content here within a div tag -->
+
+<div>
+  <a href="/order/customer/new">  
+    <button class="btn btn-icon btn- btn-primary" type="button">
+      <span class="btn-inner--text">ADD ORDER</span>
+    </button>
+  </a>
+</div>
+
+<div>
+    <div class="card">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0 datatable">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr. No.</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Customer ID</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Employee ID</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Order Date</th>
+<!--                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Delivery Date</th>-->
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Order Completed</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Payment Completed</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each = "order, status : ${orders}">
+
+                <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-xs">
+                        <span th:text="${status.index}+1"></span>
+                      </h6>
+                    </div>
+                  </div>
+                </td>
+
+                <!-- <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-xs">
+                        <span th:text="${cust.id}"></span>
+                      </h6>
+                    </div>
+                  </div>
+                </td> -->
+                <td>
+                  <span class="badge badge-dot me-4">
+                    <span class="text-dark text-xs">
+                        <span th:text="${order.customerId}"></span>
+                    </span>
+                  </span>
+                </td>
+
+                <td>
+                    <span class="badge badge-dot me-4">
+                      <span class="text-dark text-xs">
+                          <span th:text="${order.employeeId}"></span>
+                      </span>
+                    </span>
+                  </td>
+
+
+                <td class="align-middle">
+                  <div class="d-flex align-items-center">
+                    <span class="me-2 text-xs">
+                        <span th:text="${order.orderedDate}"></span>
+                    </span>
+                  </div>
+                </td>
+
+<!--                <td class="align-middle">-->
+<!--                  <div class="d-flex align-items-center">-->
+<!--                    <span class="me-2 text-xs">-->
+<!--                        <span th:text="${order.deliveryDate}"></span>-->
+<!--                    </span>-->
+<!--                  </div>-->
+<!--                </td>-->
+
+                <td class="align-middle">
+                  <div class="d-flex align-items-center">
+                    <span class="me-2 text-xs">
+                        <span th:text="${order.orderCompleted}"></span>
+                    </span>
+                  </div>
+                </td>
+
+                <td class="align-middle">
+                  <div class="d-flex align-items-center">
+                    <span class="me-2 text-xs">
+                        <span th:text="${order.paymentCompleted}"></span>
+                    </span>
+                  </div>
+                </td>
+
+
+                <td th:if="${order.orderCompleted == true}">
+                  <div>
+                    <a th:href="@{'/order/customer/' + ${order.id} + '/bill'}">
+                      <button class="btn btn-icon btn-primary" type="button">
+                        <span class="btn-inner--text">View</span>
+                      </button>
+                    </a>
+                  </div>
+                </td>
+
+                <td th:if="${order.orderCompleted == true}"></td>
+
+                <td th:if="${order.orderCompleted == false}">
+                  <div>
+                    <a th:href="@{'/order/customer/' + ${order.id} + '/add'}">
+                      <button class="btn btn-icon btn-primary" type="button">
+                        <span class="btn-inner--text">Continue</span>
+                      </button>
+                    </a>
+                  </div>
+                </td>
+
+                <td th:if="${order.orderCompleted == false}">
+                  <div>
+                    <form th:action="@{'/order/customer/' + ${order.id} + '/delete'}" method="post" class="nav-link d-flex align-items-center">
+                      <button type="submit" class="btn btn-danger">
+                          <span class="d-inline">Delete</span>
+                      </button>
+                    </form>
+                  </div>
+                </td>
+
+
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+</div>
+</body>
+
+</html>

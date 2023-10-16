@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Roll Number Page</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/register.css">
+</head>
+<body>
+<div class="container">
+    <h2>Enter Roll Number and Password</h2>
+    <form th:action="@{/signup}" method="post" >
+        <div>
+            <label for="username">Roll Number *</label>
+            <input type="text" id="username" name="username" required />
+        </div>
+        <div>
+            <label for="password">Password *</label>
+            <input type="password" id="password" name="password"  required />
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password *</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
+        </div>
+        <div class = "error">
+            <span th:text = "${error}"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
