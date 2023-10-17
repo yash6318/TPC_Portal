@@ -26,7 +26,7 @@ public class UserDao {
         KeyHolder keyholder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, user.getUsername());
+            ps.setInt(1, Integer.parseInt(user.getUsername()));
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getDesignation());
             return ps;
@@ -34,7 +34,7 @@ public class UserDao {
     }
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS USER(username varchar(255), password varchar(255), designation ENUM('Student', 'TPR', 'Company') NOT NULL DEFAULT ('Student'))";
+        String sql = "CREATE TABLE IF NOT EXISTS USER(username int, password varchar(255), designation ENUM('Student', 'TPR', 'Company') NOT NULL DEFAULT ('Student'))";
         jdbcTemplate.execute(sql);
     }
 
@@ -64,7 +64,7 @@ public class UserDao {
 //        return jdbcTemplate.update(sql, employee.getPassword(), id);
 //    }
 
-    public Optional<User> findUserByUsername(String username) {
+    public Optional<User> findUserByUsername(Integer username) {
         final String sql = "SELECT * from user WHERE username = ?";
         return Optional.ofNullable(jdbcTemplate.queryForObject(sql, new Object[] {username}, new BeanPropertyRowMapper<>(User.class)));
     }

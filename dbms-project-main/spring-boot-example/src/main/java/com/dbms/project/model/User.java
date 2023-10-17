@@ -15,9 +15,8 @@ import java.util.Objects;
 
 @Data
 public class User implements UserDetails {
-    @Size(min=1, max=255, message="Length of username must be between 1 and 255 characters")
     @NotBlank(message="Username cannot be blank")
-    private String username = null;
+    private Integer username = null;
     @NotEmpty(message="Password cannot be empty")
     @Size(min = 8, max=255, message="Password must have at least 8 characters")
     private String password = null;
@@ -51,6 +50,10 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
+    public String getUsername(){
+        return this.username.toString();
+    }
     @Override
     public boolean isAccountNonLocked() {
         return true;
