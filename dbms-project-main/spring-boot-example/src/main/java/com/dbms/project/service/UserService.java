@@ -51,10 +51,11 @@ public class UserService implements UserDetailsService {
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDao.findUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+        Integer uzairname = Integer.parseInt(username);
+        return userDao.findUserByUsername(uzairname).orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
     }
 
-    public User getUserByUsername(String username) {
+    public User getUserByUsername(Integer username) {
         return userDao.findUserByUsername(username).get();
     }
 
