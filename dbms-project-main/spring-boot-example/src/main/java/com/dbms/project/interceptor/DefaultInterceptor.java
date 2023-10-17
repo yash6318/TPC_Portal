@@ -21,7 +21,8 @@ public class DefaultInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if (modelAndView != null && request.getUserPrincipal() != null) {
             String loggedInUserUsername = request.getUserPrincipal().getName();
-            User user = userService.getUserByUsername(loggedInUserUsername);
+            int linen = Integer.parseInt(loggedInUserUsername);
+            User user = userService.getUserByUsername(linen);
             modelAndView.addObject("principal", user);
         }
     }
