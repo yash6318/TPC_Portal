@@ -1,0 +1,227 @@
+<!--<!DOCTYPE html>-->
+<!--<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Post New'})}"-->
+<!--      xmlns:th="http://www.w3.org/1999/xhtml">-->
+
+<!--<body class="g-sidenav-show  bg-gray-200">-->
+
+<!-- Add page content here within a div tag-->
+<!--<div>-->
+
+<!--    <div class="p-4 bg-light">-->
+<!--&lt;!&ndash;        <form th:action="@{/login}" method="post" th:object="${post}">&ndash;&gt;-->
+<!--            <div class="row justify-content-center">-->
+<!--                <div class="col-md-6">-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3 needs-validation" th:classappend="${post.title!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">Title</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" th:field="*{title}" maxlength="200">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    <div th:each="err : ${#fields.errors('title')}" class="fs-6">-->
+<!--                        <span th:text="${err}"></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${post.content!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Content&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" th:field="*{content}" maxlength="50">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('content')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.lastName!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Last Name&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" th:field="*{lastName}" maxlength="25">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('lastName')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.contactNumber!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Contact Number&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" th:field="*{contactNumber}" required maxlength="20">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('contactNumber')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-static my-3" th:classappend="${customer.dateOfBirth!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            Date of Birth&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="date" class="form-control" th:field="*{dateOfBirth}" required>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('dateOfBirth')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.emailId!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Email ID&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="email" class="form-control" th:field="*{emailId}" required maxlength="255">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('emailId')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.city!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            City&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" th:field="*{city}" required maxlength="50">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('city')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.state!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            state&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" th:field="*{state}" required maxlength="50">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('state')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.postalCode!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Postal Code&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control"  th:field="*{postalCode}" required maxlength="10">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('postalCode')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.country!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Country&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control"  th:field="*{country}" required maxlength="50">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('country')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="row justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-group input-group-outline my-3" th:classappend="${customer.street!=null}?is-filled">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label class="form-label">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Street&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control"  th:field="*{street}" required maxlength="50">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div th:each="err : ${#fields.errors('street')}" class="fs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${err}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--            <div>-->
+<!--                &lt;!&ndash; <a href="/profile/edit">   &ndash;&gt;-->
+<!--                <button class="btn btn-icon btn- btn-primary" type="submit">-->
+<!--                    <span class="btn-inner&#45;&#45;text">SUBMIT</span>-->
+<!--                </button>-->
+<!--                &lt;!&ndash; </a> &ndash;&gt;-->
+<!--            </div>-->
+
+
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--    </div>-->
+
+<!--</div>-->
+<!--</body>-->
+
+<!--</html>-->
+<!--<!DOCTYPE html>-->
+
+
+<!--<body class="g-sidenav-show  bg-gray-200">-->
+
+<!-- Add page content here within a div tag-->
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Post New'})}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<head>
+    <title>Post Create Page</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/register.css">
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/post/create}" method="post" >
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" maxlength="200" />
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <input type="text" id="content" name="content"  maxlength="5000"/>
+        </div>
+        <div>
+<!--            <label for="confirmPassword">Confirm Password *</label>-->
+<!--            <input type="password" id="confirmPassword" name="confirmPassword" required />-->
+<!--        </div>-->
+        <div class = "error">
+            <span th:text = "${error}"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
