@@ -1,5 +1,6 @@
 package com.dbms.project.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
-
+@Data
 public class Post{
 
     @NotBlank(message="Username cannot be blank")

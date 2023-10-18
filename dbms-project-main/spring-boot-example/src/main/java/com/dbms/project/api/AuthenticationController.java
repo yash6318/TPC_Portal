@@ -22,6 +22,8 @@ public class AuthenticationController {
     @Autowired
     UserService userService;
     @Autowired
+    UserService companyService;
+    @Autowired
     PasswordEncoder passwordEncoder;
 
 
@@ -36,6 +38,7 @@ public class AuthenticationController {
 
         return "login";
     }
+
 
     @GetMapping("/signup")
     public String signup(){
@@ -54,6 +57,33 @@ public class AuthenticationController {
             System.out.println(user);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             System.out.println(user.getPassword());
+            userService.insertUser(user);
+            return "redirect:/";
+        }
+    }
+
+
+    @GetMapping("/signup/company")
+    public String companySignup(){
+        return "company-register";
+    }
+
+    @PostMapping("/signup/company")
+    public String companySignupSubmit(@ModelAttribute User user, Model model){
+        System.out.println(user);
+        if(userService.alreadyExists(user.getUsername())){
+            if(user.getDesignation().equals("Student")){
+                model.addAttribute("error", "Username already taken by a student");
+            }
+            else{
+                model.addAttribute("error", "Username already taken by a Company");
+            }
+            return "company-register";
+        }
+        else {
+            System.out.println(user);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setDesignation("Company");
             userService.insertUser(user);
             return "redirect:/";
         }

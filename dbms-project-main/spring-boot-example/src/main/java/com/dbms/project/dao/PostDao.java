@@ -44,4 +44,14 @@ public class PostDao {
         final String sql = "SELECT * from POST";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Post.class));
     }
+
+    public List<Post> getPostsByUser(Integer username) {
+        final String sql = "SELECT * from POST where AUTHORID = ?";
+        return jdbcTemplate.query(sql, new Object[]{username}, new BeanPropertyRowMapper<>(Post.class));
+    }
+
+    public Post getPostByID(Integer postid) {
+        final String sql = "SELECT * from POST where POSTID = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{postid}, new BeanPropertyRowMapper<>(Post.class));
+    }
 }

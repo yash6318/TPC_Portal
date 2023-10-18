@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: navbar"></nav>
+<body>
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <h5 th:text="${post.title}" class="card-title"></h5>
+    </div>
+    <div class="card-body">
+        <div th:text="${post.content}" class="card-text "></div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <div th:text="'BY: ' + ${post.authorId}"></div>
+        <div th:text="${post.timestamp}"></div>
+    </div>
+</div>
+</body>
+</html>

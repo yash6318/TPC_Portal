@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: navbar"></nav>
 <body>
-<div th:each = "post : ${posts}">
-  <span th:text="${post.title}"> Title </span>
-  <span th:text="${post.content}"> Content </span>
+<div class="container">
+    <div th:each = "post : ${posts}" class="card">
+        <div class="card bg-dark text-white">
+            <a th:text="${post.title}" class="card-title" th:href="@{'/post/' + ${post.postId}}"></a>
+        </div>
+        <div class = "error">
+            <span th:text = "${error}"></span>
+        </div>
+    </div>
 </div>
 </body>
 </html>

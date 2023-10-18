@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<div class="container">
+  <h2>Enter Username and Password</h2>
+  <form th:action="@{/signup/company}" method="post" >
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+    </div>
+    <div>
+      <label for="password">Password *</label>
+      <input type="password" id="password" name="password"  required />
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm Password *</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required />
+    </div>
+    <div class = "error">
+      <span th:text = "${error}"></span>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+</body>
+</html>
