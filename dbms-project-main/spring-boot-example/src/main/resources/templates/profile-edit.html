@@ -1,181 +1,333 @@
 
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Profile Edit'})}">
+<html >
 
-<body class="g-sidenav-show  bg-gray-200">
+<head th:replace="base :: head"></head>
 
-<!-- Add page content here within a div tag -->
-<div>
 
-    <div class="p-4 bg-light">
-<form th:action="@{/profile/edit}" method="post" th:object="${principal}">
-    <input type="text" th:field="*{id}" hidden>
-    <input type="text" th:field="*{firstName}" hidden>
-    <input type="text" th:field="*{lastName}" hidden>
-    <input type="text" th:field="*{middleName}" hidden>
-    <input type="number" th:field="*{salary}" hidden>
-    <input type="text" th:field="*{designation}" hidden>
-    <input type="text" th:field="*{username}" hidden>
-    <input type="text" th:field="*{password}" hidden>
-    <div class="row">
-        <div class="col-md-6">
-          <div class="input-group input-group-outline my-3">
-            <label class="form-label">Name</label>
-            <input type="text" class="form-control" disabled th:value="${principal.firstName}+' '+${principal.middleName==null?'':principal.middleName}+' '+${principal.lastName==null?'':principal.lastName}">
+<body>
+<nav th:replace="base:: navbar"></nav>
+
+<div class="d-flex justify-content-end" >
+  <a href="/profile">
+    <button class="btn btn-icon btn-primary float-end align-items-end mx-1 my-2" type="button">
+      <span class="btn-inner--text">Back to Profile</span>
+    </button>
+  </a>
+  <a href="/profile/password">
+    <button class="btn btn-icon btn-primary float-end mx-1 my-2" type="button">
+      <span class="btn-inner--text">Change Password</span>
+    </button>
+  </a>
+</div>
+
+<form th:action="@{/profile/edit}" method="post">
+
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-3 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="rounded-circle mt-5" width="150px"
+             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+             alt="Avatar">
+        <span class="font-weight-bold" th:text="${student.firstName}+' '+${student.middleName == null ? '' : student.middleName + ' '} + ${student.lastName}"></span>
+        <span class="text-black-50" th:text="${student.instituteID}"></span>
+      </div>
+    </div>
+    <div class="col-md-5 border-right" style="flex:0 0 71%; max-width: 71%;">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Edit Your Profile</h4>
+        </div>
+        <div class="row mt-2">
+
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Roll No</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="" th:value="${student.rollNo}" disabled style="cursor: not-allowed;">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">First Name</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="First Name" name="firstName" th:value="${student.firstName}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels">Middle Name</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="Middle name" name="middleName" th:value="${student.middleName}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels">Last Name</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="Last name" name="lastName" th:value="${student.lastName}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Street</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="Street" name="street" th:value="${student.street}">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="labels required">City</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="City" name="city" th:value="${student.city}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">State</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="State" name="state" th:value="${student.state}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Pincode</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="Pincode" name="postalCode" th:value="${student.postalCode}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Institute ID</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="email" class="form-control" placeholder="Insti ID" name="instituteID" th:value="${student.instituteID}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Personal ID</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="email" class="form-control" placeholder="Personal ID" name="personalID" th:value="${student.personalID}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Gender</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <select name="sex" id="gender" required>
+                  <option value="" disabled>Select an option</option>
+                  <option value="Male" th:selected="${student.sex == 'Male' ? true:false}" >Male</option>
+                  <option value="Female" th:selected="${student.sex == 'Female' ? true:false}">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Mobile No</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="Mobile number" name="mobileNumber" th:value="${student.mobileNumber}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Date of Birth</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="date" class="form-control" placeholder="2003-01-01" name="dateOfBirth" th:value="${student.dateOfBirth}">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Programme</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <select name="programme" id="programme" required >
+                  <option value="" disabled>Select an option</option>
+                  <option value="BTech" th:selected="${student.programme == 'BTech' ? true : false}">B.Tech</option>
+                  <option value="IDD" th:selected="${student.programme == 'IDD' ? true : false}">IDD</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Branch</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <select name="branch" id="branch" required >
+                  <option value="" disabled>Select an option</option>
+                  <option value="Computer Science and Engineering" th:selected="${student.branch == 'Computer Science and Engineering' ? true : false}">Computer Science and Engineering</option>
+                  <option value="Mathematics and Computing" th:selected="${student.branch == 'Mathematics and Computing' ? true : false}">Mathematics and Computing</option>
+                  <option value="Electronics Engineering" th:selected="${student.branch == 'Electronics Engineering' ? true : false}">Electronics Engineering</option>
+                  <option value="Electrical Engineering" th:selected="${student.branch == 'Electrical Engineering' ? true : false}">Electrical Engineering</option>
+                  <option value="Mechanical Engineering" th:selected="${student.branch == 'Mechanical Engineering' ? true : false}">Mechanical Engineering</option>
+                  <option value="Chemical Engineering" th:selected="${student.branch == 'Chemical Engineering' ? true : false}">Chemical Engineering</option>
+                  <option value="Metallurgy Engineering" th:selected="${student.branch == 'Metallurgy Engineering' ? true : false}">Metallurgy Engineering</option>
+                  <option value="Pharmaceutical Engineering" th:selected="${student.branch == 'Pharmaceutical Engineering' ? true : false}">Pharmaceutical Engineering</option>
+                  <option value="Biomedical Engineering" th:selected="${student.branch == 'Biomedical Engineering' ? true : false}">Biomedical Engineering</option>
+                  <option value="BioChemical Engineering" th:selected="${student.branch == 'BioChemical Engineering' ? true : false}">BioChemical Engineering</option>
+                  <option value="Civil Engineering" th:selected="${student.branch == 'Civil Engineering' ? true : false}">Civil Engineering</option>
+                  <option value="Ceramic Engineering" th:selected="${student.branch == 'Ceramic Engineering' ? true : false}">Ceramic Engineering</option>
+                  <option value="Engineering Physics" th:selected="${student.branch == 'Engineering Physics' ? true : false}">Engineering Physics</option>
+                  <option value="Industrial Chemistry" th:selected="${student.branch == 'Industrial Chemistry' ? true : false}">Industrial Chemistry</option>
+                  <option value="Material Science and Technology" th:selected="${student.branch == 'Material Science and Technology' ? true : false}">Material Science and Technology</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Total Backlogs</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="number" class="form-control" value="0" min="0" name="totalBacklogs" th:value="${student.totalBacklogs}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Active Backlogs</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="number" class="form-control" value="0" min="0" name="activeBacklogs" th:value="${student.activeBacklogs}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">CGPA</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="number" class="form-control" placeholder="CGPA" name="cpi" min="0" max="10" step="0.01" th:value="${student.cpi}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Class X Board Name</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="ClassX BoardName" name="classXBoard" th:value="${student.classXBoard}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Class X Percentage</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="number" class="form-control" placeholder="ClassX Percentage" name="Xpercentage" min="0" max="100" step="0.01" th:value="${student.Xpercentage}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Class XII Board Name</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="ClassXII BoardName" name="classXIIBoard" th:value="${student.classXIIBoard}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Class XII Percentage</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="number" class="form-control" placeholder="ClassXII Percentage" name="XIIpercentage" min="0" max="100" step="0.01" th:value="${student.XIIpercentage}">
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 mb-3">
+            <label class="labels required">Year of Passing</label>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div class="input-group input-group-outline">
+                <label>
+                  <input type="text" class="form-control" placeholder="Year of Passing" name="passingYear" th:value="${student.passingYear}">
+                </label>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- <p>Name</p> -->
-        <div class="col-md-6">
-          <!-- <h8>Name</h8> -->
-          <div class="input-group input-group-outline my-3">
-            <label class="form-label">
-                <span th:text="${principal.firstName}+' '+${principal.middleName==null?'':principal.middleName}+' '+${principal.lastName==null?'':principal.lastName}"></span>
-            </label>
-            <input type="text" class="form-control" disabled>
-          </div>
+
+        <div class="mt-5 text-center">
+          <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
         </div>
       </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3 is-filled">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-control" th:field="*{emailId}" required maxlength="255">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3">
-        <label class="form-label">
-            <span th:text="${principal.emailId}"></span>
-        </label>
-        <input type="email" class="form-control" disabled>
-      </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3 is-filled">
-        <label class="form-label">Contact Number</label>
-        <input type="text" class="form-control" th:field="*{contactNumber}" required maxlength="20">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3">
-        <label class="form-label">
-            <span th:text="${principal.contactNumber}"></span>
-        </label>
-        <input type="text" class="form-control" disabled>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3 is-filled">
-        <label class="form-label">City</label>
-        <input type="text" class="form-control" th:field="*{city}" required maxlength="50">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3">
-        <label class="form-label">
-            <span th:text="${principal.city}"></span>
-        </label>
-        <input type="text" class="form-control" disabled>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3 is-filled">
-        <label class="form-label">State</label>
-        <input type="text" class="form-control" th:field="*{state}" required maxlength="50">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3">
-        <label class="form-label">
-            <span th:text="${principal.state}"></span>
-        </label>
-        <input type="text" class="form-control" disabled>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3 is-filled">
-        <label class="form-label">Postal Code</label>
-        <input type="text" class="form-control" th:field="*{postalCode}" required maxlength="10">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3">
-        <label class="form-label">
-            <span th:text="${principal.postalCode}"></span>
-        </label>
-        <input type="text" class="form-control" disabled>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3 is-filled">
-        <label class="form-label">Country</label>
-        <input type="text" class="form-control" th:field="*{country}" required maxlength="50">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3">
-        <label class="form-label">
-            <span th:text="${principal.country}"></span>
-        </label>
-        <input type="text" class="form-control" disabled>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3 is-filled">
-        <label class="form-label">Street</label>
-        <input type="text" class="form-control" th:field="*{street}" required maxlength="50">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline my-3">
-        <label class="form-label">
-            <span th:text="${principal.street}"></span>
-        </label>
-        <input type="text" class="form-control" disabled>
-      </div>
-    </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-
-
-  <!-- <div class="row">
-    <div class="col-md-6">
-      <div class="input-group input-group-outline is-valid my-3">
-        <label class="form-label">Success</label>
-        <input type="email" class="form-control">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group input-group-outline is-invalid my-3">
-        <label class="form-label">Error</label>
-        <input type="email" class="form-control">
-      </div>
-    </div>
-  </div> -->
+</div>
 </form>
-</div>
 
-</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

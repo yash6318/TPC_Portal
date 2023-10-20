@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments :: head"></head>
+<head th:replace="base :: head"></head>
 <body>
-<nav th:replace="fragments :: navbar"></nav>
+<nav th:replace="base :: navbar"></nav>
 <div class="container">
   <h2>Enter Username and Password</h2>
   <form th:action="@{/signup/company}" method="post" >

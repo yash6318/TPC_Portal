@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments :: head"></head>
-<nav th:replace="fragments :: navbar"></nav>
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: navbar"></nav>
 <body>
 <div class="container">
     <div th:each = "post : ${posts}" class="card">

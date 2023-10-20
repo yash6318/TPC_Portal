@@ -2,6 +2,7 @@ package com.dbms.project;
 
 import com.dbms.project.dao.CompanyDao;
 import com.dbms.project.dao.PostDao;
+import com.dbms.project.dao.StudentDao;
 import com.dbms.project.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +18,8 @@ public class SpringBootExampleApplication implements CommandLineRunner {
 	private PostDao postDao;
 	@Autowired
 	private CompanyDao companyDao;
+	@Autowired
+	private StudentDao studentDao;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootExampleApplication.class, args);
 	}
@@ -26,5 +29,6 @@ public class SpringBootExampleApplication implements CommandLineRunner {
 		this.userdao.CreateTable();
 		this.postDao.CreateTable();
 		this.companyDao.CreateTable();
+		this.studentDao.CreateTable();
 	}
 }

@@ -58,7 +58,7 @@ public class AuthenticationController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             System.out.println(user.getPassword());
             userService.insertUser(user);
-            return "redirect:/";
+            return "redirect:/login";
         }
     }
 
@@ -89,22 +89,12 @@ public class AuthenticationController {
         }
     }
 
-//
-//    @GetMapping(path="/profile")
-//    public String profile() {
-//        return "profile";
-//    }
 
-//    @PostMapping(path = "/profile/edit")
-//    public String profileEditSubmit(@Valid @ModelAttribute("profile") Employee profile, RedirectAttributes redirectAttributes) {
-//        employeeService.updateEmployee(profile.getId(), profile);
-//        return "redirect:/profile";
-//    }
+    @GetMapping(path="/")
+    public String dashboard() {
+        return "dashboard";
+    }
 
-//    @GetMapping(path="/profile/edit")
-//    public String profileEditForm() {
-//        return "profile-edit";
-//    }
 //
 //    @GetMapping(path="/profile/password")
 //    public String profilePasswordForm() {

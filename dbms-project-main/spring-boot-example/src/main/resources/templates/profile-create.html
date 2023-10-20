@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head th:replace="base :: head"></head>
+
+<body>
+<nav th:replace="base :: navbar"></nav>
+
+<div class="d-flex justify-content-end" >
+    <a href="/profile">
+        <button class="btn btn-icon btn-primary float-end align-items-end mx-1 my-2" type="button">
+            <span class="btn-inner--text">Back to Profile</span>
+        </button>
+    </a>
+    <a href="/profile/password">
+        <button class="btn btn-icon btn-primary float-end mx-1 my-2" type="button">
+            <span class="btn-inner--text">Change Password</span>
+        </button>
+    </a>
+</div>
+
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px"
+                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                     alt="Avatar">
+                <span class="font-weight-bold">User</span>
+                <span class="text-black-50">user@gmail.com</span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right" style="flex:0 0 71%; max-width: 71%;">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Edit Your Profile</h4>
+                </div>
+                <div class="row mt-2">
+
+                </div>
+
+                <form th:action="@{/profile/create}" method="post">
+                <div class="row mt-3">
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Roll No</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" th:placeholder="${rollNo}"  disabled style="cursor: not-allowed;">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">First Name</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="First Name" value="" name="firstName" required>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels">Middle Name</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Middle name" value="" name = "middleName">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels">Last Name</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Last name" value="" name="lastName">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Street</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Street" value="" name="street">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">City</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="City" value="" name="city">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">State</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="State" value="" name="state">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Pincode</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Pincode" value="" name="postalCode">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Institute ID</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="email" class="form-control" placeholder="Insti ID" value="" name="instituteID">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Personal ID</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="email" class="form-control" placeholder="Personal ID" value="" name="personalID">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Gender</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <select name="sex" id="gender" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Mobile No</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Mobile number" value="" name="mobileNumber">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Date of Birth</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="date" class="form-control" placeholder="2003-01-01" value="" name="dateOfBirth">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Programme</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <select name="programme" id="programme" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="BTech">B.Tech</option>
+                                    <option value="IDD">IDD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Branch</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <select name="branch" id="branch" required >
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                                    <option value="Mathematics and Computing">Mathematics and Computing</option>
+                                    <option value="Electronics Engineering">Electronics Engineering</option>
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Chemical Engineering">Chemical Engineering</option>
+                                    <option value="Metallurgy Engineering">Metallurgy Engineering</option>
+                                    <option value="Pharmaceutical Engineering">Pharmaceutical Engineering</option>
+                                    <option value="Biomedical Engineering">Biomedical Engineering</option>
+                                    <option value="BioChemical Engineering">BioChemical Engineering</option>
+                                    <option value="Civil Engineering">Civil Engineering</option>
+                                    <option value="Ceramic Engineering">Ceramic Engineering</option>
+                                    <option value="Engineering Physics">Engineering Physics</option>
+                                    <option value="Industrial Chemistry">Industrial Chemistry</option>
+                                    <option value="Material Science and Technology">Material Science and Technology</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Total Backlogs</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="number" class="form-control" value="0" min="0" name="totalBacklogs">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Active Backlogs</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="number" class="form-control" value="0" min="0" name="activeBacklogs">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">CGPA</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="number" class="form-control" placeholder="CGPA" min="0" max="10" step="0.01" name="cpi">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Class X Board Name</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="ClassX BoardName" value="" name="classXBoard">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Class X Percentage</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="number" class="form-control" placeholder="ClassX Percentage" min="0" max="100" step="0.01" name="Xpercentage">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Class XII Board Name</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="ClassXII BoardName" value="" name="classXIIBoard">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Class XII Percentage</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="number" class="form-control" placeholder="ClassXII Percentage" min="0" max="100" step="0.01" name="XIIpercentage">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels required">Year of Passing</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group input-group-outline">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Year of Passing" value="" name="passingYear">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
