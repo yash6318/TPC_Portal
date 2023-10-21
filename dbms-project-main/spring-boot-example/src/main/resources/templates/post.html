@@ -11,7 +11,7 @@
         <div th:text="${post.content}" class="card-text "></div>
     </div>
     <div class="card-footer d-flex justify-content-between">
-        <div th:text="'BY: ' + ${post.authorId}"></div>
+        <div th:text="'BY: ' + ${authorName}"></div>
         <div th:text="${post.timestamp}"></div>
     </div>
 </div>

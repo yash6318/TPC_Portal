@@ -28,7 +28,10 @@ public class StudentController {
     public String getStudentDetails(Authentication auth, Model model){
         User temp = (User)auth.getPrincipal();
         String uname = temp.getUsername();
-
+        if(temp.getDesignation().equals("Company")){
+            model.addAttribute("errorMessage","Unauthorized request");
+            return "error";
+        }
         if(studentService.studentExists(Integer.parseInt(uname))){
             Student toBeShown = studentService.getStudentByRollNo(Integer.parseInt(uname));
             model.addAttribute("student", toBeShown);
@@ -41,12 +44,22 @@ public class StudentController {
 
     @GetMapping(path="/profile/create")
     public String studentCreate(Model model,Authentication auth){
+        User temp = (User)auth.getPrincipal();
+        if(temp.getDesignation().equals("Company")){
+            model.addAttribute("errorMessage","Unauthorized request");
+            return "error";
+        }
         model.addAttribute("rollNo",((User)auth.getPrincipal()).getUsername());
         return "profile-create";
     }
 
     @GetMapping("/profile/edit")
     public String studentEdit(Model model, Authentication auth){
+        User temp = (User)auth.getPrincipal();
+        if(temp.getDesignation().equals("Company")){
+            model.addAttribute("errorMessage","Unauthorized request");
+            return "error";
+        }
         model.addAttribute("student", studentService.getStudentByRollNo(Integer.parseInt(((User)auth.getPrincipal()).getUsername())));
         return "profile-edit";
     }
@@ -64,10 +77,5 @@ public class StudentController {
         studentService.updateStudent(student);
         return "redirect:/profile";
     }
-
-
 }
 
-/*
-
-*/

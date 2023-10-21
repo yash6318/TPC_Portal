@@ -1,7 +1,12 @@
 package com.dbms.project.dao;
 
+import com.dbms.project.model.Company;
 import com.dbms.project.model.Post;
+import com.dbms.project.model.Student;
 import com.dbms.project.model.User;
+import com.dbms.project.service.CompanyService;
+import com.dbms.project.service.StudentService;
+import com.dbms.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +21,12 @@ import java.util.List;
 @Repository
 public class PostDao {
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
+    UserService userService;
+    @Autowired
+    CompanyService companyService;
+    @Autowired
+    StudentService studentService;
     @Autowired
     public PostDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -53,5 +63,23 @@ public class PostDao {
     public Post getPostByID(Integer postid) {
         final String sql = "SELECT * from POST where POSTID = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{postid}, new BeanPropertyRowMapper<>(Post.class));
+    }
+    public Integer getLastPost(){
+        final String sql = "SELECT MAX(postId) from POST";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+    public String getName(Integer ID){
+        String designation = userService.getDesignationFromID(ID);
+        if(designation.equals("Student")){
+            Student student = studentService.getStudentByRollNo(ID);
+            return student.getFirstName() + " " + student.getLastName();
+        }
+        else if(designation.equals("Company")){
+            Company company = companyService.getCompanyByID(ID);
+            return company.getCompanyName();
+        }
+        else{
+            return "ADMIN";
+        }
     }
 }

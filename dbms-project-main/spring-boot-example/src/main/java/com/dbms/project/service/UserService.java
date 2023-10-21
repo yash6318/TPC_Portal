@@ -25,29 +25,8 @@ public class UserService implements UserDetailsService {
         return userDao.getAllUsers();
     }
 
-//    public List<LeavesAndSalaries> getAllLeavesAndSalaries(int id) {
-//        return employeeDao.getAllLeavesAndSalaries(id);
-//    }
+    public String getDesignationFromID(Integer ID) {return userDao.getDesignationFromID(ID); }
 
-//    public List<WorkExperience> getAllWorkExperience(int id) {
-//        return employeeDao.getAllWorkExperience(id);
-//    }
-
-//    public User getUserById(int id) {
-//        return userDao.getUserById(id);
-//    }
-
-//    public int deleteUser(int id) {
-//        return userDao.deleteUser(id);
-//    }
-
-//    public int updateUser(int id, User user) {
-//        return userDao.updateUser(id, user);
-//    }
-
-//    public int updatePassword(int id, User user) {
-//        return userDao.updatePassword(id, user);
-//    }
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {

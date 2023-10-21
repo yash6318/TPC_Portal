@@ -193,33 +193,24 @@
 
 <!-- Add page content here within a div tag-->
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'Post New'})}"
-      xmlns:th="http://www.w3.org/1999/xhtml">
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="base :: head">
     <title>Post Create Page</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/register.css">
 </head>
 <body>
+<nav th:replace="base :: navbar"></nav>
 <div class="container">
     <form th:action="@{/post/create}" method="post" >
-        <div>
+        <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" maxlength="200" />
+            <input class="form-control" type="text" id="title" name="title" maxlength="200" />
         </div>
-        <div>
+        <div class="form-group">
             <label for="content">Content</label>
-            <input type="text" id="content" name="content"  maxlength="5000"/>
+            <textarea type="text" id="content" name="content"  maxlength="5000" class="form-control"></textarea>
         </div>
-        <div>
-<!--            <label for="confirmPassword">Confirm Password *</label>-->
-<!--            <input type="password" id="confirmPassword" name="confirmPassword" required />-->
-<!--        </div>-->
-        <div class = "error">
-            <span th:text = "${error}"></span>
-        </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-dark my-4">Submit</button>
     </form>
 </div>
 

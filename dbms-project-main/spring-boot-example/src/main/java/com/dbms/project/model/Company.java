@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 @Data
 public class Company{
+    @NotBlank(message="Username cannot be blank")
+    private Integer companyID;
     @Getter
     @NotBlank(message="Title cannot be empty")
     @Setter

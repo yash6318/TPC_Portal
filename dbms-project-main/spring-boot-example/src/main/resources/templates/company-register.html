@@ -1,28 +1,60 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<head th:replace="base :: head"></head>-->
+<!--<body>-->
+<!--<nav th:replace="base :: navbar"></nav>-->
+<!--<div class="container">-->
+<!--  <h2>Enter Username and Password</h2>-->
+<!--  <form th:action="@{/signup/company}" method="post" >-->
+<!--    <div>-->
+<!--      <label for="username">Username</label>-->
+<!--      <input type="text" id="username" name="username" required />-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="password">Password *</label>-->
+<!--      <input type="password" id="password" name="password"  required />-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="confirmPassword">Confirm Password *</label>-->
+<!--      <input type="password" id="confirmPassword" name="confirmPassword" required />-->
+<!--    </div>-->
+<!--    <div class = "error">-->
+<!--      <span th:text = "${error}"></span>-->
+<!--    </div>-->
+<!--    <button type="submit">Submit</button>-->
+<!--  </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="base :: head"></head>
-<body>
 <nav th:replace="base :: navbar"></nav>
-<div class="container">
-  <h2>Enter Username and Password</h2>
-  <form th:action="@{/signup/company}" method="post" >
-    <div>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
+<body>
+<form class="container w-50 my-4" th:action="@{/signup/company}" method="post">
+  <h3 class="text-center">Company Signup</h3>
+  <div class="border p-3 bg-light">
+    <div class="form-group">
+      <label class="form-label" for="username">Company ID</label>
+      <input type="text" id="username" name="username" class="form-control"  required >
     </div>
-    <div>
-      <label for="password">Password *</label>
-      <input type="password" id="password" name="password"  required />
+    <div class="form-group my-2">
+      <label class="form-label" for="password">Password</label>
+      <input type="password" id="password" name="password" class="form-control" required minlength="8" maxlength="255">
     </div>
-    <div>
-      <label for="confirmPassword">Confirm Password *</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required />
+    <div class="form-group my-2">
+      <label class="form-label" for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required minlength="8" maxlength="255">
     </div>
     <div class = "error">
       <span th:text = "${error}"></span>
     </div>
-    <button type="submit">Submit</button>
-  </form>
-</div>
+    <div class="d-flex flex-row justify-content-between">
+      <button type="submit" class="btn btn-dark my-4">Submit</button>
+      <a th:href="@{/login}" class="mt-4 text-dark"> Already registered? LogIn</a>
+    </div>
+  </div>
+</form>
 </body>
 </html>

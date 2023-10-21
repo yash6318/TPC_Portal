@@ -27,4 +27,8 @@ public class PostService {
     public List<Post> getPostsByUser(Integer username) {return postDao.getPostsByUser(username);}
 
     public Post getPostByID(Integer postid) { return postDao.getPostByID(postid); }
+
+    public Integer getLastPost() { return postDao.getLastPost(); }
+
+    public String getName(Integer ID){ return postDao.getName(ID); }
 }

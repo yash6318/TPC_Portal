@@ -4,14 +4,14 @@
 <nav th:replace="base :: navbar"></nav>
 <body>
 <div class="container">
-    <div th:each = "post : ${posts}" class="card">
-        <div class="card bg-dark text-white">
-            <a th:text="${post.title}" class="card-title" th:href="@{'/post/' + ${post.postId}}"></a>
+    <a th:each = "post : ${posts}" class="card bg-dark text-white p-3 my-2" th:href="@{'/post/' + ${post.postId}}">
+        <div class="">
+            <div th:text="${post.title}" class="h4"></div>
         </div>
         <div class = "error">
             <span th:text = "${error}"></span>
         </div>
-    </div>
+    </a>
 </div>
 </body>
 </html>

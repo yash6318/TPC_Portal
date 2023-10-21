@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head th:replace="base :: head"></head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+
+<div class="d-flex justify-content-end" >
+    <a href="/company-profile/edit">
+        <button class="btn btn-icon btn-primary float-end align-items-end mx-1 my-2" type="button">
+            <span class="btn-inner--text">Edit Profile</span>
+        </button>
+    </a>
+    <a href="/company-profile/password">
+        <button class="btn btn-icon btn-primary float-end mx-1 my-2" type="button">
+            <span class="btn-inner--text">Change Password</span>
+        </button>
+    </a>
+</div>
+
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px"
+                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                     alt="Avatar">
+                <span class="font-weight-bold" th:text="${company.companyName}"></span>
+                <span class="text-black-50" th:text="${company.HREmail}"></span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right" style="flex:0 0 71%; max-width: 71%;">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row mt-2">
+
+                </div>
+                <div class="row mt-3 ">
+                    <div class="col-md-6 mb-3">
+                        <label class="labels">Roll No</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <p class="text-muted">
+                                <span th:text="${company.HREmail}"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="labels">First Name</label>
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <p class="text-muted">
+                                <span th:text="${company.HRPhone}"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

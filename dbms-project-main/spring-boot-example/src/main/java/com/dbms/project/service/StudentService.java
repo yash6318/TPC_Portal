@@ -14,10 +14,6 @@ public class StudentService {
     private StudentDao studentDao;
     @Autowired
     public UserDao user;
-//    private final DataSource dataSource;
-//    public void saveOrUpdateStudent(Student student){
-//        studentDao.insertOrUpdateStudent(student);
-//    }
     public Student getStudentByRollNo(Integer rollNo) {
         // Fetch student details using the StudentDao
         return studentDao.getStudentByRollNo(rollNo);
@@ -35,20 +31,3 @@ public class StudentService {
     }
 }
 
-/*
-@Service
-public class StudentService {
-    @Autowired
-    private StudentDao studentDao;
-
-    public Student saveOrUpdateStudent(Student student) {
-        // Validation and save/update logic using the StudentDao
-        return studentDao.saveOrUpdateStudent(student);
-    }
-
-    public Student getStudentByRollNo(String rollNo) {
-        // Fetch student details using the StudentDao
-        return studentDao.getStudentByRollNo(rollNo);
-    }
-}
-*/

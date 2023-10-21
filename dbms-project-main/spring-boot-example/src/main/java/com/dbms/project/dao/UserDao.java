@@ -43,26 +43,6 @@ public class UserDao {
         final String sql = "SELECT * from USER";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
     }
-//
-//    public User getUserById(int id) {
-//        final String sql = "SELECT * from employee WHERE id = ?";
-//        return jdbcTemplate.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<>(Employee.class));
-//    }
-
-//    public int deleteUser(int id) {
-//        final String sql = "DELETE FROM USER WHERE id = ?";
-//        return jdbcTemplate.update(sql, id);
-//    }
-
-//    public int updateEmployee(int id, Employee employee) {
-//        final String sql = "UPDATE employee SET firstName = ?, middleName = ?, lastName = ?, designation = ?, salary = ?, contactNumber = ?, dateOfBirth = ?, emailId = ?, city = ?, state = ?, postalCode = ?, country = ?, street = ? WHERE id = ?";
-//        return jdbcTemplate.update(sql, employee.getFirstName(), employee.getMiddleName(), employee.getLastName(), employee.getDesignation(), employee.getSalary(), employee.getContactNumber(), employee.getDateOfBirth(), employee.getEmailId(), employee.getCity(), employee.getState(), employee.getPostalCode(), employee.getCountry(), employee.getStreet(), id);
-//    }
-
-//    public int updatePassword(int id, Employee employee) {
-//        final String sql = "UPDATE employee SET password = ? WHERE id = ?";
-//        return jdbcTemplate.update(sql, employee.getPassword(), id);
-//    }
 
     public Optional<User> findUserByUsername(Integer username) {
         final String sql = "SELECT * from user WHERE username = ?";
@@ -73,5 +53,9 @@ public class UserDao {
         String query = "SELECT COUNT(*) FROM user WHERE username = ?";
         int rs =  this.jdbcTemplate.queryForObject(query, new Object[]{username}, Integer.class);
         return (rs != 0);
+    }
+    public String getDesignationFromID(Integer ID){
+        String sql = "SELECT DESIGNATION FROM USER WHERE username = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{ID}, String.class);
     }
 }
