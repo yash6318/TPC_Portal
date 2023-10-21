@@ -66,7 +66,7 @@ public class UserDao {
         jdbcTemplate.update(updateSql,
                 user.getPassword(),
                 user.getUsername()
-        );
-    }
+        );
+    }
     
 }
