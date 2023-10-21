@@ -41,4 +41,6 @@ public class UserService implements UserDetailsService {
     public boolean alreadyExists(String username) {
         return userDao.alreadyExists(username);
     }
+
+    public void updateUser(User user) { userDao.updateUser(user); }
 }

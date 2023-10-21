@@ -58,4 +58,13 @@ public class UserDao {
         String sql = "SELECT DESIGNATION FROM USER WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{ID}, String.class);
     }
+    public void updateUser(User user){
+        final String updateSql = "UPDATE user SET " +
+                "password = ? " +
+                "WHERE username = ?";
+        jdbcTemplate.update(updateSql,
+                user.getPassword(),
+                user.getUsername()
+        );
+    }
 }

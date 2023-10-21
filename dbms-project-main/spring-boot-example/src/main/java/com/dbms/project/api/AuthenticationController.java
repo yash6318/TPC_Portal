@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 public class AuthenticationController {
@@ -95,20 +96,24 @@ public class AuthenticationController {
         return "dashboard";
     }
 
-//
-//    @GetMapping(path="/profile/password")
-//    public String profilePasswordForm() {
-//        return "profile-password";
-//    }
 
-//    @PostMapping(path="/profile/password")
-//    public String profilePasswordSubmit(@RequestParam("password") String password, RedirectAttributes redirectAttributes, Authentication authentication) {
-//        Employee profile = ((Employee) authentication.getPrincipal());
-//        System.out.println(profile);
-//        profile.setPassword(passwordEncoder.encode(password));
-//        System.out.println(profile);
-//        employeeService.updatePassword(profile.getId(), profile);
-//
-//        return "redirect:/profile";
-//    }
+    @GetMapping(path="/changepassword")
+    public String changepassword(Model model,Authentication auth) {
+        User user = (User)auth.getPrincipal();
+        model.addAttribute("user",user);
+        System.out.println(model);
+        return "changepassword";}
+
+    @PostMapping(path="/changepassword")
+    public String changepasswordsubmit(@ModelAttribute User user,Authentication auth,Model model){
+        User user1 = (User)auth.getPrincipal();
+        if(!Objects.equals(user1.getUsername(), user.getUsername())){
+            model.addAttribute("error", "Enter Correct Username");
+            return "/changepassword";
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userService.updateUser(user);
+        System.out.println(user);
+        return "/dashboard";
+    }
 }
