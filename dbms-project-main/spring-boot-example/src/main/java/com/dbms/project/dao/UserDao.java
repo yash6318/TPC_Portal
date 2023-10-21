@@ -62,9 +62,11 @@ public class UserDao {
         final String updateSql = "UPDATE user SET " +
                 "password = ? " +
                 "WHERE username = ?";
+
         jdbcTemplate.update(updateSql,
                 user.getPassword(),
                 user.getUsername()
-        );
-    }
+        );
+    }
+    
 }
