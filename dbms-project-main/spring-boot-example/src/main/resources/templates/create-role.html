@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="base :: head"></head>
+<body>
+<nav th:replace="base :: company-navbar"></nav>
+
+<form th:action="@{/role/create}" th:object="${role}" method = "post" class="container w-50 my-4">
+    <h3 class="text-center">Float New Role</h3>
+    <div class="border p-3 bg-light">
+        <div class="form-group">
+            <label class="form-label" for="RoleName">Role Name</label>
+            <input type="text" id="RoleName" name="RoleName" class="form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="branches">Eligible Branches</label>
+            <input name = "branches" id = "branches" type="checkbox" th:each="branch: ${brancheis}" th:value="${branch}" th:text="${branch}">
+        </div>
+        <div>
+            <label class="form-label" for="JobDescription">Job Description</label>
+            <input name = "JobDescription" id = "JobDescription" type="text" class = "form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="Stipend">Stipend in Rupees</label>
+            <input name = "Stipend" id = "Stipend" type="number" class = "form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="Idd">Open for Idd</label>
+            <input name = "Idd" id = "Idd" type="checkbox" th:value="${true}" >
+        </div>
+        <div>
+            <label class="form-label" for="BTech">Open for BTech</label>
+            <input name = "BTech" id = "BTech" type="checkbox" th:value = "${true}">
+        </div>
+        <div>
+            <label class="form-label" for="minCpi">Min CPI required</label>
+            <input name = "minCpi" id = "minCpi" type="number" step="0.01" min="0" max="10" class = "form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="minPassingYear">Min Passing Year</label>
+            <input name = "minPassingYear" id = "minPassingYear" type="text" class = "form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="maxPassingYear">Max Passing Year</label>
+                <input name = "maxPassingYear" id = "maxPassingYear" type="text" class = "form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="maxTotalBacklogs">max Total Backlogs</label>
+            <input name = "maxTotalBacklogs" id = "maxTotalBacklogs" type="number" class = "form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="maxActiveBacklogs">max Active Backlogs</label>
+            <input name = "maxActiveBacklogs" id = "maxActiveBacklogs" type="number" class = "form-control" >
+        </div>
+        <div>
+            <label class="form-label" for="deadLine">deadline</label>
+            <input name = "deadLine" id = "deadLine" type="datetime-local" class = "form-control" >
+        </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+        <button type="submit" class="btn btn-dark my-4">Submit</button>
+    </div>
+</form>
+
+
+</body>
+</html>
