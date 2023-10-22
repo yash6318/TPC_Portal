@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'resume-create'})}"
-      xmlns:th="http://www.w3.org/1999/xhtml">
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<html>-->
+<!--<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'resume-create'})}"-->
+<!--      xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <title>Add Resume</title>
@@ -20,9 +21,6 @@
       <input type="text" id="resumeLink" name="resumeLink"  maxlength="500"/>
     </div>
     <div>
-      <!--            <label for="confirmPassword">Confirm Password *</label>-->
-      <!--            <input type="password" id="confirmPassword" name="confirmPassword" required />-->
-      <!--        </div>-->
       <div class = "error">
         <span th:text = "${error}"></span>
       </div>
