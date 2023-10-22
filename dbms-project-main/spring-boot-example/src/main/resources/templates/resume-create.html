@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'resume-create'})}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<head>
+  <title>Add Resume</title>
+  <link rel="stylesheet" type="text/css" href="/assets/css/register.css">
+</head>
+<body>
+<div class="container">
+<!--  <h1>hello</h1>-->
+  <form th:action="@{/resume/create}" method="post" >
+    <div>
+      <label for="resumeName">Resume</label>
+      <input type="text" id="resumeName" name="resumeName" maxlength="40" />
+    </div>
+    <div>
+      <label for="resumeLink">Resume Drive Link</label>
+      <input type="text" id="resumeLink" name="resumeLink"  maxlength="500"/>
+    </div>
+    <div>
+      <!--            <label for="confirmPassword">Confirm Password *</label>-->
+      <!--            <input type="password" id="confirmPassword" name="confirmPassword" required />-->
+      <!--        </div>-->
+      <div class = "error">
+        <span th:text = "${error}"></span>
+      </div>
+      <button type="submit">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>

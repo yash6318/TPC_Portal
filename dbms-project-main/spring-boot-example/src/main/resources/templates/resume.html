@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: navbar"></nav>
+<body>
+<div class="container">
+    <div>
+            <tr th:each="entity : ${resume}">
+                <div>
+            <td th:text="${entity.resumeName}"></td>
+            <td th:text="${entity.link}"></td>
+                <td th:text="${entity.isVerified}"></td>
+                </div>
+            </tr>
+    </div>
+</div>
+</body>
+</html>
