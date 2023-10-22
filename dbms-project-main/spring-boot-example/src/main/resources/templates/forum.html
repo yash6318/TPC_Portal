@@ -9,6 +9,11 @@
     </nav>
 </div>
 <body>
+
+<div th:if="${designation} == 'Company'">
+    <button class = "btn-dark my-4"><a href="/post/create">Create Post</a></button>
+</div>
+
 <div style="display: grid; grid-template-columns: 1fr 1fr;">
     <a th:each = "post : ${posts}" class="card m-2 bg-dark border-dark border-2 text-decoration-none" th:href="@{'/post/' + ${post.postId}}">
         <div class="text-white" >
