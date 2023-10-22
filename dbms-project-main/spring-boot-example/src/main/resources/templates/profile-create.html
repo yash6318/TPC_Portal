@@ -9,12 +9,12 @@
 
 <div class="d-flex justify-content-end" >
     <a href="/profile">
-        <button class="btn btn-icon btn-primary float-end align-items-end mx-1 my-2" type="button">
+        <button class="btn btn-icon btn-dark float-end align-items-end mx-1 my-2" type="button">
             <span class="btn-inner--text">Back to Profile</span>
         </button>
     </a>
     <a href="/changepassword">
-        <button class="btn btn-icon btn-primary float-end mx-1 my-2" type="button">
+        <button class="btn btn-icon btn-dark float-end mx-1 my-2" type="button">
             <span class="btn-inner--text">Change Password</span>
         </button>
     </a>
@@ -72,7 +72,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="Middle name" value="" name = "middleName">
+                                    <input type="text" class="form-control" placeholder="Middle name" value="" name = "middleName" >
                                 </label>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="Street" value="" name="street">
+                                    <input type="text" class="form-control" placeholder="Street" value="" name="street" required>
                                 </label>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="City" value="" name="city">
+                                    <input type="text" class="form-control" placeholder="City" value="" name="city" required>
                                 </label>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="State" value="" name="state">
+                                    <input type="text" class="form-control" placeholder="State" value="" name="state" required>
                                 </label>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="Pincode" value="" name="postalCode">
+                                    <input type="text" class="form-control" placeholder="Pincode" value="" name="postalCode" required>
                                 </label>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="email" class="form-control" placeholder="Insti ID" value="" name="instituteID">
+                                    <input type="email" class="form-control" placeholder="Insti ID" value="" name="instituteID" required>
                                 </label>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="email" class="form-control" placeholder="Personal ID" value="" name="personalID">
+                                    <input type="email" class="form-control" placeholder="Personal ID" value="" name="personalID" required>
                                 </label>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="Mobile number" value="" name="mobileNumber">
+                                    <input type="text" class="form-control" placeholder="Mobile number" value="" name="mobileNumber" required>
                                 </label>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="date" class="form-control" placeholder="2003-01-01" value="" name="dateOfBirth">
+                                    <input type="date" class="form-control" placeholder="2003-01-01" value="" name="dateOfBirth" required>
                                 </label>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="number" class="form-control" value="0" min="0" name="totalBacklogs">
+                                    <input type="number" class="form-control" value="0" min="0" name="totalBacklogs" required>
                                 </label>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="number" class="form-control" value="0" min="0" name="activeBacklogs">
+                                    <input type="number" class="form-control" value="0" min="0" name="activeBacklogs" required>
                                 </label>
                             </div>
                         </div>
@@ -256,7 +256,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="number" class="form-control" placeholder="CGPA" min="0" max="10" step="0.01" name="cpi">
+                                    <input type="number" class="form-control" placeholder="CGPA" min="0" max="10" step="0.01" name="cpi" required>
                                 </label>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="ClassX BoardName" value="" name="classXBoard">
+                                    <input type="text" class="form-control" placeholder="ClassX BoardName" value="" name="classXBoard" required>
                                 </label>
                             </div>
                         </div>
@@ -278,7 +278,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="number" class="form-control" placeholder="ClassX Percentage" min="0" max="100" step="0.01" name="Xpercentage">
+                                    <input type="number" class="form-control" placeholder="ClassX Percentage" min="0" max="100" step="0.01" name="Xpercentage" required>
                                 </label>
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="ClassXII BoardName" value="" name="classXIIBoard">
+                                    <input type="text" class="form-control" placeholder="ClassXII BoardName" value="" name="classXIIBoard" required>
                                 </label>
                             </div>
                         </div>
@@ -300,7 +300,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="number" class="form-control" placeholder="ClassXII Percentage" min="0" max="100" step="0.01" name="XIIpercentage">
+                                    <input type="number" class="form-control" placeholder="ClassXII Percentage" min="0" max="100" step="0.01" name="XIIpercentage" required>
                                 </label>
                             </div>
                         </div>
@@ -312,7 +312,7 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <label>
-                                    <input type="text" class="form-control" placeholder="Year of Passing" value="" name="passingYear">
+                                    <input type="text" class="form-control" placeholder="Year of Passing" value="" name="passingYear" required>
                                 </label>
                             </div>
                         </div>
@@ -320,7 +320,7 @@
                 </div>
 
                 <div class="mt-5 text-center">
-                    <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                    <button class="btn btn-dark profile-button" type="submit">Save Profile</button>
                 </div>
                 </form>
             </div>

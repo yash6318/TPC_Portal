@@ -29,6 +29,7 @@ public class CompanyController {
     @GetMapping("/company-profile")
     public String getCompanyDetails(Authentication auth, Model model){
         User temp = (User)auth.getPrincipal();
+        System.out.println(temp);
         String uname = temp.getUsername();
         if(temp.getDesignation().equals("Student")){
             model.addAttribute("errorMessage","Unauthorized request");

@@ -9,12 +9,12 @@
 
 <div class="d-flex justify-content-end" >
     <a href="/company-profile">
-        <button class="btn btn-icon btn-primary float-end align-items-end mx-1 my-2" type="button">
+        <button class="btn btn-icon btn-dark float-end align-items-end mx-1 my-2" type="button">
             <span class="btn-inner--text">Back to Profile</span>
         </button>
     </a>
-    <a href="/profile/password">
-        <button class="btn btn-icon btn-primary float-end mx-1 my-2" type="button">
+    <a href="/changepassword">
+        <button class="btn btn-icon btn-dark float-end mx-1 my-2" type="button">
             <span class="btn-inner--text">Change Password</span>
         </button>
     </a>
@@ -68,11 +68,11 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="labels">HR Email</label>
+                            <label class="labels required">HR Email</label>
                             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                                 <div class="input-group input-group-outline">
                                     <label>
-                                        <input type="email" class="form-control" placeholder="HR Email" value="" name="HREmail">
+                                        <input type="email" class="form-control" placeholder="HR Email" value="" name="HREmail" required>
                                     </label>
                                 </div>
                             </div>
@@ -83,14 +83,14 @@
                             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                                 <div class="input-group input-group-outline">
                                     <label>
-                                        <input type="text" class="form-control" placeholder="HR Phone" value="" name="HRPhone">
+                                        <input type="text" class="form-control" placeholder="HR Phone" value="" name="HRPhone" required>
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                        <button class="btn btn-dark profile-button" type="submit">Save Profile</button>
                     </div>
                 </form>
             </div>

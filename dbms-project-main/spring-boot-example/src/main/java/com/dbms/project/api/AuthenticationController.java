@@ -47,11 +47,16 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public String signupsubmit(@ModelAttribute User user, Model model)
+    public String signupsubmit(@ModelAttribute User user,@RequestParam("confirmPassword") String confirmPassword, Model model)
     {
         System.out.println(user);
+
         if(userService.alreadyExists(user.getUsername())){
-            model.addAttribute("error", "User Already Exists BKL");
+            model.addAttribute("error", "User Already Exists!");
+            return "register";
+        }
+        else if(!user.getPassword().equals(confirmPassword)){
+            model.addAttribute("error", "Confirm Password don't match!");
             return "register";
         }
         else {
@@ -102,18 +107,33 @@ public class AuthenticationController {
         User user = (User)auth.getPrincipal();
         model.addAttribute("user",user);
         System.out.println(model);
-        return "changepassword";}
+        return "changepassword";
+    }
 
     @PostMapping(path="/changepassword")
-    public String changepasswordsubmit(@ModelAttribute User user,Authentication auth,Model model){
+    public String changepasswordsubmit(@ModelAttribute User user,@RequestParam("oldPassword") String oldPassword,
+                                       @RequestParam("confirmPassword") String confirmPassword,Authentication auth,Model model){
+        System.out.println(user);
         User user1 = (User)auth.getPrincipal();
+
         if(!Objects.equals(user1.getUsername(), user.getUsername())){
             model.addAttribute("error", "Enter Correct Username");
             return "/changepassword";
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.updateUser(user);
-        System.out.println(user);
-        return "/dashboard";
+        if(!user.getPassword().equals(confirmPassword)){
+            model.addAttribute("error", "Confirm Password doesn't match!");
+            return "/changepassword";
+        }
+        if(passwordEncoder.matches(oldPassword,user1.getPassword())){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userService.updateUser(user);
+            System.out.println(user);
+            return "redirect:/";
+        }
+        else {
+            model.addAttribute("error", "Enter Correct Old Password");
+            return "/changepassword";
+        }
+
     }
 }

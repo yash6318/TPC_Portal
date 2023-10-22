@@ -4,18 +4,17 @@
 
 <head th:replace="base :: head"></head>
 
-
 <body>
 <nav th:replace="base:: navbar"></nav>
 
 <div class="d-flex justify-content-end" >
   <a href="/profile">
-    <button class="btn btn-icon btn-primary float-end align-items-end mx-1 my-2" type="button">
+    <button class="btn btn-icon btn-dark float-end align-items-end mx-1 my-2" type="button">
       <span class="btn-inner--text">Back to Profile</span>
     </button>
   </a>
   <a href="/changepassword">
-    <button class="btn btn-icon btn-primary float-end mx-1 my-2" type="button">
+    <button class="btn btn-icon btn-dark float-end mx-1 my-2" type="button">
       <span class="btn-inner--text">Change Password</span>
     </button>
   </a>
@@ -59,7 +58,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="First Name" name="firstName" th:value="${student.firstName}">
+                  <input type="text" class="form-control" placeholder="First Name" name="firstName" th:value="${student.firstName}" required>
                 </label>
               </div>
             </div>
@@ -92,7 +91,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="Street" name="street" th:value="${student.street}">
+                  <input type="text" class="form-control" placeholder="Street" name="street" th:value="${student.street}" required>
                 </label>
               </div>
             </div>
@@ -102,7 +101,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="City" name="city" th:value="${student.city}">
+                  <input type="text" class="form-control" placeholder="City" name="city" th:value="${student.city}" required>
                 </label>
               </div>
             </div>
@@ -113,7 +112,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="State" name="state" th:value="${student.state}">
+                  <input type="text" class="form-control" placeholder="State" name="state" th:value="${student.state}" required>
                 </label>
               </div>
             </div>
@@ -124,7 +123,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="Pincode" name="postalCode" th:value="${student.postalCode}">
+                  <input type="text" class="form-control" placeholder="Pincode" name="postalCode" th:value="${student.postalCode}" required>
                 </label>
               </div>
             </div>
@@ -136,7 +135,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="email" class="form-control" placeholder="Insti ID" name="instituteID" th:value="${student.instituteID}">
+                  <input type="email" class="form-control" placeholder="Insti ID" name="instituteID" th:value="${student.instituteID}" required>
                 </label>
               </div>
             </div>
@@ -147,7 +146,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="email" class="form-control" placeholder="Personal ID" name="personalID" th:value="${student.personalID}">
+                  <input type="email" class="form-control" placeholder="Personal ID" name="personalID" th:value="${student.personalID}" required>
                 </label>
               </div>
             </div>
@@ -171,7 +170,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="Mobile number" name="mobileNumber" th:value="${student.mobileNumber}">
+                  <input type="text" class="form-control" placeholder="Mobile number" name="mobileNumber" th:value="${student.mobileNumber}" required>
                 </label>
               </div>
             </div>
@@ -182,7 +181,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="date" class="form-control" placeholder="2003-01-01" name="dateOfBirth" th:value="${student.dateOfBirth}">
+                  <input type="date" class="form-control" placeholder="2003-01-01" name="dateOfBirth" th:value="${student.dateOfBirth}" required>
                 </label>
               </div>
             </div>
@@ -231,7 +230,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="number" class="form-control" value="0" min="0" name="totalBacklogs" th:value="${student.totalBacklogs}">
+                  <input type="number" class="form-control" value="0" min="0" name="totalBacklogs" th:value="${student.totalBacklogs}" required>
                 </label>
               </div>
             </div>
@@ -242,7 +241,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="number" class="form-control" value="0" min="0" name="activeBacklogs" th:value="${student.activeBacklogs}">
+                  <input type="number" class="form-control" value="0" min="0" name="activeBacklogs" th:value="${student.activeBacklogs}" required>
                 </label>
               </div>
             </div>
@@ -253,7 +252,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="number" class="form-control" placeholder="CGPA" name="cpi" min="0" max="10" step="0.01" th:value="${student.cpi}">
+                  <input type="number" class="form-control" placeholder="CGPA" name="cpi" min="0" max="10" step="0.01" th:value="${student.cpi}" required>
                 </label>
               </div>
             </div>
@@ -264,7 +263,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="ClassX BoardName" name="classXBoard" th:value="${student.classXBoard}">
+                  <input type="text" class="form-control" placeholder="ClassX BoardName" name="classXBoard" th:value="${student.classXBoard}" required>
                 </label>
               </div>
             </div>
@@ -275,7 +274,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="number" class="form-control" placeholder="ClassX Percentage" name="Xpercentage" min="0" max="100" step="0.01" th:value="${student.Xpercentage}">
+                  <input type="number" class="form-control" placeholder="ClassX Percentage" name="Xpercentage" min="0" max="100" step="0.01" th:value="${student.Xpercentage}" required>
                 </label>
               </div>
             </div>
@@ -286,7 +285,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="ClassXII BoardName" name="classXIIBoard" th:value="${student.classXIIBoard}">
+                  <input type="text" class="form-control" placeholder="ClassXII BoardName" name="classXIIBoard" th:value="${student.classXIIBoard}" required>
                 </label>
               </div>
             </div>
@@ -297,7 +296,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="number" class="form-control" placeholder="ClassXII Percentage" name="XIIpercentage" min="0" max="100" step="0.01" th:value="${student.XIIpercentage}">
+                  <input type="number" class="form-control" placeholder="ClassXII Percentage" name="XIIpercentage" min="0" max="100" step="0.01" th:value="${student.XIIpercentage}" required>
                 </label>
               </div>
             </div>
@@ -309,7 +308,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group input-group-outline">
                 <label>
-                  <input type="text" class="form-control" placeholder="Year of Passing" name="passingYear" th:value="${student.passingYear}">
+                  <input type="text" class="form-control" placeholder="Year of Passing" name="passingYear" th:value="${student.passingYear}" required>
                 </label>
               </div>
             </div>
@@ -317,7 +316,7 @@
         </div>
 
         <div class="mt-5 text-center">
-          <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+          <button class="btn btn-dark profile-button" type="submit">Save Profile</button>
         </div>
       </div>
     </div>

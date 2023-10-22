@@ -1,32 +1,28 @@
 <!DOCTYPE html>
-<!--<html>-->
-<!--<html th:replace="~{layout :: layout(title=~{},content=~{:: div}, script=~{}, pageName=${'resume-create'})}"-->
-<!--      xmlns:th="http://www.w3.org/1999/xhtml">-->
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-  <title>Add Resume</title>
-  <link rel="stylesheet" type="text/css" href="/assets/css/register.css">
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: navbar"></nav>
 <body>
-<div class="container">
-<!--  <h1>hello</h1>-->
-  <form th:action="@{/resume/create}" method="post" >
-    <div>
-      <label for="resumeName">Resume</label>
-      <input type="text" id="resumeName" name="resumeName" maxlength="40" />
+<form th:action="@{/resume/create}" method="post" class="container w-50 my-4">
+  <h3 class="text-center">Add resume</h3>
+  <div class="border p-3 bg-light">
+    <div class="form-group">
+      <label class="form-label required" for="resumeName">Resume Name</label>
+      <input type="text" id="resumeName" name="resumeName" class="form-control" required maxlength="40" >
     </div>
-    <div>
-      <label for="resumeLink">Resume Drive Link</label>
-      <input type="text" id="resumeLink" name="resumeLink"  maxlength="500"/>
+    <div class="form-group my-4">
+      <label class="form-label required" for="resumeLink">Resume Drive Link</label>
+      <input type="text" id="resumeLink" name="resumeLink" class="form-control" required maxlength="500">
     </div>
-    <div>
-      <div class = "error">
-        <span th:text = "${error}"></span>
-      </div>
-      <button type="submit">Submit</button>
-  </form>
-</div>
+    <div class = "error">
+      <span th:text = "${error}"></span>
+    </div>
+    <div class="d-flex flex-row justify-content-between">
+      <button type="submit" class="btn btn-dark my-4">Submit</button>
+      <a th:href="@{/profile}" class="mt-4 text-dark">Back to Profile</a>
+    </div>
 
+  </div>
+</form>
 </body>
 </html>

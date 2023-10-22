@@ -15,9 +15,7 @@ import java.util.Collection;
 import java.util.Date;
 @Data
 public class Resume{
-    @NotBlank(message="Username cannot be blank")
-    private Integer resumeId;
-    @NotBlank(message="Title cannot be empty")
+    @NotBlank(message="Name cannot be empty")
     @Setter
     @Getter
     private String resumeName;
