@@ -24,7 +24,7 @@ public class Resume{
     @Setter
     @Getter
     @NotBlank(message="Drive Link cannot be blank")
-    private String link;
+    private String resumeLink;
     @Getter
     @Setter
     private Integer authorId;
