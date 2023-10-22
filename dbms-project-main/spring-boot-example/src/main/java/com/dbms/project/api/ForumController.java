@@ -2,6 +2,8 @@ package com.dbms.project.api;
 
 
 import com.dbms.project.model.Post;
+import com.dbms.project.model.Resume;
+import com.dbms.project.service.ResumeService;
 import com.dbms.project.model.User;
 import com.dbms.project.service.CompanyService;
 import com.dbms.project.service.PostService;
@@ -25,6 +27,8 @@ public class ForumController {
     StudentService studentService;
     @Autowired
     CompanyService companyService;
+    @Autowired
+    ResumeService resumeService;
 
     @GetMapping("/post/create")
     public String postCreate(Authentication auth){
@@ -79,4 +83,40 @@ public class ForumController {
             return "/login";
         }
     }
+
+    @GetMapping("resume/create")
+    public String resumeCreate(){
+        return "resume-create";
+    }
+
+    @PostMapping("resume/create")
+    public String insertResume(@ModelAttribute Resume resume, Model model, Authentication auth){
+
+          resume.setAuthorId(Integer.parseInt(auth.getName()));
+          resume.setIsVerified(0);
+          resume.setResumeId(1);
+          System.out.println(resume);
+          resumeService.insertResume(resume);
+        return "resume-create";
+    }
+
+    @GetMapping("/resume")
+    public String allResume(Model model, Authentication auth){
+        if(auth.isAuthenticated()){
+            User user = (User)auth.getPrincipal();
+            if(!user.getDesignation().equals("Student")){
+            }
+            else{
+                System.out.println(resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
+                model.addAttribute("resume", resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
+            }
+            return "/resume";
+        }
+        else{
+            model.addAttribute("error", "Please sign in");
+            return "/";
+        }
+    }
+
+    
 }
