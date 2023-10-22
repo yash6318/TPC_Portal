@@ -97,7 +97,7 @@ public class ForumController {
           resume.setResumeId(1);
           System.out.println(resume);
           resumeService.insertResume(resume);
-        return "resume-create";
+        return "/resume";
     }
 
     @GetMapping("/resume")
