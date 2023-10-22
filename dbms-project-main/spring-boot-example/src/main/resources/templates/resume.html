@@ -7,12 +7,17 @@
     <div>
             <tr th:each="entity : ${resume}">
                 <div>
-            <td th:text="${entity.resumeName}"></td>
-            <td th:text="${entity.link}"></td>
+                <td th:text="${entity.resumeName}"></td>
+                <td th:text="${entity.resumeLink}"></td>
                 <td th:text="${entity.isVerified}"></td>
                 </div>
             </tr>
     </div>
+    <a href="/resume/create">
+        <button class="btn btn-icon btn-primary float-end align-items-end mx-1 my-2" type="button">
+            <span class="btn-inner--text">Add Resume</span>
+        </button>
+    </a>
 </div>
 </body>
 </html>
