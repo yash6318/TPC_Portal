@@ -112,7 +112,7 @@ public class StudentDao {
             ps.setFloat(20,student.getXpercentage());
             ps.setString(21,student.getClassXIIBoard());
             ps.setFloat(22,student.getXIIpercentage());
-            ps.setString(23, student.getPassingYear());
+            ps.setString(23,student.getPassingYear());
             return ps;
         }, keyholder);
 
@@ -147,7 +147,7 @@ public class StudentDao {
                 "Xpercentage float not null," +
                 "classXIIBoard varchar(255) not null," +
                 "XIIpercentage float not null," +
-                "passingYear char(4) not null" +
+                "passingYear year not null" +
                 ")";
         jdbcTemplate.execute(sql);
     }

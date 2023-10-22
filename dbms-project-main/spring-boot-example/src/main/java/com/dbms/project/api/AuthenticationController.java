@@ -47,9 +47,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public String signupsubmit(@ModelAttribute User user,@RequestParam("confirmPassword") String confirmPassword, Model model)
+    public String signupsubmit(@ModelAttribute User user,String error, @RequestParam("confirmPassword") String confirmPassword, Model model)
     {
-        System.out.println(user);
+        System.out.println(error);
 
         if(userService.alreadyExists(user.getUsername())){
             model.addAttribute("error", "User Already Exists!");

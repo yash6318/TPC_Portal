@@ -85,7 +85,7 @@ public class CompanyController {
     public String companyCreatePost(@ModelAttribute Company company, Authentication auth){
         company.setCompanyID(Integer.parseInt(((User)auth.getPrincipal()).getUsername()));
         companyService.insertCompany(company);
-        return "redirect:/company-profile";
+        return "redirect:/company-profile/create";
     }
 
     @PostMapping(path="/company-profile/edit")

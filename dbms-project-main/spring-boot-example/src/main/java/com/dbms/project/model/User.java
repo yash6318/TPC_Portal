@@ -27,14 +27,13 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String designation = getDesignation();
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if (Objects.equals(designation, "Employee")) {
-            authorities.add(new SimpleGrantedAuthority("EMPLOYEE"));
-        } else if (Objects.equals(designation, "Manager")) {
-            authorities.add(new SimpleGrantedAuthority("EMPLOYEE"));
-            authorities.add(new SimpleGrantedAuthority("MANAGER"));
+        if (Objects.equals(designation, "Student")) {
+            authorities.add(new SimpleGrantedAuthority("STUDENT"));
+        } else if (Objects.equals(designation, "Company")) {
+            authorities.add(new SimpleGrantedAuthority("COMPANY"));
         } else if (Objects.equals(designation, "Admin")) {
-            authorities.add(new SimpleGrantedAuthority("EMPLOYEE"));
-            authorities.add(new SimpleGrantedAuthority("MANAGER"));
+            authorities.add(new SimpleGrantedAuthority("STUDENT"));
+            authorities.add(new SimpleGrantedAuthority("COMPANY"));
             authorities.add(new SimpleGrantedAuthority("ADMIN"));
         }
         return authorities;
