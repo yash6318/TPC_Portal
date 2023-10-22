@@ -12,10 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 public class StudentController {
@@ -30,7 +26,7 @@ public class StudentController {
         String uname = temp.getUsername();
         if(temp.getDesignation().equals("Company")){
             model.addAttribute("errorMessage","Unauthorized request");
-            return "error";
+            return "custom-error";
         }
         if(studentService.studentExists(Integer.parseInt(uname))){
             Student toBeShown = studentService.getStudentByRollNo(Integer.parseInt(uname));
@@ -47,7 +43,7 @@ public class StudentController {
         User temp = (User)auth.getPrincipal();
         if(temp.getDesignation().equals("Company")){
             model.addAttribute("errorMessage","Unauthorized request");
-            return "error";
+            return "custom-error";
         }
         model.addAttribute("rollNo",((User)auth.getPrincipal()).getUsername());
         return "profile-create";
@@ -58,7 +54,7 @@ public class StudentController {
         User temp = (User)auth.getPrincipal();
         if(temp.getDesignation().equals("Company")){
             model.addAttribute("errorMessage","Unauthorized request");
-            return "error";
+            return "custom-error";
         }
         model.addAttribute("student", studentService.getStudentByRollNo(Integer.parseInt(((User)auth.getPrincipal()).getUsername())));
         return "profile-edit";
@@ -77,5 +73,20 @@ public class StudentController {
         studentService.updateStudent(student);
         return "redirect:/profile";
     }
+
+    @GetMapping(path="/")
+    public String studentHome(Authentication auth, Model model){
+        if(auth.isAuthenticated()){
+            User user = (User)auth.getPrincipal();
+            if(user.getDesignation().equals("Company")){
+                return "redirect:/company-home";
+            }
+            return "student-home";
+        }
+        else{
+            return "login";
+        }
+    }
+
 }
 
