@@ -96,11 +96,6 @@ public class AuthenticationController {
     }
 
 
-    @GetMapping(path="/")
-    public String dashboard() {
-        return "dashboard";
-    }
-
 
     @GetMapping(path="/changepassword")
     public String changepassword(Model model,Authentication auth) {

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 @Controller
 public class ForumController {
@@ -52,10 +53,11 @@ public class ForumController {
     }
 
     @GetMapping("post/{id}")
-    public String postDetail(Model model, @PathVariable Integer id){
+    public String postDetail(Model model, @PathVariable Integer id, Authentication auth){
         Post post = postService.getPostByID(id);
         model.addAttribute("post", post);
         model.addAttribute("authorName", postService.getName(post.getAuthorId()));
+        model.addAttribute("designation", ((User)auth.getPrincipal()).getDesignation());
         return "post";
     }
 
@@ -75,6 +77,7 @@ public class ForumController {
             else{
                 model.addAttribute("posts", postService.getPostsByUser(Integer.parseInt(user.getUsername())));
             }
+            model.addAttribute("designation", user.getDesignation());
             return "/forum";
         }
         else{

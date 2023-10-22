@@ -1,7 +1,6 @@
 package com.dbms.project.api;
 
 import com.dbms.project.model.Company;
-import com.dbms.project.model.Student;
 import com.dbms.project.model.User;
 import com.dbms.project.service.CompanyService;
 import com.dbms.project.service.StudentService;
@@ -33,7 +32,7 @@ public class CompanyController {
         String uname = temp.getUsername();
         if(temp.getDesignation().equals("Student")){
             model.addAttribute("errorMessage","Unauthorized request");
-            return "error";
+            return "custom-error";
         }
         if(companyService.companyExists(Integer.parseInt(uname))){
             Company toBeShown = companyService.getCompanyByID(Integer.parseInt(uname));
@@ -50,7 +49,7 @@ public class CompanyController {
         User temp = (User)auth.getPrincipal();
         if(temp.getDesignation().equals("Student")){
             model.addAttribute("errorMessage","Unauthorized request");
-            return "error";
+            return "custom-error";
         }
         model.addAttribute("companyID",((User)auth.getPrincipal()).getUsername());
         return "company-profile-create";
@@ -61,11 +60,26 @@ public class CompanyController {
         User temp = (User)auth.getPrincipal();
         if(temp.getDesignation().equals("Student")){
             model.addAttribute("errorMessage","Unauthorized request");
-            return "error";
+            return "custom-error";
         }
         model.addAttribute("company", companyService.getCompanyByID(Integer.parseInt(((User)auth.getPrincipal()).getUsername())));
         return "company-profile-edit";
     }
+
+    @GetMapping("/company-home")
+    public String companyHome(Authentication auth, Model model){
+        if(auth.isAuthenticated()){
+            User user = (User)auth.getPrincipal();
+            if(user.getDesignation().equals("Student")){
+                return "redirect:/";
+            }
+            return "company-home";
+        }
+        else{
+            return "login";
+        }
+    }
+
 
     @PostMapping("/company-profile/create")
     public String companyCreatePost(@ModelAttribute Company company, Authentication auth){

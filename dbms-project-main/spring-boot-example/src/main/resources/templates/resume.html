@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="base :: head"></head>
-<nav th:replace="base :: navbar"></nav>
-<body>
-<div class="container">
-    <div>
-            <tr th:each="entity : ${resume}">
-                <div>
-                <td th:text="${entity.resumeName}"></td>
-                <td th:text="${entity.resumeLink}"></td>
-                <td th:text="${entity.isVerified}"></td>
-                </div>
-            </tr>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">TPC Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item bg-light rounded-2">
+                <a class="nav-link text-dark" href="/resume/create">Add Resume</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Dashboard</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/forum">Forum</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/opportunities">Opportunities</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
     </div>
-    <a href="/resume/create">
-        <button class="btn btn-icon btn-dark float-end align-items-end mx-1 my-2" type="button">
-            <span class="btn-inner--text">Add Resume</span>
-        </button>
-    </a>
+</nav>
+<body>
+<div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr">
+        <div th:each="entity : ${resume}" class="card m-2">
+            <div th:class="${entity.isVerified} ? 'border border-success border-3 rounded-1' : 'border border-danger border-3 rounded-1'">
+                <div class="bg-dark text-white p-2">
+                    <div th:text="${entity.resumeName}" class="m-2"></div>
+                    <a th:href="'//' + ${entity.resumeLink}" class="m-2">See_Resume</a>
+                </div>
+                <div th:text="${entity.isVerified} ? 'Verified' : 'Not Verified'"
+                     th:class="${entity.isVerified} ? 'text-success text-center' : 'text-danger text-center'">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

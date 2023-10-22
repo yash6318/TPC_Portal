@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="base :: head"></head>
-<nav th:replace="base :: navbar"></nav>
+<div th:if="${designation} == 'Company'">
+    <nav th:replace="base :: company-navbar"></nav>
+</div>
+<div th:if="${designation} == 'Student'">
+    <nav th:replace="base :: navbar">
+    </nav>
+</div>
 <body>
-<div class="container">
-    <a th:each = "post : ${posts}" class="card bg-dark text-white p-3 my-2" th:href="@{'/post/' + ${post.postId}}">
-        <div class="">
-            <div th:text="${post.title}" class="h4"></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+    <a th:each = "post : ${posts}" class="card m-2 bg-dark border-dark border-2 text-decoration-none" th:href="@{'/post/' + ${post.postId}}">
+        <div class="text-white" >
+            <div th:text="${post.title}" class="h4 m-2 p-2"></div>
         </div>
-        <div class = "error">
-            <span th:text = "${error}"></span>
-        </div>
+        <div class="bg-light px-2 rounded-bottom-1" th:text="${post.timestamp}"></div>
     </a>
 </div>
 </body>
