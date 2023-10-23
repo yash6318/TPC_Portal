@@ -12,9 +12,8 @@ import java.util.List;
 
 @Data
 public class Role {
-    private Integer RoleID;
     private String RoleName;
-    private String CompanyName;
+    private Integer CompanyID;
     private String JobDescription;
     private Integer Stipend;
     private Boolean Idd = false;
