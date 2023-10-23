@@ -26,12 +26,12 @@ public class RoleController {
 
     public List<String> getbrancheslist() {
         List<String> brancheslist = new ArrayList<String>();
-        brancheslist.add("CSE");
-        brancheslist.add("MNC");
-        brancheslist.add("EEE");
-        brancheslist.add("ECE");
-        brancheslist.add("CIV");
-        brancheslist.add("CHEM");
+        brancheslist.add("Computer Science and Engineering");
+        brancheslist.add("Mathematics and Computing");
+        brancheslist.add("Electronics Engineering");
+        brancheslist.add("Electrical Engineering");
+        brancheslist.add("Mechanical Engineering");
+        brancheslist.add("Chemical Engineering");
 
         return brancheslist;
     }
