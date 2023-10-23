@@ -88,5 +88,10 @@ public class StudentController {
         }
     }
 
+    @GetMapping("/opportunities")
+    public String oppurtunities(){
+        return "opportunities";
+    }
+
 }
 

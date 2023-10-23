@@ -37,7 +37,7 @@
             <div th:class="${entity.isVerified} ? 'border border-success border-3 rounded-1' : 'border border-danger border-3 rounded-1'">
                 <div class="bg-dark text-white p-2">
                     <div th:text="${entity.resumeName}" class="m-2"></div>
-                    <a th:href="'//' + ${entity.resumeLink}" class="m-2">See_Resume</a>
+                    <a th:href="${entity.resumeLink}" class="m-2">See_Resume</a>
                 </div>
                 <div th:text="${entity.isVerified} ? 'Verified' : 'Not Verified'"
                      th:class="${entity.isVerified} ? 'text-success text-center' : 'text-danger text-center'">
