@@ -23,8 +23,7 @@ public class SpringBootExampleApplication implements CommandLineRunner {
 	@Autowired
 	private RoleDao roleDao;
 	@Autowired
-	private BranchDao branchDao;
-
+	private WillingnessDao willingnessDao;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootExampleApplication.class, args);
 	}
@@ -37,7 +36,6 @@ public class SpringBootExampleApplication implements CommandLineRunner {
 		this.companyDao.CreateTable();
 		this.studentDao.CreateTable();
 		this.roleDao.CreateTable();
-		this.branchDao.CreateTable();
-		this.branchDao.insertAll();
+		this.willingnessDao.CreateTable();
 	}
 }

@@ -1,10 +1,8 @@
 package com.dbms.project.dao;
 
-import com.dbms.project.model.Post;
 //import com.dbms.project.model.Resume;
 import com.dbms.project.model.Resume;
-import com.dbms.project.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -25,13 +23,13 @@ public class ResumeDao {
     }
 
     public void insertResume(Resume resume) {
-        final String sql = "INSERT INTO Resume(resumeName, resumeLink, authorId,isVerified) VALUES(?, ?, ?,?)";
+        final String sql = "INSERT INTO Resume(resumeName, resumeLink, rollNo,isVerified) VALUES(?, ?, ?,?)";
         KeyHolder keyholder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, resume.getResumeName());
             ps.setString(2, resume.getResumeLink());
-            ps.setInt(3, resume.getAuthorId());
+            ps.setInt(3, resume.getRollNo());
             ps.setInt(4,resume.getIsVerified());
             return ps;
         }, keyholder);
@@ -39,7 +37,7 @@ public class ResumeDao {
 
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS RESUME(resumeName varchar(50), resumeLink varchar(200), authorid int,isVerified int,primary key(resumeName,resumeLink))";
+        String sql = "CREATE TABLE IF NOT EXISTS RESUME(resumeName varchar(50), resumeLink varchar(200), rollNo int,isVerified int,primary key(rollNo, resumeName))";
         jdbcTemplate.execute(sql);
     }
 //    public List<Resume> getAllPosts(){
@@ -48,7 +46,7 @@ public class ResumeDao {
 //    }
 
     public List<Resume> getResumesByUser(Integer username) {
-        final String sql = "SELECT * from RESUME where AUTHORID = ?";
+        final String sql = "SELECT * from RESUME where rollNo = ?";
         return jdbcTemplate.query(sql, new Object[]{username}, new BeanPropertyRowMapper<>(Resume.class));
     }
 //
