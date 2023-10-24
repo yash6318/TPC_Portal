@@ -12,24 +12,25 @@
                          alt="Avatar">
                 </div>
                 <div class="card-body mx-4">
-                    <h3 class="company-name font-weight-bolder" th:text="${company[iterStat.index]}"></h3>
-                    <h5 class="card-title" th:text="${role.roleName}"></h5>
-                    <div class="stipend-info" th:text="'Stipend: ' + ${role.stipend}"></div>
-                    <div  class="py-2 font-weight-bolder" style="font-size: 0.9em;">
-                        Open For:
-                        <div style="font-size: 0.8em; font-weight: lighter;"
-                             th:each="branch : ${branches[iterStat.index]}"
-                             th:text="${branch}">
+                    <form method="post" th:action ="@{/opportunities}">
+                        <h3 class="company-name font-weight-bolder" th:text="${company[iterStat.index]}"></h3>
+                        <input type = "hidden" th:name="CompanyID" th:value = "${role.companyID}">
+                        <h5 class="card-title" th:text="${role.roleName}"></h5>
+                        <input type = "hidden" th:name="roleName" th:value = "${role.roleName}">
+                        <div class="stipend-info" th:text="'Stipend: ' + ${role.stipend}"></div>
+                        <div  class="py-2 font-weight-bolder" style="font-size: 0.9em;">
+                            Open For:
+                            <div style="font-size: 0.8em; font-weight: lighter;"
+                                 th:each="branch : ${branches[iterStat.index]}"
+                                 th:text="${branch}">
+                            </div>
                         </div>
-                    </div>
-                    <form method="post" action="#">
                         <label class="labels required">Select Resume:</label>
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
-                                <select name="resume" required >
+                                <select th:name="resumeName" required >
                                     <option value="No">Not willing</option>
-                                    <option value="Resume1">Resume 1</option>
-                                    <option value="Resume2">Resume 2</option>
+                                    <option th:each="entity:${resumes}" th:text="${entity.resumeName}" th:value="${entity.resumeName}"></option>
                                 </select>
                             </div>
                         </div>

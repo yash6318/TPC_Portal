@@ -60,4 +60,5 @@ public class WillingnessDao {
         return jdbcTemplate.query(sql, new Object[]{roleName, companyID}, new BeanPropertyRowMapper<>(Willingness.class));
     }
 
+
 }

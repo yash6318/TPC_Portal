@@ -3,6 +3,7 @@ package com.dbms.project.api;
 
 import com.dbms.project.model.Branch;
 import com.dbms.project.model.Role;
+import com.dbms.project.model.Student;
 import com.dbms.project.model.User;
 import com.dbms.project.service.BranchService;
 import com.dbms.project.service.CompanyService;
@@ -55,6 +56,27 @@ public class RoleController {
         return "redirect:/company-home";
     }
 
+
+    // roles only visible to company;
+    @GetMapping("/roles")
+    public String allRoles(Authentication auth, Model model){
+        User user = (User)auth.getPrincipal();
+        if(user.getDesignation().equals("Student")){
+            model.addAttribute("errorMessage", "Unauthorized Request!");
+            return "custom-error";
+        }
+        List<Role> roles = roleService.getRolesByCompanyId(Integer.parseInt(((User)auth.getPrincipal()).getUsername()));
+        List<List<String>> branches = new ArrayList<>();
+        List<String> company = new ArrayList<>();
+        for(Role role: roles){
+            branches.add(branchService.getBranchFromBin(role.getBranchValue()));
+            company.add(companyService.getCompanyByID(role.getCompanyID()).getCompanyName());
+        }
+        model.addAttribute("roles", roles);
+        model.addAttribute("branches", branches);
+        model.addAttribute("company", company);
+        return "roles";
+    }
 
 
 }

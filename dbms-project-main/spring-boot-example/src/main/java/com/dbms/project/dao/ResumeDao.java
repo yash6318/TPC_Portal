@@ -40,18 +40,12 @@ public class ResumeDao {
         String sql = "CREATE TABLE IF NOT EXISTS RESUME(resumeName varchar(50), resumeLink varchar(200), rollNo int,isVerified int,primary key(rollNo, resumeName))";
         jdbcTemplate.execute(sql);
     }
-//    public List<Resume> getAllPosts(){
-//        final String sql = "SELECT * from RESUME";
-//        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Post.class));
-//    }
+
 
     public List<Resume> getResumesByUser(Integer username) {
         final String sql = "SELECT * from RESUME where rollNo = ?";
         return jdbcTemplate.query(sql, new Object[]{username}, new BeanPropertyRowMapper<>(Resume.class));
     }
-//
-//    public Post getPostByID(Integer postid) {
-//        final String sql = "SELECT * from POST where POSTID = ?";
-//        return jdbcTemplate.queryForObject(sql, new Object[]{postid}, new BeanPropertyRowMapper<>(Post.class));
-//    }
+
+
 }
