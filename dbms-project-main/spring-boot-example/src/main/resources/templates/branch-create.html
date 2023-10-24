@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: navbar"></nav>
+<body>
+<div class="container">
+    <form th:action="@{/branch-create}" method="post" >
+        <h3>Create a new branch</h3>
+        <div class="form-group">
+            <label for="BranchName">Title</label>
+            <input class="form-control" type="text" id="BranchName" name="BranchName" maxlength="100"/>
+        </div>
+        <button type="submit" class="btn btn-dark my-4">Submit</button>
+    </form>
+</div>
+</body>
+</html>

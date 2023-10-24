@@ -25,4 +25,6 @@ public class RoleService {
     public List<Role> getRoles(Student student){
         return roleDao.getRoles(student);
     }
+
+    public List<Role> getRolesByCompanyId(Integer CompanyID){ return roleDao.getRolesByCompanyId(CompanyID); }
 }

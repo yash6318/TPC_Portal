@@ -2,6 +2,7 @@ package com.dbms.project.dao;
 
 import com.dbms.project.model.Company;
 import com.dbms.project.model.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class CompanyDao {
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public CompanyDao(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
     public void insertCompany(Company company) {
         final String sql = "INSERT INTO Company(companyID, companyName, HREmail, HRPhone) VALUES(?, ?, ?, ?)";

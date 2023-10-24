@@ -5,20 +5,24 @@
 <body>
 <nav th:replace="base :: company-navbar"></nav>
 
-<form th:action="@{/role/create}" th:object="${role}" method = "post" class="container w-50 my-4">
+<form th:action="@{/role/create}" method = "post" class="container w-50 my-4">
     <h3 class="text-center">Float New Role</h3>
     <div class="border p-3 bg-light">
         <div class="form-group">
             <label class="form-label" for="RoleName">Role Name</label>
             <input type="text" id="RoleName" name="RoleName" class="form-control" >
         </div>
-        <div>
-            <label class="form-label" for="branches">Eligible Branches</label>
-            <input name = "branches" id = "branches" type="checkbox" th:each="branch: ${brancheis}" th:value="${branch}" th:text="${branch}">
-        </div>
+
         <div>
             <label class="form-label" for="JobDescription">Job Description</label>
             <input name = "JobDescription" id = "JobDescription" type="text" class = "form-control" >
+        </div>
+        <div>
+            <div th:object="${BranchList}" th:each="branch: ${brancheis}">
+                <label class="form-label" th:text="${branch.branchName}">Eligible Branches</label>
+                <input name = "brlist" type="checkbox" th:value="${branch.branchName}">
+            </div>
+
         </div>
         <div>
             <label class="form-label" for="Stipend">Stipend in Rupees</label>
@@ -42,7 +46,7 @@
         </div>
         <div>
             <label class="form-label" for="maxPassingYear">Max Passing Year</label>
-                <input name = "maxPassingYear" id = "maxPassingYear" type="text" class = "form-control" >
+            <input name = "maxPassingYear" id = "maxPassingYear" type="text" class = "form-control" >
         </div>
         <div>
             <label class="form-label" for="maxTotalBacklogs">max Total Backlogs</label>

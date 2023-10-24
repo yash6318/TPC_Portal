@@ -3,6 +3,7 @@ package com.dbms.project.dao;
 import com.dbms.project.model.Company;
 import com.dbms.project.model.Role;
 import com.dbms.project.model.Student;
+import com.dbms.project.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +20,8 @@ import java.util.Objects;
 public class RoleDao {
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    BranchService branchService;
     @Autowired
     public RoleDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
@@ -38,22 +41,15 @@ public class RoleDao {
                 "MAXACTIVEBACKLOGS int," +
                 "MAXTOTALBACKLOGS int," +
                 "DEADLINE datetime," +
+                "BRANCHVALUE int," +
                 "PRIMARY KEY (ROLENAME, COMPANYID))";
         jdbcTemplate.execute(roleSql);
-
-        final String branchSql = "CREATE TABLE IF NOT EXISTS ROLE_BRANCHES(" +
-                "ROLENAME varchar(200), " +
-                "COMPANYID int, " +
-                "BRANCH varchar(255), " +
-                "PRIMARY KEY(ROLENAME,COMPANYID,BRANCH), " +
-                "FOREIGN KEY(ROLENAME, COMPANYID) REFERENCES ROLE(ROLENAME, COMPANYID) ON DELETE CASCADE)";
-        jdbcTemplate.execute(branchSql);
 
     }
 
     public void insertRole(Role role){
-        final String insertSql="insert into ROLE(ROLENAME, COMPANYID,JOBDESCRIPTION,STIPEND,BTECH,IDD,MINCPI,MINPASSINGYEAR,MAXPASSINGYEAR,MAXACTIVEBACKLOGS, MAXTOTALBACKLOGS, DEADLINE)" +
-                "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+        final String insertSql="insert into ROLE(ROLENAME, COMPANYID,JOBDESCRIPTION,STIPEND,BTECH,IDD,MINCPI,MINPASSINGYEAR,MAXPASSINGYEAR,MAXACTIVEBACKLOGS, MAXTOTALBACKLOGS, DEADLINE, BRANCHVALUE)" +
+                "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         KeyHolder keyholder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
@@ -69,24 +65,20 @@ public class RoleDao {
             ps.setInt(10,role.getMaxActiveBacklogs());
             ps.setInt(11,role.getMaxTotalBacklogs());
             ps.setTimestamp(12, java.sql.Timestamp.valueOf(role.getDeadLine()));
+            ps.setInt(13, role.getBranchValue());
             return ps;
         }, keyholder);
 
-        for(String x : role.getBranches()){
-            final String insertBranchSql = "insert into ROLE_BRANCHES VALUES(?,?,?)";
-            jdbcTemplate.update(connection -> {
-                PreparedStatement ps = connection.prepareStatement(insertBranchSql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, role.getRoleName());
-                ps.setInt(2, role.getCompanyID());
-                ps.setString(3, x);
-                return ps;
-            }, keyholder);
-        }
     }
 
     public List<Role> getRoles(Student student){
-        final String getRolesSql = "SELECT * from ROLE AS S where IF(?, BTECH = 1, IDD = 1) and MINCPI <= ? and MINPASSINGYEAR <= ? and MAXPASSINGYEAR >= ? and MAXACTIVEBACKLOGS >= ? and MAXTOTALBACKLOGS >= ? and ? in (SELECT BRANCH FROM ROLE_BRANCHES AS T WHERE T.ROLENAME = S.ROLENAME and T.COMPANYID = S.COMPANYID)";
-        return jdbcTemplate.query(getRolesSql, new Object[]{student.getProgramme().equals("BTech"),student.getCpi(),student.getPassingYear(), student.getPassingYear(), student.getActiveBacklogs(), student.getTotalBacklogs(), student.getBranch()},new BeanPropertyRowMapper<>(Role.class));
+        int studentBranchValue = (1 << branchService.getBranchID(student.getBranch()));
+        final String getRolesSql = "SELECT * from ROLE AS S where IF(?, BTECH = 1, IDD = 1) and MINCPI <= ? and MINPASSINGYEAR <= ? and MAXPASSINGYEAR >= ? and MAXACTIVEBACKLOGS >= ? and MAXTOTALBACKLOGS >= ? and (? & BRANCHVALUE) > 0";
+        return jdbcTemplate.query(getRolesSql, new Object[]{student.getProgramme().equals("BTech"),student.getCpi(),student.getPassingYear(), student.getPassingYear(), student.getActiveBacklogs(), student.getTotalBacklogs(), studentBranchValue},new BeanPropertyRowMapper<>(Role.class));
+    }
+    public List<Role> getRolesByCompanyId(Integer companyId){
+        final String getRolesSql = "SELECT * from ROLE where CompanyID = ?";
+        return jdbcTemplate.query(getRolesSql, new Object[]{companyId}, new BeanPropertyRowMapper<>(Role.class));
     }
 
 }

@@ -1,14 +1,13 @@
 package com.dbms.project.model;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.apache.http.message.TokenParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 public class Role {
@@ -25,5 +24,5 @@ public class Role {
     private Integer maxActiveBacklogs;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deadLine;
-    private List<String> branches;
+    private Integer BranchValue;
 }
