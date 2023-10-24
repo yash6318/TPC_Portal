@@ -29,7 +29,7 @@ public class ResumeController {
     @PostMapping("resume/create")
     public String insertResume(@ModelAttribute Resume resume, Model model, Authentication auth){
 
-        resume.setAuthorId(Integer.parseInt(auth.getName()));
+        resume.setRollNo(Integer.parseInt(auth.getName()));
         resume.setIsVerified(0);
         System.out.println(resume);
         resumeService.insertResume(resume);
