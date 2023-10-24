@@ -85,8 +85,8 @@ public class RoleDao {
     }
 
     public List<Role> getRoles(Student student){
-        final String getRolesSql = "SELECT * from ROLE AS S where IF(?, BTECH = 1, IDD = 1) and MINPASSINGYEAR <= ? and MAXPASSINGYEAR >= ? and MAXACTIVEBACKLOGS >= ? and MAXTOTALBACKLOGS >= ? and ? in (SELECT BRANCH FROM ROLE_BRANCHES AS T WHERE T.ROLENAME = S.ROLENAME and T.COMPANYID = S.COMPANYID)";
-        return jdbcTemplate.query(getRolesSql, new Object[]{student.getProgramme().equals("BTech"),student.getPassingYear(), student.getPassingYear(), student.getActiveBacklogs(), student.getTotalBacklogs(), student.getBranch()},new BeanPropertyRowMapper<>(Role.class));
+        final String getRolesSql = "SELECT * from ROLE AS S where IF(?, BTECH = 1, IDD = 1) and MINCPI <= ? and MINPASSINGYEAR <= ? and MAXPASSINGYEAR >= ? and MAXACTIVEBACKLOGS >= ? and MAXTOTALBACKLOGS >= ? and ? in (SELECT BRANCH FROM ROLE_BRANCHES AS T WHERE T.ROLENAME = S.ROLENAME and T.COMPANYID = S.COMPANYID)";
+        return jdbcTemplate.query(getRolesSql, new Object[]{student.getProgramme().equals("BTech"),student.getCpi(),student.getPassingYear(), student.getPassingYear(), student.getActiveBacklogs(), student.getTotalBacklogs(), student.getBranch()},new BeanPropertyRowMapper<>(Role.class));
     }
 
 }
