@@ -2,7 +2,95 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="base :: head"></head>
 <nav th:replace="base :: company-navbar"></nav>
-<body>
-This is company home
+<body style="background-color: #f8f9fa;">
+<!-- Company Home Page Content -->
+<div class="container mt-5">
+    <!-- Company Banner -->
+    <div class="jumbotron" style="background-image: url('https://business2business.co.in/uploads/2020/04/download.jpg');background-size: cover;background-position: center;color: #ffffff;text-align: center;padding: 150px 0;">
+        <div class="container">
+            <h1>Welcome <span th:text="${company.companyName}"></span></h1>
+            <p>Explore our partnership with the college and find valuable information below.</p>
+        </div>
+    </div>
+
+    <div class="container section" id="add-opportunity" style="background-color: #ffffff;padding: 50px 0;">
+        <h2 class="text-center">Offer Opportunity</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <p>Would you like to offer an opportunity to our students?</p>
+                <a href="/roles" class="btn btn-dark btn-lg btn-block" style="width:100%;">Offer a Role</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- College Stats Section -->
+    <div class="container section" id="college-stats" style="background-color: #ffffff;padding: 50px 0;">
+        <h2 class="text-center" style="color: #343a40;">College Stats</h2>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item" style="background-color: #f8f9fa;">Total Students Enrolled: 10,000+</li>
+                    <li class="list-group-item" style="background-color: #f8f9fa;">Average Student GPA: 7.2</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item" style="background-color: #f8f9fa;">Placement Rate: 90%</li>
+                    <li class="list-group-item" style="background-color: #f8f9fa;">Notable Alumni: 1500+</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Procedure Section -->
+    <div class="container section" id="assessment-procedure" style="background-color: #ffffff;padding: 50px 0;">
+        <h2 class="text-center" style="color: #343a40;">Assessment Procedure</h2>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <p>Our online assessment procedure ensures that we select the best candidates:</p>
+                <ol>
+                    <li>Applicants submit resumes and complete an online test.</li>
+                    <li>Shortlisted candidates are invited for an online/offline interview.</li>
+                    <li>Final selections are made based on performance in interviews and assessments.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interview Procedure Section -->
+    <div class="container section" id="interview-procedure" style="background-color: #ffffff;padding: 50px 0;">
+        <h2 class="text-center" style="color: #343a40;">Interview Procedure</h2>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <p>Our interview procedure is designed to identify top talent:</p>
+                <ol>
+                    <li>Technical and behavioral interviews are conducted.</li>
+                    <li>Interviews assess problem-solving and communication skills.</li>
+                    <li>Successful candidates will receive job offers and join your team.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company SOPs Section -->
+    <div class="container section" id="company-sops" style="background-color: #ffffff;padding: 50px 0;">
+        <h2 class="text-center" style="color: #343a40;">Company Standard Operating Procedures (SOPs)</h2>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <p>We maintain high standards through our SOPs:</p>
+                <ul class="list-group">
+                    <li class="list-group-item" style="background-color: #f8f9fa;">Equal opportunity employment</li>
+                    <li class="list-group-item" style="background-color: #f8f9fa;">Code of conduct and ethics</li>
+                    <li class="list-group-item" style="background-color: #f8f9fa;">Professional development and training programs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap and JavaScript files -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
 </body>
 </html>

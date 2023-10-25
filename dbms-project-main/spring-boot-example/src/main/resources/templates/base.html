@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>TPC Portal</title>
     <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <script th:src="@{/assets/js/bootstrap.min.js}"></script>
     <style>
         body {
+            background-color: rgb(209 213 219);
             font-family: 'Montserrat',sans-serif;
         }
         .required::after {
@@ -28,6 +30,26 @@
                 <a class="nav-link" href="/">Dashboard</a>
             </li>
             <li class="nav-item">
+                <a class="btn btn-outline-light mx-2" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-light mx-2" href="/signup">Signup</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+<nav th:fragment="student-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">TPC Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/student-home">Dashboard</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/forum">Forum</a>
             </li>
 
@@ -40,12 +62,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+            <li class="nav-item mx-2">
+                <a class="btn btn-outline-danger" href="/logout">Logout</a>
             </li>
         </ul>
     </div>
-  </nav>
+</nav>
 <nav th:fragment="company-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">TPC Portal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -58,12 +80,12 @@
                 <a class="nav-link" href="/company-home">Dashboard</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/roles">Offers</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/forum">Forum</a>
             </li>
 
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="/opportunities">Opportunities</a>-->
-<!--            </li>-->
 <!--            <li class="nav-item">-->
 <!--                <a class="nav-link" href="/resume">Resume</a>-->
 <!--            </li>-->
@@ -71,7 +93,7 @@
                 <a class="nav-link" href="/company-profile">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a class="btn btn-outline-danger" href="/logout">Logout</a>
             </li>
         </ul>
     </div>

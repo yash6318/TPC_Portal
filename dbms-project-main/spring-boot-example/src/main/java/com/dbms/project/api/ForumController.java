@@ -1,6 +1,7 @@
 package com.dbms.project.api;
 
 
+import com.dbms.project.model.Company;
 import com.dbms.project.model.Post;
 import com.dbms.project.model.User;
 import com.dbms.project.service.CompanyService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -72,7 +74,14 @@ public class ForumController {
                 if(!companyService.companyExists(Integer.parseInt(user.getUsername()))) return "redirect:/company-profile";
             }
             if(user.getDesignation().equals("Student")){
-                model.addAttribute("posts", postService.getAllPosts());
+                List<Post> posts = postService.getAllPosts();
+                List<Company> companies = new ArrayList<>();
+                for(Post post:posts){
+                    companies.add(companyService.getCompanyByID(post.getAuthorId()));
+                }
+                System.out.println(companies);
+                model.addAttribute("posts", posts);
+                model.addAttribute("companies", companies);
             }
             else{
                 model.addAttribute("posts", postService.getPostsByUser(Integer.parseInt(user.getUsername())));

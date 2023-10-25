@@ -23,6 +23,7 @@ public class StudentController {
     @GetMapping("/profile")
     public String getStudentDetails(Authentication auth, Model model){
         User temp = (User)auth.getPrincipal();
+        System.out.println(temp);
         String uname = temp.getUsername();
         if(temp.getDesignation().equals("Company")){
             model.addAttribute("errorMessage","Unauthorized request");
@@ -74,18 +75,20 @@ public class StudentController {
         return "redirect:/profile";
     }
 
-    @GetMapping(path="/")
-    public String studentHome(Authentication auth, Model model){
+    @GetMapping(path="/student-home")
+    public String studentHome(Authentication auth,Model model){
         if(auth.isAuthenticated()){
             User user = (User)auth.getPrincipal();
             if(user.getDesignation().equals("Company")){
-                return "redirect:/company-home";
+                model.addAttribute("errorMessage","Unauthorized request");
+                return "custom-error";
             }
+            Student loggedinStudent = studentService.getStudentByRollNo(Integer.parseInt(user.getUsername()));
+            model.addAttribute("student",loggedinStudent);
             return "student-home";
         }
-        else{
-            return "login";
-        }
+        return "dashboard";
     }
+
 }
 

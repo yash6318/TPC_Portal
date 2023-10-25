@@ -147,7 +147,7 @@ public class StudentDao {
                 "Xpercentage float not null," +
                 "classXIIBoard varchar(255) not null," +
                 "XIIpercentage float not null," +
-                "passingYear year not null" +
+                "passingYear char(4) not null" +
                 ")";
         jdbcTemplate.execute(sql);
     }

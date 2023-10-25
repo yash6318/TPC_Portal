@@ -66,6 +66,7 @@ public class RoleController {
             return "custom-error";
         }
         List<Role> roles = roleService.getRolesByCompanyId(Integer.parseInt(((User)auth.getPrincipal()).getUsername()));
+        if(roles.isEmpty()) return "redirect:/role/create";
         List<List<String>> branches = new ArrayList<>();
         List<String> company = new ArrayList<>();
         for(Role role: roles){

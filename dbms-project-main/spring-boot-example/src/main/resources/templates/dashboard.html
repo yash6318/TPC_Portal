@@ -1,24 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-  <link rel="stylesheet" href="styles.css">
-  <title>Student Dashboard</title>
-  <style>
-    /* Add your custom CSS styles here */
-    body {
-      background-color: lightgrey;
-      font-family: 'Montserrat',sans-serif;
-    }
-    .labels {
-      font-weight: bold;
-    }
-  </style>
-</head>
+<head th:replace="base:: head"></head>
 
 <body>
 
@@ -33,15 +16,15 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100 img-fluid" src="\assets\img\pic2.jpg" alt="First slide">
+        <div class="carousel-inner" style="height: 0;padding-bottom: 40%;">
+          <div class="carousel-item active" style="position: absolute !important;top: 0;right: 0;bottom: 0;left: 0;">
+            <img style="height: 100%;object-fit: cover;" class="d-block w-100 img-fluid" src="https://iitbhulife.files.wordpress.com/2019/06/64617540_2265718933511425_3881542840827772928_o-1.jpg" alt="Second slide">
           </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 img-fluid" src="\assets\img\pic3.jpg" alt="Second slide">
+          <div class="carousel-item" style="position: absolute !important;top: 0;right: 0;bottom: 0;left: 0;">
+            <img style="height: 100%;object-fit: cover;" class="d-block w-100 img-fluid" src="https://www.placement.iitbhu.ac.in/media/uploads/slider/1.jpg" alt="First slide">
           </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 img-fluid" src="\assets\img\pic4.jpg" alt="Third slide">
+          <div class="carousel-item" style="position: absolute !important;top: 0;right: 0;bottom: 0;left: 0;">
+            <img style="height: 100%;object-fit: cover;" class="d-block w-100 img-fluid" src="https://staticimg.amarujala.com/assets/images/2018/12/29/varanasi_1546097710.jpeg" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
@@ -62,21 +45,12 @@
     <h2>Welcome to the Placement Cell Portal</h2>
     <p class="lead">Explore the services and opportunities we offer to kickstart your career.</p>
     <div class="row mt-4">
-      <div class="col-md-4">
-        <span class="glyphicon glyphicon-education"></span>
-        <h4>Job Opportunities</h4>
-        <p>Discover a wide range of job opportunities from top-notch companies to launch your career.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="glyphicon glyphicon-list-alt"></span>
-        <h4>Resume Building</h4>
-        <p>Get guidance and tips on how to create an impressive resume that catches the employer's attention.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="glyphicon glyphicon-briefcase"></span>
-        <h4>Internships</h4>
-        <p>Explore various internship opportunities to gain practical experience and enhance your skills.</p>
-      </div>
+
+        <p>The Training & Placement Office, IIT (BHU) Varanasi facilitates the process of placement of students passing out from the Institute besides collaborating with leading organizations and institutes in setting up of internship and training program of students. The office liaises with various industrial establishments, corporate houses etc which conduct campus interviews and select graduate and post-graduate students from all disciplines. The Training & Placement Office provides the infra-structural facilities to conduct group discussions, tests and interviews besides catering to other logistics. The Office interacts with many industries in the country, of which nearly 200 companies visit the campus for holding campus interviews. The industries which approach the institute come under the purview of: Core Engineering industries IT & IT enabled services Manufacturing Industries Consultancy Firms Finance Companies Management Organizations R & D laboratories.
+        </p>
+        <p> The placement season <span style="font-weight: bold;">runs through the course of the year commencing the last week of July through to March.</span> Pre-Placement Talks are also conducted in this regard as per mutual convenience. Job offers, dates of interviews, selection of candidates etc. are announced through the Training & Placement Office. The Placement Office is assisted by a committee comprising representatives of students from the under-graduate and post-graduate engineering streams. The committee evolves a broad policy framework every year besides a set of rules which are inviolable. Students members are closely co-opted in implementing these policy decisions.</p>
+
+
     </div>
   </div>
 

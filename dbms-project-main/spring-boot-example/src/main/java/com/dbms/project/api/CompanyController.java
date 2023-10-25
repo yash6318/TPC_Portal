@@ -73,7 +73,11 @@ public class CompanyController {
             if(user.getDesignation().equals("Student")){
                 return "redirect:/";
             }
-            return "company-home";
+            else if(companyService.companyExists(Integer.parseInt(user.getUsername()))) {
+                model.addAttribute("company", companyService.getCompanyByID(Integer.parseInt(((User)auth.getPrincipal()).getUsername())));
+                return "company-home";
+            }
+            return "redirect:/company-profile/create";
         }
         else{
             return "login";
@@ -85,7 +89,7 @@ public class CompanyController {
     public String companyCreatePost(@ModelAttribute Company company, Authentication auth){
         company.setCompanyID(Integer.parseInt(((User)auth.getPrincipal()).getUsername()));
         companyService.insertCompany(company);
-        return "redirect:/company-profile/create";
+        return "redirect:/company-profile";
     }
 
     @PostMapping(path="/company-profile/edit")

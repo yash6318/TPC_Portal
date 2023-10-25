@@ -56,16 +56,16 @@ public class CompanyDao {
 
     public void updateCompany(Company company) {
         final String updateSql = "UPDATE company SET " +
-                "companyID = ?, " +
                 "companyName = ?, " +
                 "HREmail = ?, " +
-                "HRPhone = ? ";
+                "HRPhone = ? " +
+                "where companyID = ? ";
 
         jdbcTemplate.update(updateSql,
-                company.getCompanyID(),
                 company.getCompanyName(),
                 company.getHREmail(),
-                company.getHRPhone()
+                company.getHRPhone(),
+                company.getCompanyID()
         );
     }
 }

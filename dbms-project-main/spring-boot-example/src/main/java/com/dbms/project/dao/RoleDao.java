@@ -36,8 +36,8 @@ public class RoleDao {
                 "BTECH boolean, " +
                 "IDD boolean, " +
                 "MINCPI float," +
-                "MINPASSINGYEAR year," +
-                "MAXPASSINGYEAR year," +
+                "MINPASSINGYEAR char(4)," +
+                "MAXPASSINGYEAR char(4)," +
                 "MAXACTIVEBACKLOGS int," +
                 "MAXTOTALBACKLOGS int," +
                 "DEADLINE datetime," +

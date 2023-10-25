@@ -40,6 +40,17 @@ public class AuthenticationController {
         return "login";
     }
 
+    @GetMapping(path="/")
+    public String Home(Authentication auth){
+        if(auth == null) return "dashboard";
+
+        User user = (User)auth.getPrincipal();
+        if(user.getDesignation().equals("Company")){
+            return "redirect:/company-home";
+        }
+        return "redirect:/student-home";
+
+    }
 
     @GetMapping("/signup")
     public String signup(){
@@ -101,7 +112,7 @@ public class AuthenticationController {
     public String changepassword(Model model,Authentication auth) {
         User user = (User)auth.getPrincipal();
         model.addAttribute("user",user);
-        System.out.println(model);
+        System.out.println(user);
         return "changepassword";
     }
 
@@ -123,7 +134,8 @@ public class AuthenticationController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.updateUser(user);
             System.out.println(user);
-            return "redirect:/";
+            if(user.getDesignation().equals("Student")) return "redirect:/";
+            return "redirect:/company-home";
         }
         else {
             model.addAttribute("error", "Enter Correct Old Password");

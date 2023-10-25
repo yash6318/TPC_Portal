@@ -5,19 +5,24 @@
     <nav th:replace="base :: company-navbar"></nav>
 </div>
 <div th:if="${designation} == 'Student'">
-    <nav th:replace="base :: navbar">
+    <nav th:replace="base :: student-navbar">
     </nav>
 </div>
 <body>
 
-<div th:if="${designation} == 'Company'">
-    <button class = "btn-dark my-4"><a href="/post/create">Create Post</a></button>
+<div th:if="${designation} == 'Company'" style="text-align: center;">
+    <a href="/post/create">
+        <button class="btn btn-icon btn-dark mx-1 my-2 col-md-2" type="button">
+            <span class="btn-inner--text" style="font-size: 1.5rem">Create Post</span>
+        </button>
+    </a>
 </div>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr;">
-    <a th:each = "post : ${posts}" class="card m-2 bg-dark border-dark border-2 text-decoration-none" th:href="@{'/post/' + ${post.postId}}">
+    <a th:each = "post,iterStat : ${posts}" class="card m-2 bg-dark border-dark border-2 text-decoration-none" th:href="@{'/post/' + ${post.postId}}">
         <div class="text-white" >
-            <div th:text="${post.title}" class="h4 m-2 p-2"></div>
+            <div th:if="${designation} == 'Student'" th:text="${post.title} + ' - ' + ${companies[iterStat.index].companyName}" class="h4 m-2 p-2"></div>
+            <div th:if="${designation} == 'Company'" th:text="${post.title}" class="h4 m-2 p-2"></div>
         </div>
         <div class="bg-light px-2 rounded-bottom-1" th:text="${post.timestamp}"></div>
     </a>

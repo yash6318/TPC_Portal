@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="base :: head"></head>
-<nav th:replace="base :: navbar"></nav>
+<nav th:replace="base :: student-navbar"></nav>
 <body>
     <div style="display: grid; grid-template-columns: 1fr 1fr;">
         <div th:each="role, iterStat : ${roles}">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body mx-4 d-flex flex-column justify-content-between">
                     <form method="post" th:action ="@{/opportunities}">
-                        <div class="stipend-info" th:text="'Stipend: ' + ${role.stipend}"></div>
+                        <div class="stipend-info" th:text="'Stipend: ' + ${role.stipend} + ' INR/PM'"></div>
                         <div  class="py-2 font-weight-bolder" style="font-size: 0.9em;">
                             Open For:
                             <div style="font-size: 0.8em; font-weight: lighter;"
