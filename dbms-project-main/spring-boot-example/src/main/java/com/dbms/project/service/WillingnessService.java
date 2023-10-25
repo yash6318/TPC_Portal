@@ -3,10 +3,10 @@ package com.dbms.project.service;
 import com.dbms.project.dao.WillingnessDao;
 import com.dbms.project.model.Willingness;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WillingnessService {
@@ -29,5 +29,14 @@ public class WillingnessService {
        return willingnessDao.getWillingnessByRole(roleName, companyID);
     }
 
+    public void deleteWillingness(Integer rollNo, Integer companyID, String roleName){
+        willingnessDao.deleteWillingness(rollNo, companyID, roleName);
+    }
+    public Willingness getWillingness(Integer rollNo, Integer companyID, String roleName){
+        return willingnessDao.getWillingness(rollNo, companyID, roleName);
+    }
 
+    public boolean willingnessIsPresent(Integer rollNo, Integer companyID, String roleName) {
+        return willingnessDao.willingnessIsPresent(rollNo, companyID, roleName);
+    }
 }

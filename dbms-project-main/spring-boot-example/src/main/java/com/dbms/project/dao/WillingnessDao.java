@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class WillingnessDao {
@@ -25,27 +26,27 @@ public class WillingnessDao {
 
     public void CreateTable(){
         final String sql = "CREATE TABLE IF NOT EXISTS WILLINGNESS(" +
-                "rollNo int," +
-                "companyId int," +
-                "resumeName varchar(50)," +
+                "companyID int," +
                 "roleName varchar(200)," +
+                "rollNo int," +
+                "resumeName varchar(50)," +
                 "foreign key (rollNo) references Student(rollNo)," +
                 "foreign key (rollNo, resumeName) references Resume(rollNo, resumeName)," +
-                "foreign key (companyId) references  Company(companyId)," +
-                "foreign key (roleName, companyId) references Role(roleName, companyId)," +
-                "primary key (rollNo, companyId, roleName))";
+                "foreign key (companyID) references  Company(companyID)," +
+                "foreign key (roleName, companyID) references Role(roleName, companyID)," +
+                "primary key (rollNo, companyID, roleName))";
         jdbcTemplate.execute(sql);
     }
 
     public void insertWillingness(Willingness willingness){
-        final String sql = "INSERT INTO WILLINGNESS VALUES(?, ?, ?, ?)";
+        final String sql = "INSERT INTO WILLINGNESS(companyID, roleName, rollNo, resumeName) VALUES(?, ?, ?, ?)";
         KeyHolder keyholder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, willingness.getRollNo());
-            ps.setInt(2, willingness.getCompanyID());
-            ps.setString(3, willingness.getResumeName());
-            ps.setString(4, willingness.getRoleName());
+            ps.setInt(1, willingness.getCompanyID());
+            ps.setString(2, willingness.getRoleName());
+            ps.setInt(3, willingness.getRollNo());
+            ps.setString(4, willingness.getResumeName());
             return ps;
         }, keyholder);
     }
@@ -60,5 +61,18 @@ public class WillingnessDao {
         return jdbcTemplate.query(sql, new Object[]{roleName, companyID}, new BeanPropertyRowMapper<>(Willingness.class));
     }
 
+    public void deleteWillingness(Integer rollNo, Integer companyID, String roleName){
+        final String sql = "DELETE FROM WILLINGNESS WHERE rollNo = ? and companyID = ? and roleName = ?";
+        jdbcTemplate.update(sql, new Object[]{rollNo, companyID, roleName});
+    }
+    public Willingness getWillingness(Integer rollNo, Integer companyID, String roleName){
+        final String sql = "SELECT * FROM WILLINGNESS WHERE rollNo = ? and companyID = ? and roleName = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{rollNo, companyID, roleName}, new BeanPropertyRowMapper<>(Willingness.class));
+    }
 
+    public boolean willingnessIsPresent(Integer rollNo, Integer companyID, String roleName) {
+        final String sql = "SELECT COUNT(*) FROM WILLINGNESS WHERE rollNo = ? and companyID = ? and roleName = ?";
+        int rs = jdbcTemplate.queryForObject(sql, new Object[]{rollNo, companyID, roleName}, Integer.class);
+        return rs > 0;
+    }
 }
