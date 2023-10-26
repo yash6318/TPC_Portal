@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -41,14 +42,18 @@ public class ResumeController {
         if(auth.isAuthenticated()){
             User user = (User)auth.getPrincipal();
             if(user.getDesignation().equals("Student")){
-                if(studentService.studentExists(Integer.parseInt(user.getUsername()))){
+                if(true){
                     System.out.println(resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
                     model.addAttribute("resume", resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
                     return "resume";
                 }
                 else{
-                    return "redirect:/profile/create";
+                    return "resume";
                 }
+            }
+            else if(user.getDesignation().equals("TPR")){
+                model.addAttribute("resume", resumeService.getAllResumes());
+                return "resume-approve";
             }
             else{
                 model.addAttribute("errorMessage", "Unauthorized request!");
@@ -61,6 +66,15 @@ public class ResumeController {
             return "redirect:/";
         }
     }
+
+    @GetMapping("resume/{id}")
+    public String resumeDetail(Model model, @PathVariable String id, Authentication auth){
+        System.out.println(id);
+        String[] parts = id.split("-");
+        resumeService.updateResume(parts[0],parts[1]);
+        return "redirect:/resume";
+    }
+
 
 
 }
