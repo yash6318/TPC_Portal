@@ -48,4 +48,21 @@ public class ResumeDao {
     }
 
 
+    public void updateResume(String a,String b){
+//        final String sql = "INSERT INTO Resume(resumeName, resumeLink, rollNo,isVerified) VALUES(?, ?, ?,?)";
+        final String sql="UPDATE resume SET isVerified=1 where resumeName=(?) and resumeLink= (?)";
+        KeyHolder keyholder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, a);
+            ps.setString(2, b);
+            return ps;
+        }, keyholder);
+    }
+
+    public List<Resume> getAllResumes() {
+        final String sql = "SELECT * from RESUME";
+        return jdbcTemplate.query(sql, new Object[]{}, new BeanPropertyRowMapper<>(Resume.class));
+    }
+
 }
