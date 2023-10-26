@@ -26,15 +26,15 @@
                         <label class="labels required">Select Resume:</label>
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
-                                <select name="returnVal"  required>
+                                <select name="returnVal" readonly="readonly" required>
                                     <option th:value="'No' + '|' + ${role.roleName} + '|' + ${role.companyID}"
-                                            th:selected="${sel_res[iterStat.index]} == 'Not Willing'">
+                                            th:selected="${sel_res[iterStat.index]} == 'Not Willing'" readonly="readonly">
                                         Not willing
                                     </option>
                                     <option th:each="entity:${resumes}"
                                             th:text="${entity.resumeName}"
                                             th:value="${entity.resumeName} + '|' + ${role.roleName} + '|' + ${role.companyID}"
-                                            th:selected="${sel_res[iterStat.index]} == ${entity.resumeName}">
+                                            th:selected="${sel_res[iterStat.index]} == ${entity.resumeName}" readonly="readonly">
                                     </option>
                                 </select>
                             </div>

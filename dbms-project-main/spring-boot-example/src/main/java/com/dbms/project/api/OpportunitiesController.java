@@ -47,7 +47,7 @@ public class OpportunitiesController {
         List<String> company = new ArrayList<>();
         List<String> selected_resume = new ArrayList<>();
         List<Boolean> is_selected = new ArrayList<>();
-        List<Resume> resumes = resumeService.getResumesByUser(Integer.parseInt(user.getUsername()));
+        List<Resume> resumes = resumeService.getVerifiedResumesByUser(Integer.parseInt(user.getUsername()));
         for(Role role: roles){
             branches.add(branchService.getBranchFromBin(role.getBranchValue()));
             company.add(companyService.getCompanyByID(role.getCompanyID()).getCompanyName());

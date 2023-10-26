@@ -33,6 +33,17 @@
                          th:text="${branch}">
                     </div>
                 </div>
+                <a th:href="@{/roles/{id}(id = ${role.roleName})}">
+
+                    <button class="btn btn-icon btn-dark mx-1 my-2 col-md-2" type="button">
+                        <span class="btn-inner--text" style="height : 100%">Show Willing Students</span>
+                    </button>
+                </a>
+                <a th:href ="@{/roles/{id}/download(id = ${role.roleName})}">
+                    <button class="btn btn-icon btn-dark mx-1 my-2 col-md-2" type="button">
+                        <span class="btn-inner--text" style="height : 100%">Download</span>
+                    </button>
+                </a>
             </div>
 
         </div>

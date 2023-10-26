@@ -7,6 +7,7 @@ import com.dbms.project.model.User;
 import com.dbms.project.service.CompanyService;
 import com.dbms.project.service.PostService;
 import com.dbms.project.service.StudentService;
+import com.dbms.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,8 @@ public class ForumController {
     StudentService studentService;
     @Autowired
     CompanyService companyService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/post/create")
     public String postCreate(Authentication auth, Model model){
@@ -72,22 +75,21 @@ public class ForumController {
         else if(user.getDesignation().equals("Company")){
             if(!companyService.companyExists(Integer.parseInt(user.getUsername()))) return "redirect:/company-profile";
         }
-        if(user.getDesignation().equals("Student")){
-            List<Post> posts = postService.getAllPosts();
+        List<Post> posts = postService.getAllPosts();
 
-            List<Company> companies = new ArrayList<>();
-            for(Post post:posts){
-                companies.add(companyService.getCompanyByID(post.getAuthorId()));
-            }
-            System.out.println(companies);
-            model.addAttribute("posts", posts);
-            model.addAttribute("companies", companies);
+        List<String> authors = new ArrayList<>();
+        for(Post post:posts){
+            User author = userService.getUserByUsername(post.getAuthorId());
+            if(author.getDesignation().equals("Company"))
+                authors.add(companyService.getCompanyByID(post.getAuthorId()).getCompanyName());
+            else
+                authors.add("Admin");
         }
-        else{
-            model.addAttribute("posts", postService.getPostsByUser(Integer.parseInt(user.getUsername())));
-        }
+        model.addAttribute("posts", posts);
+        model.addAttribute("authors", authors);
         model.addAttribute("designation", user.getDesignation());
         return "/forum";
     }
+
 
 }
