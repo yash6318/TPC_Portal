@@ -83,8 +83,8 @@ public class StudentController {
                 model.addAttribute("errorMessage","Unauthorized request");
                 return "custom-error";
             }
-            Student loggedinStudent = studentService.getStudentByRollNo(Integer.parseInt(user.getUsername()));
-            model.addAttribute("student",loggedinStudent);
+            //Student loggedinStudent = studentService.getStudentByRollNo(Integer.parseInt(user.getUsername()));
+            //model.addAttribute("student",loggedinStudent);
             return "student-home";
         }
         return "dashboard";
