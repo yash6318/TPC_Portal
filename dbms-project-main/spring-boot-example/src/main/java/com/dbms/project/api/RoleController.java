@@ -1,13 +1,8 @@
 package com.dbms.project.api;
 
 
-import com.dbms.project.model.Branch;
-import com.dbms.project.model.Role;
-import com.dbms.project.model.Student;
-import com.dbms.project.model.User;
-import com.dbms.project.service.BranchService;
-import com.dbms.project.service.CompanyService;
-import com.dbms.project.service.RoleService;
+import com.dbms.project.model.*;
+import com.dbms.project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -15,7 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.SysexMessage;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,6 +28,12 @@ public class RoleController {
     RoleService roleService;
     @Autowired
     BranchService branchService;
+    @Autowired
+    WillingnessService willingnessService;
+    @Autowired
+    StudentService studentService;
+    @Autowired
+    ResumeService resumeService;
 
 
     @GetMapping("/role/create")
@@ -79,5 +86,55 @@ public class RoleController {
         return "roles";
     }
 
+    @GetMapping("/roles/{id}")
+    public String willingStudents(Authentication auth, @PathVariable String id, Model model){
+        User user = (User)auth.getPrincipal();
+        if(user.getDesignation().equals("Student")){
+            model.addAttribute("errorMessage", "Unauthorized Request!");
+            return "custom-error";
+        }
+        List<Willingness> wills = willingnessService.getWillingnessByRole(id, Integer.parseInt(user.getUsername()));
+        List<Student> students = new ArrayList<>();
+        List<String> resumes = new ArrayList<>();
 
+        for(Willingness x : wills){
+            students.add(studentService.getStudentByRollNo(x.getRollNo()));
+            resumes.add(resumeService.getResumeLinkByKey(x.getRollNo(), x.getResumeName()));
+        }
+
+        model.addAttribute("willings", wills);
+        model.addAttribute("students", students);
+        model.addAttribute("resumes", resumes);
+        return "willingstudents";
+    }
+    @GetMapping("/roles/{id}/download")
+    public void exportToExcel(HttpServletResponse response, Authentication auth, @PathVariable String id, Model model) throws IOException {
+
+        User user = (User)auth.getPrincipal();
+//        if(user.getDesignation().equals("Student")){
+//            model.addAttribute("errorMessage", "Unauthorized Request!");
+//            return "custom-error";
+//        }
+        List<Willingness> wills = willingnessService.getWillingnessByRole(id, Integer.parseInt(user.getUsername()));
+        List<Student> students = new ArrayList<>();
+        List<Resume> resumes = new ArrayList<>();
+
+        for(Willingness x : wills){
+            students.add(studentService.getStudentByRollNo(x.getRollNo()));
+            resumes.add(resumeService.getResumeByKey(x.getRollNo(), x.getResumeName()));
+        }
+
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        UserExcelExporter excelExporter = new UserExcelExporter(students, resumes);
+
+        excelExporter.export(response);
+//        return "redirect: /roles";
+    }
 }
