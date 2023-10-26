@@ -26,4 +26,11 @@ public class ResumeService {
     public List<Resume> getResumesByUser(Integer username) {return resumeDao.getResumesByUser(username);}
 //
 //    public Post getPostByID(Integer postid) { return postDao.getPostByID(postid); }
+
+    public List<Resume> getAllResumes() {return resumeDao.getAllResumes();}
+
+    public void updateResume(String a,String b){
+        resumeDao.updateResume(a,b);
+    }
+
 }
