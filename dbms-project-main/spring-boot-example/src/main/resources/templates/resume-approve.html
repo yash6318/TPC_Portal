@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+
+<body>
+
+
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+    <a th:each = "entity : ${resume}" th:href="@{'/resume/' + ${entity.resumeName+'-'+entity.resumeLink}}">
+<!--        <div class="text-white" >-->
+<!--&lt;!&ndash;            <div th:text="${entity.resumeName}" class="h4 m-2 p-2"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div th:text="${entity.resumeLink}" class="h4 m-2 p-2"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div th:text="${entity.isVerified}" class="h4 m-2 p-2"></div>&ndash;&gt;-->
+<!--        </div>-->
+        <div th:class="${entity.isVerified} ? 'border border-success border-3 rounded-1' : 'border border-danger border-3 rounded-1'">
+            <div class="bg-dark text-white p-2">
+                <div th:text="${entity.resumeName}" class="m-2"></div>
+                <a th:href="${'https://drive.google.com/file/d/'+entity.resumeLink+'/view?usp=drive_link'}" class="m-2">See_Resume</a>
+            </div>
+            <div th:text="${entity.isVerified} ? 'Verified' : 'Not Verified'"
+                 th:class="${entity.isVerified} ? 'text-success text-center' : 'text-danger text-center'">
+            </div>
+        </div>
+
+<!--        <div class="bg-light px-2 rounded-bottom-1" th:text="${entity.isVerified}"></div>-->
+    </a>
+</div>
+</body>
+</html>
