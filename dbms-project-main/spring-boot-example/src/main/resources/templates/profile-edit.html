@@ -205,21 +205,11 @@
               <div class="input-group input-group-outline">
                 <select name="branch" id="branch" required >
                   <option value="" disabled>Select an option</option>
-                  <option value="Computer Science and Engineering" th:selected="${student.branch == 'Computer Science and Engineering' ? true : false}">Computer Science and Engineering</option>
-                  <option value="Mathematics and Computing" th:selected="${student.branch == 'Mathematics and Computing' ? true : false}">Mathematics and Computing</option>
-                  <option value="Electronics Engineering" th:selected="${student.branch == 'Electronics Engineering' ? true : false}">Electronics Engineering</option>
-                  <option value="Electrical Engineering" th:selected="${student.branch == 'Electrical Engineering' ? true : false}">Electrical Engineering</option>
-                  <option value="Mechanical Engineering" th:selected="${student.branch == 'Mechanical Engineering' ? true : false}">Mechanical Engineering</option>
-                  <option value="Chemical Engineering" th:selected="${student.branch == 'Chemical Engineering' ? true : false}">Chemical Engineering</option>
-                  <option value="Metallurgy Engineering" th:selected="${student.branch == 'Metallurgy Engineering' ? true : false}">Metallurgy Engineering</option>
-                  <option value="Pharmaceutical Engineering" th:selected="${student.branch == 'Pharmaceutical Engineering' ? true : false}">Pharmaceutical Engineering</option>
-                  <option value="Biomedical Engineering" th:selected="${student.branch == 'Biomedical Engineering' ? true : false}">Biomedical Engineering</option>
-                  <option value="BioChemical Engineering" th:selected="${student.branch == 'BioChemical Engineering' ? true : false}">BioChemical Engineering</option>
-                  <option value="Civil Engineering" th:selected="${student.branch == 'Civil Engineering' ? true : false}">Civil Engineering</option>
-                  <option value="Ceramic Engineering" th:selected="${student.branch == 'Ceramic Engineering' ? true : false}">Ceramic Engineering</option>
-                  <option value="Engineering Physics" th:selected="${student.branch == 'Engineering Physics' ? true : false}">Engineering Physics</option>
-                  <option value="Industrial Chemistry" th:selected="${student.branch == 'Industrial Chemistry' ? true : false}">Industrial Chemistry</option>
-                  <option value="Material Science and Technology" th:selected="${student.branch == 'Material Science and Technology' ? true : false}">Material Science and Technology</option>
+                  <option th:each="branch : ${branches}"
+                          th:value="${branch.branchName}"
+                          th:text="${branch.branchName}"
+                          th:selected="${branch.branchName} == ${student.branch} ? true : false">
+                  </option>
                 </select>
               </div>
             </div>

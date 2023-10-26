@@ -29,7 +29,6 @@ public class ResumeController {
 
     @PostMapping("resume/create")
     public String insertResume(@ModelAttribute Resume resume, Model model, Authentication auth){
-
         resume.setRollNo(Integer.parseInt(auth.getName()));
         resume.setIsVerified(0);
         System.out.println(resume);
@@ -39,31 +38,22 @@ public class ResumeController {
 
     @GetMapping("/resume")
     public String allResume(Model model, Authentication auth){
-        if(auth.isAuthenticated()){
-            User user = (User)auth.getPrincipal();
-            if(user.getDesignation().equals("Student")){
-                if(true){
-                    System.out.println(resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
-                    model.addAttribute("resume", resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
-                    return "resume";
-                }
-                else{
-                    return "resume";
-                }
+        User user = (User)auth.getPrincipal();
+        if(user.getDesignation().equals("Student")){
+            if(studentService.studentExists(Integer.parseInt(user.getUsername()))){
+                System.out.println(resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
+                model.addAttribute("resume", resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
+                return "resume";
             }
-            else if(user.getDesignation().equals("TPR")){
-                model.addAttribute("resume", resumeService.getAllResumes());
-                return "resume-approve";
-            }
-            else{
-                model.addAttribute("errorMessage", "Unauthorized request!");
-                return "custom-error";
-            }
-
+            else return "redirect:/profile/create";
+        }
+        else if(user.getDesignation().equals("Admin")){
+            model.addAttribute("resume", resumeService.getAllResumes());
+            return "resume-approve";
         }
         else{
-            model.addAttribute("error", "Please sign in!");
-            return "redirect:/";
+            model.addAttribute("errorMessage", "Unauthorized request!");
+            return "custom-error";
         }
     }
 

@@ -32,10 +32,11 @@ public class ForumController {
     CompanyService companyService;
 
     @GetMapping("/post/create")
-    public String postCreate(Authentication auth){
+    public String postCreate(Authentication auth, Model model){
         User user = (User)auth.getPrincipal();
         if(user.getDesignation().equals("Student")){
-            if(!studentService.studentExists(Integer.parseInt(user.getUsername()))) return "redirect:/profile";
+            model.addAttribute("errorMessage", "Unauthorized Request!");
+            return "custom-error";
         }
         else if(user.getDesignation().equals("Company")){
             if(!companyService.companyExists(Integer.parseInt(user.getUsername()))) return "redirect:/company-profile";
@@ -45,7 +46,6 @@ public class ForumController {
 
     @PostMapping("post/create")
     public String insertPost(@ModelAttribute Post post, Model model, Authentication auth){
-
         System.out.println(post.getTitle());
         post.setAuthorId(Integer.parseInt(auth.getName()));
         post.setTimestamp(Timestamp.from(Instant.now()));
@@ -65,33 +65,29 @@ public class ForumController {
 
     @GetMapping("/forum")
     public String allPosts(Model model, Authentication auth){
-        if(auth.isAuthenticated()){
-            User user = (User)auth.getPrincipal();
-            if(user.getDesignation().equals("Student")){
-                if(!studentService.studentExists(Integer.parseInt(user.getUsername()))) return "redirect:/profile";
+        User user = (User)auth.getPrincipal();
+        if(user.getDesignation().equals("Student")){
+            if(!studentService.studentExists(Integer.parseInt(user.getUsername()))) return "redirect:/profile";
+        }
+        else if(user.getDesignation().equals("Company")){
+            if(!companyService.companyExists(Integer.parseInt(user.getUsername()))) return "redirect:/company-profile";
+        }
+        if(user.getDesignation().equals("Student")){
+            List<Post> posts = postService.getAllPosts();
+
+            List<Company> companies = new ArrayList<>();
+            for(Post post:posts){
+                companies.add(companyService.getCompanyByID(post.getAuthorId()));
             }
-            else if(user.getDesignation().equals("Company")){
-                if(!companyService.companyExists(Integer.parseInt(user.getUsername()))) return "redirect:/company-profile";
-            }
-            if(user.getDesignation().equals("Student")){
-                List<Post> posts = postService.getAllPosts();
-                List<Company> companies = new ArrayList<>();
-                for(Post post:posts){
-                    companies.add(companyService.getCompanyByID(post.getAuthorId()));
-                }
-                System.out.println(companies);
-                model.addAttribute("posts", posts);
-                model.addAttribute("companies", companies);
-            }
-            else{
-                model.addAttribute("posts", postService.getPostsByUser(Integer.parseInt(user.getUsername())));
-            }
-            model.addAttribute("designation", user.getDesignation());
-            return "/forum";
+            System.out.println(companies);
+            model.addAttribute("posts", posts);
+            model.addAttribute("companies", companies);
         }
         else{
-            return "/login";
+            model.addAttribute("posts", postService.getPostsByUser(Integer.parseInt(user.getUsername())));
         }
+        model.addAttribute("designation", user.getDesignation());
+        return "/forum";
     }
 
 }

@@ -208,22 +208,11 @@
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
                                 <select name="branch" id="branch" required >
-                                    <option value="" disabled selected>Select an option</option>
-                                    <option value="Computer Science and Engineering">Computer Science and Engineering</option>
-                                    <option value="Mathematics and Computing">Mathematics and Computing</option>
-                                    <option value="Electronics Engineering">Electronics Engineering</option>
-                                    <option value="Electrical Engineering">Electrical Engineering</option>
-                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
-                                    <option value="Chemical Engineering">Chemical Engineering</option>
-                                    <option value="Metallurgy Engineering">Metallurgy Engineering</option>
-                                    <option value="Pharmaceutical Engineering">Pharmaceutical Engineering</option>
-                                    <option value="Biomedical Engineering">Biomedical Engineering</option>
-                                    <option value="BioChemical Engineering">BioChemical Engineering</option>
-                                    <option value="Civil Engineering">Civil Engineering</option>
-                                    <option value="Ceramic Engineering">Ceramic Engineering</option>
-                                    <option value="Engineering Physics">Engineering Physics</option>
-                                    <option value="Industrial Chemistry">Industrial Chemistry</option>
-                                    <option value="Material Science and Technology">Material Science and Technology</option>
+                                    <option value="" disabled selected>Select an Option</option>
+                                    <option th:each="branch : ${branches}"
+                                            th:value="${branch.branchName}"
+                                            th:text="${branch.branchName}">
+                                    </option>
                                 </select>
                             </div>
                         </div>

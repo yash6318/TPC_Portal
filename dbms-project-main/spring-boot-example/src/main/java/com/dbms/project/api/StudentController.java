@@ -3,6 +3,7 @@ package com.dbms.project.api;
 
 import com.dbms.project.model.Student;
 import com.dbms.project.model.User;
+import com.dbms.project.service.BranchService;
 import com.dbms.project.service.StudentService;
 import com.dbms.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,12 @@ public class StudentController {
     UserService userService;
     @Autowired
     StudentService studentService;
+    @Autowired
+    BranchService branchService;
     @GetMapping("/profile")
     public String getStudentDetails(Authentication auth, Model model){
         User temp = (User)auth.getPrincipal();
-        System.out.println(temp);
         String uname = temp.getUsername();
-        if(temp.getDesignation().equals("Company")){
-            model.addAttribute("errorMessage","Unauthorized request");
-            return "custom-error";
-        }
         if(studentService.studentExists(Integer.parseInt(uname))){
             Student toBeShown = studentService.getStudentByRollNo(Integer.parseInt(uname));
             model.addAttribute("student", toBeShown);
@@ -41,23 +39,15 @@ public class StudentController {
 
     @GetMapping(path="/profile/create")
     public String studentCreate(Model model,Authentication auth){
-        User temp = (User)auth.getPrincipal();
-        if(temp.getDesignation().equals("Company")){
-            model.addAttribute("errorMessage","Unauthorized request");
-            return "custom-error";
-        }
         model.addAttribute("rollNo",((User)auth.getPrincipal()).getUsername());
+        model.addAttribute("branches", branchService.getAllBranches());
         return "profile-create";
     }
 
     @GetMapping("/profile/edit")
     public String studentEdit(Model model, Authentication auth){
-        User temp = (User)auth.getPrincipal();
-        if(temp.getDesignation().equals("Company")){
-            model.addAttribute("errorMessage","Unauthorized request");
-            return "custom-error";
-        }
         model.addAttribute("student", studentService.getStudentByRollNo(Integer.parseInt(((User)auth.getPrincipal()).getUsername())));
+        model.addAttribute("branches", branchService.getAllBranches());
         return "profile-edit";
     }
 
@@ -77,17 +67,12 @@ public class StudentController {
 
     @GetMapping(path="/student-home")
     public String studentHome(Authentication auth,Model model){
-        if(auth.isAuthenticated()){
-            User user = (User)auth.getPrincipal();
-            if(user.getDesignation().equals("Company")){
-                model.addAttribute("errorMessage","Unauthorized request");
-                return "custom-error";
-            }
-            //Student loggedinStudent = studentService.getStudentByRollNo(Integer.parseInt(user.getUsername()));
-            //model.addAttribute("student",loggedinStudent);
-            return "student-home";
+        User user = (User)auth.getPrincipal();
+        if(user.getDesignation().equals("Company")){
+            model.addAttribute("errorMessage","Unauthorized request");
+            return "custom-error";
         }
-        return "dashboard";
+        return "student-home";
     }
 
 }

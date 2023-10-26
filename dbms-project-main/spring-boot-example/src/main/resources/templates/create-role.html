@@ -8,27 +8,27 @@
 <form th:action="@{/role/create}" method = "post" class="container w-50 my-4">
     <h3 class="text-center">Float New Role</h3>
     <div class="border p-3 bg-light">
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label required" for="RoleName">Role Name</label>
             <input type="text" id="RoleName" name="RoleName" class="form-control" >
         </div>
 
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label required" for="JobDescription">Job Description</label>
             <input name = "JobDescription" id = "JobDescription" type="text" class = "form-control" >
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <div>Eligible For:</div>
-            <div th:object="${BranchList}" th:each="branch: ${brancheis}">
+            <div th:object="${BranchList}" th:each="branch: ${brancheis}" style="font-size: 0.9em;">
                 <input name = "brlist" type="checkbox" th:value="${branch.branchName}" th:id="${branch.branchName}">
                 <label class="form-label" th:text="${branch.branchName}" th:for="${branch.branchName}">Eligible Branches</label>
             </div>
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label required" for="Stipend">Stipend (in INR/PM)</label>
             <input name = "Stipend" id = "Stipend" type="number" class = "form-control" >
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <div>Open For:</div>
             <div class="form-group my-1">
                 <input name = "Idd" id = "Idd" type="checkbox" th:value="${true}" >
@@ -40,27 +40,27 @@
             </div>
         </div>
 
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label" for="minCpi">Min CPI required</label>
             <input name = "minCpi" id = "minCpi" type="number" step="0.01" min="0" max="10" class = "form-control" >
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label" for="minPassingYear">Min Passing Year</label>
             <input name = "minPassingYear" id = "minPassingYear" type="text" class = "form-control" >
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label" for="maxPassingYear">Max Passing Year</label>
             <input name = "maxPassingYear" id = "maxPassingYear" type="text" class = "form-control" >
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label" for="maxTotalBacklogs">Max Total Backlogs</label>
             <input name = "maxTotalBacklogs" id = "maxTotalBacklogs" type="number" class = "form-control" >
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label" for="maxActiveBacklogs">Max Active Backlogs</label>
             <input name = "maxActiveBacklogs" id = "maxActiveBacklogs" type="number" class = "form-control" >
         </div>
-        <div class="form-group my-1">
+        <div class="form-group my-3">
             <label class="form-label required" for="deadLine">Deadline</label>
             <input name = "deadLine" id = "deadLine" type="datetime-local" class = "form-control" >
         </div>

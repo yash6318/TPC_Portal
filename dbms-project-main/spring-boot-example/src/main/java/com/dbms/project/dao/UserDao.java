@@ -6,7 +6,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -15,8 +17,6 @@ import java.util.Optional;
 @Repository
 public class UserDao {
     private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
     public UserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -34,7 +34,7 @@ public class UserDao {
     }
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS USER(username int, password varchar(255), designation ENUM('Student', 'TPR', 'Company') NOT NULL DEFAULT ('Student'))";
+        String sql = "CREATE TABLE IF NOT EXISTS USER(username int, password varchar(255), designation ENUM('Student', 'Admin', 'Company') NOT NULL DEFAULT ('Student'))";
         jdbcTemplate.execute(sql);
     }
 
@@ -68,5 +68,16 @@ public class UserDao {
                 user.getUsername()
         );
     }
-    
+
+    public void insertAdmin(){
+        String sql = "SELECT COUNT(*) FROM USER WHERE DESIGNATION = \"Admin\"";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class);
+        if(count > 0) return;
+        User user = new User();
+        user.setUsername(1);
+        user.setPassword("$2a$10$nIf1GsCNzWEvT1dijSQpuOrkS6.e5OEXkDIuC3n5k56LLa4cqE3D2");
+        user.setDesignation("Admin");
+        insertUser(user);
+    }
+
 }

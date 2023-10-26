@@ -30,10 +30,6 @@ public class CompanyController {
         User temp = (User)auth.getPrincipal();
         System.out.println(temp);
         String uname = temp.getUsername();
-        if(temp.getDesignation().equals("Student")){
-            model.addAttribute("errorMessage","Unauthorized request");
-            return "custom-error";
-        }
         if(companyService.companyExists(Integer.parseInt(uname))){
             Company toBeShown = companyService.getCompanyByID(Integer.parseInt(uname));
             model.addAttribute("company", toBeShown);
@@ -46,42 +42,19 @@ public class CompanyController {
 
     @GetMapping(path="/company-profile/create")
     public String companyCreate(Model model,Authentication auth){
-        User temp = (User)auth.getPrincipal();
-        if(temp.getDesignation().equals("Student")){
-            model.addAttribute("errorMessage","Unauthorized request");
-            return "custom-error";
-        }
         model.addAttribute("companyID",((User)auth.getPrincipal()).getUsername());
         return "company-profile-create";
     }
 
     @GetMapping("/company-profile/edit")
     public String companyEdit(Model model, Authentication auth){
-        User temp = (User)auth.getPrincipal();
-        if(temp.getDesignation().equals("Student")){
-            model.addAttribute("errorMessage","Unauthorized request");
-            return "custom-error";
-        }
         model.addAttribute("company", companyService.getCompanyByID(Integer.parseInt(((User)auth.getPrincipal()).getUsername())));
         return "company-profile-edit";
     }
 
     @GetMapping("/company-home")
     public String companyHome(Authentication auth, Model model){
-        if(auth.isAuthenticated()){
-            User user = (User)auth.getPrincipal();
-            if(user.getDesignation().equals("Student")){
-                return "redirect:/";
-            }
-            else if(companyService.companyExists(Integer.parseInt(user.getUsername()))) {
-                model.addAttribute("company", companyService.getCompanyByID(Integer.parseInt(((User)auth.getPrincipal()).getUsername())));
-                return "company-home";
-            }
-            return "redirect:/company-profile/create";
-        }
-        else{
-            return "login";
-        }
+        return "company-home";
     }
 
 

@@ -38,11 +38,15 @@ public class OpportunitiesController {
             model.addAttribute("errorMessage", "Unauthorized Request!");
             return "custom-error";
         }
+        else if(!studentService.studentExists(Integer.parseInt(user.getUsername()))){
+            return "redirect:/profile/create";
+        }
         Student student = studentService.getStudentByRollNo(Integer.parseInt(user.getUsername()));
         List<Role> roles = roleService.getRoles(student);
         List<List<String>> branches = new ArrayList<>();
         List<String> company = new ArrayList<>();
         List<String> selected_resume = new ArrayList<>();
+        List<Boolean> is_selected = new ArrayList<>();
         List<Resume> resumes = resumeService.getResumesByUser(Integer.parseInt(user.getUsername()));
         for(Role role: roles){
             branches.add(branchService.getBranchFromBin(role.getBranchValue()));
@@ -50,14 +54,19 @@ public class OpportunitiesController {
             if(willingnessService.willingnessIsPresent(student.getRollNo(), role.getCompanyID(), role.getRoleName())){
                 Willingness willingness = willingnessService.getWillingness(student.getRollNo(), role.getCompanyID(), role.getRoleName());
                 selected_resume.add(willingness.getResumeName());
+                is_selected.add(true);
             }
-            else selected_resume.add("Not Willing");
+            else{
+                selected_resume.add("Not Willing");
+                is_selected.add(false);
+            }
         }
         model.addAttribute("roles", roles);
         model.addAttribute("branches", branches);
         model.addAttribute("company", company);
         model.addAttribute("resumes", resumes);
         model.addAttribute("sel_res", selected_resume);
+        model.addAttribute("is_sel", is_selected);
         return "opportunities";
     }
 

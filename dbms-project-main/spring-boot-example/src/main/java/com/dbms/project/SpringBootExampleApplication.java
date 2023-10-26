@@ -41,5 +41,6 @@ public class SpringBootExampleApplication implements CommandLineRunner {
 		this.willingnessDao.CreateTable();
 		this.branchDao.CreateTable();
 		this.branchDao.insertAll();
+		this.userdao.insertAdmin();
 	}
 }
