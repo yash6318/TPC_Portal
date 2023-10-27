@@ -4,7 +4,7 @@
 <nav th:replace="base :: student-navbar"></nav>
 <body>
 <div style="display: grid; grid-template-columns: 1fr 1fr;">
-    <div th:each="role, iterStat : ${roles}">
+    <div th:each="role, iterStat : ${roles}" th:href="@{'/willingness/' +}">
         <div class="card d-flex flex-row m-4">
             <div class="mx-4 mb-4">
                 <img class="rounded-circle" width="150px"
@@ -12,6 +12,9 @@
                      alt="Avatar">
                 <h3 class="company-name font-weight-bolder" th:text="${company[iterStat.index]}"></h3>
                 <h5 class="card-title" th:text="${role.roleName}"></h5>
+            </div>
+            <div class="">
+                <a th:href="@{'/willingness/'+${role.companyID+'-'+role.roleName}}" class="btn btn-dark btn-lg" style="width: 100%">Delete Willingness</a>
             </div>
             <div class="card-body mx-4 d-flex flex-column justify-content-between">
                 <form method="post" th:action ="@{/opportunities}">
@@ -21,7 +24,9 @@
                         <div style="font-size: 0.8em; font-weight: lighter;"
                              th:each="branch : ${branches[iterStat.index]}"
                              th:text="${branch}">
+
                         </div>
+
                     </div>
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     </div>
