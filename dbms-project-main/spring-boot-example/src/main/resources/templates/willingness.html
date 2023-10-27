@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: student-navbar"></nav>
+<body>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+    <div th:each="role, iterStat : ${roles}">
+        <div class="card d-flex flex-row m-4">
+            <div class="mx-4 mb-4">
+                <img class="rounded-circle" width="150px"
+                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                     alt="Avatar">
+                <h3 class="company-name font-weight-bolder" th:text="${company[iterStat.index]}"></h3>
+                <h5 class="card-title" th:text="${role.roleName}"></h5>
+            </div>
+            <div class="card-body mx-4 d-flex flex-column justify-content-between">
+                <form method="post" th:action ="@{/opportunities}">
+                    <div class="stipend-info" th:text="'Stipend: ' + ${role.stipend} + ' INR/PM'"></div>
+                    <div  class="py-2 font-weight-bolder" style="font-size: 0.9em;">
+                        Open For:
+                        <div style="font-size: 0.8em; font-weight: lighter;"
+                             th:each="branch : ${branches[iterStat.index]}"
+                             th:text="${branch}">
+                        </div>
+                    </div>
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+</script>
+
+</html>
