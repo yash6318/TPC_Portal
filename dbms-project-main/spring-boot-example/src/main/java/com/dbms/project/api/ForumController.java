@@ -54,6 +54,7 @@ public class ForumController {
         post.setTimestamp(Timestamp.from(Instant.now()));
         postService.insertPost(post);
         Integer id = postService.getLastPost();
+        System.out.println(post);
         return "redirect:/post/" + id.toString();
     }
 

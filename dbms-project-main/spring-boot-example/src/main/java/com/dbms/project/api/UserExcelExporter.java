@@ -68,7 +68,7 @@ public class UserExcelExporter {
 
             String name = students.get(i).getFirstName() + " " +students.get(i).getMiddleName() + " " + students.get(i).getLastName();
             String link = "https://drive.google.com/file/d/" + resumes.get(i).getResumeLink() + "/view?usp=drive_link";
-            createCell(row, columnCount++, students.get(0).getRollNo());
+            createCell(row, columnCount++, students.get(i).getRollNo());
             createCell(row, columnCount++, name);
             createCell(row, columnCount++, students.get(i).getInstituteID());
 
