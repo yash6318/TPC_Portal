@@ -130,4 +130,13 @@ public class OpportunitiesController {
         return "willingness";
     }
 
+    @GetMapping("willingness/{id}")
+    public String willingnessdelete(Model model, @PathVariable String id, Authentication auth){
+        System.out.println(id);
+        String[] parts = id.split("-");
+        User user = (User)auth.getPrincipal();
+        willingnessService.deleteWillingness(Integer.parseInt(user.getUsername()),Integer.parseInt(parts[0]),parts[1]);
+        return "redirect:/willingness";
+    }
+
 }
