@@ -87,7 +87,7 @@ public class RoleController {
     }
 
     @GetMapping("/roles/{id}")
-    public String willingStudents(Authentication auth, @PathVariable String id, Model model){
+    public String willingStudents(Authentication auth, @PathVariable("id") String id, Model model){
         User user = (User)auth.getPrincipal();
         if(user.getDesignation().equals("Student")){
             model.addAttribute("errorMessage", "Unauthorized Request!");

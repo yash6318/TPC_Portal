@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profile/create").hasAnyAuthority("STUDENT")
                 .antMatchers("/profile/edit").hasAnyAuthority("STUDENT")
                 .antMatchers("/opportunities").hasAnyAuthority("STUDENT")
+                .antMatchers("/resume").hasAnyAuthority("STUDENT")
                 .anyRequest().authenticated()
             .and()
                 .csrf()

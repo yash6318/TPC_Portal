@@ -40,8 +40,8 @@ public class ResumeService {
 
     public List<Resume> getAllResumes() {return resumeDao.getAllResumes();}
 
-    public void updateResume(String a,String b){
-        resumeDao.updateResume(a,b);
+    public void updateResume(String resumeName, Integer rollNo){
+        resumeDao.updateResume(resumeName, rollNo);
     }
 
 }

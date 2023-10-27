@@ -43,13 +43,12 @@ public class AuthenticationController {
     @GetMapping(path="/")
     public String Home(Authentication auth){
         if(auth == null) return "dashboard";
-
         User user = (User)auth.getPrincipal();
         if(user.getDesignation().equals("Company")){
             return "redirect:/company-home";
         }
-        return "redirect:/student-home";
-
+        else if(user.getDesignation().equals("Student")) return "redirect:/student-home";
+        return "redirect:/admin-home";
     }
 
     @GetMapping("/signup")

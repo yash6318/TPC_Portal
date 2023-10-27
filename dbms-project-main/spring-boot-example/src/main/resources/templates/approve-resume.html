@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: admin-navbar"></nav>
+<body>
+    <div >
+        <div th:each="student, iterStat : ${studentList}">
+            <h3 th:text="${student.rollNo}"
+                class="text-center mt-4">
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+                <div th:each="resume : ${allResumes[iterStat.index]}"
+                     style="height: max-content;"
+                     th:class="${resume.isVerified} ?
+                     'border border-3 border-success my-2 mx-3' :
+                     'border border-3 border-danger my-2 mx-3'">
+                    <div class="bg-dark text-light d-flex flex-column">
+                        <a th:href="'https://drive.google.com/file/d/' + ${resume.resumeLink} + '/view?usp=drive_link'"
+                            th:text="'View Resume: ' + ${resume.resumeName}"
+                            class="p-2">
+                        </a>
+                        <a th:href="'/approve-resume/' + ${resume.resumeName} + '|' + ${resume.rollNo}"
+                            th:text="'Click to Approve' + ' - ' + ${resume.resumeName}"
+                            class="p-2">
+                        </a>
+                    </div>
+                    <div th:text="${resume.isVerified} ? 'Verified' : 'Not Verified'"
+                         th:class="${resume.isVerified} ?
+                         'text-success text-center bg-white' :
+                         'text-danger text-center bg-white'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

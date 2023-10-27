@@ -9,6 +9,10 @@
     <nav th:replace="base :: student-navbar">
     </nav>
 </div>
+<div th:if="${designation} == 'Admin'">
+    <nav th:replace="base :: admin-navbar">
+    </nav>
+</div>
 <body>
 
 <div th:if="${designation} == 'Company' or ${designation} == 'Admin'" style="text-align: center;">

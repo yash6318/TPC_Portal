@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: admin-navbar"></nav>
+<body>
+    <div>
+        <div>Willing Students</div>
+        <div th:each="student, iter : ${studentList}">
+            <div th:text="${student.rollNo}"></div>
+            <div th:text="${student.firstName} + ' ' + ${student.lastName}"></div>
+            <div th:text="${resumeList[iter.index].resumeLink}"></div>
+        </div>
+    </div>
+</body>
+</html>

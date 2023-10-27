@@ -12,14 +12,15 @@
 <div style="display: grid; grid-template-columns: 1fr 1fr;">
     <div th:each="role, iterStat : ${roles}">
         <div class="card d-flex flex-row m-4">
-            <div class="mx-5">
+            <div class="mx-4">
                 <img class="rounded-circle mt-5" width="150px"
                      src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                      alt="Avatar">
-            </div>
-            <div class="card-body mx-4">
                 <h3 class="company-name font-weight-bolder" th:text="${company[iterStat.index]}"></h3>
                 <h5 class="card-title" th:text="${role.roleName}"></h5>
+            </div>
+            <div class="card-body mx-4">
+
                 <div class="stipend-info" style="font-size: 0.9rem" th:text="'Stipend: ' + ${role.stipend}"></div>
                 <div class="stipend-info" style="font-size: 0.9rem" th:text="'Minimum Cpi: ' + ${role.minCpi}"></div>
                 <div class="stipend-info" style="font-size: 0.9rem" th:text="'Passing year: ' + ${role.minPassingYear} + '-' + ${role.maxPassingYear}"></div>
@@ -33,16 +34,13 @@
                          th:text="${branch}">
                     </div>
                 </div>
-                <a th:href="@{/roles/{id}(id = ${role.roleName})}">
-
-                    <button class="btn btn-icon btn-dark mx-1 my-2 col-md-2" type="button">
-                        <span class="btn-inner--text" style="height : 100%">Show Willing Students</span>
-                    </button>
+                <a th:href="'/roles/' + ${role.roleName}"
+                    class="btn btn-dark">
+                    Show Willing Students
                 </a>
-                <a th:href ="@{/roles/{id}/download(id = ${role.roleName})}">
-                    <button class="btn btn-icon btn-dark mx-1 my-2 col-md-2" type="button">
-                        <span class="btn-inner--text" style="height : 100%">Download</span>
-                    </button>
+                <a th:href ="@{/roles/{id}/download(id = ${role.roleName})}"
+                    class="btn btn-dark m-2">
+                    Download
                 </a>
             </div>
 

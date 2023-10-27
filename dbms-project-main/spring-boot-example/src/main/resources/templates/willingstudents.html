@@ -5,7 +5,7 @@
 <body>
 
 <div class="container section my-3" id="roles-offered">
-    <h2 class="text-center" th:text = "'Willing Candidates for role: ' + ${willings[0].roleName}"></h2>
+    <h2 class="text-center" th:text = "'Willing Candidates for role' "></h2>
 </div>
 
 
@@ -27,13 +27,5 @@
     </tr>
 </table>
 
-<div class="container section my-5" id="add-roles">
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <p>Would you like to add new roles for our students?</p>
-            <a href="/role/create" class="btn btn-dark btn-lg" style="width: 100%">Add a Role</a>
-        </div>
-    </div>
-</div>
 </body>
 </html>

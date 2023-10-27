@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: head"></head>
+<nav th:replace="base :: admin-navbar"></nav>
+<body>
+<div >
+    <div th:each="company, iterStat : ${companyList}" class="bg-dark m-3">
+        <h3 th:text="'Roles Offered By: ' + ${company.companyName}"
+            class="text-center text-light py-2">
+        </h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div th:each="role, iter : ${allRoles[iterStat.index]}">
+                <div class="card d-flex flex-row m-4">
+                    <div class="mx-5">
+                        <img class="rounded-circle mt-5" width="150px"
+                             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                             alt="Avatar">
+                    </div>
+                    <div class="card-body mx-4">
+                        <h3 class="company-name font-weight-bolder" th:text="${company.companyName}"></h3>
+                        <h5 class="card-title" th:text="${role.roleName}"></h5>
+                        <div class="stipend-info" style="font-size: 0.9rem" th:text="'Stipend: ' + ${role.stipend}"></div>
+                        <div class="stipend-info" style="font-size: 0.9rem" th:text="'Minimum Cpi: ' + ${role.minCpi}"></div>
+                        <div class="stipend-info" style="font-size: 0.9rem" th:text="'Passing year: ' + ${role.minPassingYear} + '-' + ${role.maxPassingYear}"></div>
+                        <div class="stipend-info" style="font-size: 0.9rem" th:text="'Max Active Backlogs: ' + ${role.maxActiveBacklogs}"></div>
+                        <div class="stipend-info" style="font-size: 0.9rem" th:text="'Max Total Backlogs: ' + ${role.maxTotalBacklogs}"></div>
+                        <div class="stipend-info" style="font-size: 0.9rem" th:text="'Deadline: ' + ${#temporals.format(role.deadLine, 'dd-MM-yyyy HH:mm')}"></div>
+                        <div  class="py-2 font-weight-bolder" style="font-size: 0.9em;">
+                            Open For:
+                            <div style="font-size: 0.8em; font-weight: lighter;"
+                                 th:each="branch : ${allBranches[iterStat.index][iter.index]}"
+                                 th:text="${branch}">
+                            </div>
+                        </div>
+                        <a th:href="'/roles-all/' + ${role.roleName} + '|' + ${company.companyID}"
+                            class="btn btn-dark">
+                            Show Willing Students
+                        </a>
+    <!--                    <a th:href ="@{/roles/{id}/download(id = ${role.roleName})}">-->
+    <!--                        <button class="btn btn-icon btn-dark mx-1 my-2 col-md-2" type="button">-->
+    <!--                            <span class="btn-inner&#45;&#45;text" style="height : 100%">Download</span>-->
+    <!--                        </button>-->
+    <!--                    </a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

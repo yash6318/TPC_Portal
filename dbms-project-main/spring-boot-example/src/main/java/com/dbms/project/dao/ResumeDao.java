@@ -63,14 +63,13 @@ public class ResumeDao {
         return (jdbcTemplate.queryForObject(sql, new Object[]{rollNo, resumeName}, new BeanPropertyRowMapper<>(Resume.class)));
     }
 
-    public void updateResume(String a,String b){
-//        final String sql = "INSERT INTO Resume(resumeName, resumeLink, rollNo,isVerified) VALUES(?, ?, ?,?)";
-        final String sql="UPDATE resume SET isVerified=1 where resumeName=(?) and resumeLink= (?)";
+    public void updateResume(String resumeName, Integer rollNo){
+        final String sql="UPDATE resume SET isVerified=1 where resumeName = ? and rollNo = ?";
         KeyHolder keyholder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, a);
-            ps.setString(2, b);
+            ps.setString(1, resumeName);
+            ps.setInt(2, rollNo);
             return ps;
         }, keyholder);
     }

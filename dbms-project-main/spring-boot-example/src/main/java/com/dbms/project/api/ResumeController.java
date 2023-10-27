@@ -39,31 +39,23 @@ public class ResumeController {
     @GetMapping("/resume")
     public String allResume(Model model, Authentication auth){
         User user = (User)auth.getPrincipal();
-        if(user.getDesignation().equals("Student")){
-            if(studentService.studentExists(Integer.parseInt(user.getUsername()))){
-                System.out.println(resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
-                model.addAttribute("resume", resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
-                return "resume";
-            }
-            else return "redirect:/profile/create";
+        if(studentService.studentExists(Integer.parseInt(user.getUsername()))){
+            System.out.println(resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
+            model.addAttribute("resume", resumeService.getResumesByUser(Integer.parseInt(user.getUsername())));
+            return "resume";
         }
-        else if(user.getDesignation().equals("Admin")){
-            model.addAttribute("resume", resumeService.getAllResumes());
-            return "resume-approve";
-        }
-        else{
-            model.addAttribute("errorMessage", "Unauthorized request!");
-            return "custom-error";
-        }
+        else return "redirect:/profile/create";
     }
 
-    @GetMapping("resume/{id}")
-    public String resumeDetail(Model model, @PathVariable String id, Authentication auth){
-        System.out.println(id);
-        String[] parts = id.split("-");
-        resumeService.updateResume(parts[0],parts[1]);
-        return "redirect:/resume";
-    }
+
+
+//    @GetMapping("resume/{id}")
+//    public String resumeDetail(Model model, @PathVariable String id, Authentication auth){
+//        System.out.println(id);
+//        String[] parts = id.split("-");
+//        resumeService.updateResume(parts[0],parts[1]);
+//        return "redirect:/resume";
+//    }
 
 
 

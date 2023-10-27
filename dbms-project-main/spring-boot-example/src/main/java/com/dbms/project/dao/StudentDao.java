@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -155,5 +156,10 @@ public class StudentDao {
     public Student getStudentByRollNo(Integer rollNo) {
             String sql2 = "SELECT * from student where rollNo = ?";
             return jdbcTemplate.queryForObject(sql2, new Object[]{rollNo}, new BeanPropertyRowMapper<>(Student.class));
+    }
+
+    public List<Student> getAllStudents(){
+        String sql = "SELECT * FROM STUDENT";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
     }
 }

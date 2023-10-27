@@ -5,7 +5,7 @@
 <body>
     <div style="display: grid; grid-template-columns: 1fr 1fr;">
         <div th:each="role, iterStat : ${roles}">
-            <div class="card d-flex flex-row m-4">
+            <div th:class="${sel_res[iterStat.index]} == 'Not Willing' ? 'card d-flex flex-row m-4 border-danger' : 'card d-flex flex-row m-4 border-1 border-success'">
                 <div class="mx-4 mb-4">
                     <img class="rounded-circle" width="150px"
                          src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-md-4 offset-md-4">
-        <a href="/willingness" class="btn btn-dark btn-lg" style="width: 100%">Check Willingness</a>
+        <a href="/willingness" class="btn btn-dark btn-lg m-2" style="width: 100%">Check Willingness</a>
     </div>
     
 </body>

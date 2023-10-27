@@ -68,4 +68,9 @@ public class CompanyDao {
                 company.getCompanyID()
         );
     }
+
+    public List<Company> getAllCompanies(){
+        String sql = "SELECT * FROM COMPANY";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Company.class));
+    }
 }

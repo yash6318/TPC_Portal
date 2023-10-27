@@ -71,25 +71,47 @@ public class ForumController {
         User user = (User)auth.getPrincipal();
         if(user.getDesignation().equals("Student")){
             if(!studentService.studentExists(Integer.parseInt(user.getUsername()))) return "redirect:/profile";
+            List<Post> posts = postService.getAllPosts();
+            List<String> authors = new ArrayList<>();
+            for(Post post:posts){
+                User author = userService.getUserByUsername(post.getAuthorId());
+                if(author.getDesignation().equals("Company"))
+                    authors.add(companyService.getCompanyByID(post.getAuthorId()).getCompanyName());
+                else
+                    authors.add("Admin");
+            }
+            model.addAttribute("posts", posts);
+            model.addAttribute("authors", authors);
+            model.addAttribute("designation", user.getDesignation());
+            return "/forum";
+
         }
         else if(user.getDesignation().equals("Company")){
             if(!companyService.companyExists(Integer.parseInt(user.getUsername()))) return "redirect:/company-profile";
-        }
-        List<Post> posts = postService.getAllPosts();
-
-        List<String> authors = new ArrayList<>();
-        for(Post post:posts){
-            User author = userService.getUserByUsername(post.getAuthorId());
-            if(author.getDesignation().equals("Company"))
+            List<Post> posts = postService.getPostsByUser(Integer.parseInt(user.getUsername()));
+            List<String> authors = new ArrayList<>();
+            for(Post post: posts){
                 authors.add(companyService.getCompanyByID(post.getAuthorId()).getCompanyName());
-            else
-                authors.add("Admin");
+            }
+            model.addAttribute("posts", posts);
+            model.addAttribute("authors", authors);
+            model.addAttribute("designation", user.getDesignation());
+            return "/forum";
         }
-        model.addAttribute("posts", posts);
-        model.addAttribute("authors", authors);
-        model.addAttribute("designation", user.getDesignation());
-        return "/forum";
+        else{
+            List<Post> posts = postService.getAllPosts();
+            List<String> authors = new ArrayList<>();
+            for(Post post:posts){
+                User author = userService.getUserByUsername(post.getAuthorId());
+                if(author.getDesignation().equals("Company"))
+                    authors.add(companyService.getCompanyByID(post.getAuthorId()).getCompanyName());
+                else
+                    authors.add("Admin");
+            }
+            model.addAttribute("posts", posts);
+            model.addAttribute("authors", authors);
+            model.addAttribute("designation", user.getDesignation());
+            return "/forum";
+        }
     }
-
-
 }

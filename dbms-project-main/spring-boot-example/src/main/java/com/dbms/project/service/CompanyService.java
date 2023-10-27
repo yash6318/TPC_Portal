@@ -6,6 +6,8 @@ import com.dbms.project.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanyService {
     private final CompanyDao companyDao;
@@ -24,4 +26,5 @@ public class CompanyService {
     public void insertCompany(Company company){ companyDao.insertCompany(company); }
 
     public void updateCompany(Company company) { companyDao.updateCompany(company); }
+    public List<Company> getAllCompanies(){ return companyDao.getAllCompanies(); }
 }
