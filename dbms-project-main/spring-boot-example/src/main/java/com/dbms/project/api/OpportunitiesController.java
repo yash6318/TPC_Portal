@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class OpportunitiesController {
@@ -85,6 +82,52 @@ public class OpportunitiesController {
         return "redirect:/opportunities";
     }
 
+    @GetMapping("/willingness")
+    public String willingness(Authentication auth, Model model){
+        User user = (User)auth.getPrincipal();
+        if(user.getDesignation().equals("Company")){
+            model.addAttribute("errorMessage", "Unauthorized Request!");
+            return "custom-error";
+        }
+        else if(!studentService.studentExists(Integer.parseInt(user.getUsername()))){
+            return "redirect:/profile/create";
+        }
+        Student student = studentService.getStudentByRollNo(Integer.parseInt(user.getUsername()));
+        List<Willingness>willing=willingnessService.getWillingnessByRollNo(Integer.parseInt(user.getUsername()));
+        List<Role> roles=new LinkedList<Role>();
 
+        List<List<String>> branches = new ArrayList<>();
+        List<String> company = new ArrayList<>();
+        List<String> selected_resume = new ArrayList<>();
+        List<Boolean> is_selected = new ArrayList<>();
+        List<Resume> resumes = resumeService.getVerifiedResumesByUser(Integer.parseInt(user.getUsername()));
+
+        for(Willingness w:willing)
+        {
+            List<Role>lst=roleService.getRolesByCompanyIdRole(w.getCompanyID(),w.getRoleName());
+            roles.addAll(lst);
+        }
+
+        for(Role role: roles){
+            branches.add(branchService.getBranchFromBin(role.getBranchValue()));
+            company.add(companyService.getCompanyByID(role.getCompanyID()).getCompanyName());
+            if(willingnessService.willingnessIsPresent(student.getRollNo(), role.getCompanyID(), role.getRoleName())){
+                Willingness willingness = willingnessService.getWillingness(student.getRollNo(), role.getCompanyID(), role.getRoleName());
+                selected_resume.add(willingness.getResumeName());
+                is_selected.add(true);
+            }
+            else{
+                selected_resume.add("Not Willing");
+                is_selected.add(false);
+            }
+        }
+        model.addAttribute("roles", roles);
+        model.addAttribute("branches", branches);
+        model.addAttribute("company", company);
+        model.addAttribute("resumes", resumes);
+        model.addAttribute("sel_res", selected_resume);
+        model.addAttribute("is_sel", is_selected);
+        return "willingness";
+    }
 
 }
