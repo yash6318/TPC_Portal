@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 @Repository
@@ -73,12 +75,23 @@ public class RoleDao {
 
     public List<Role> getRoles(Student student){
         int studentBranchValue = (1 << branchService.getBranchID(student.getBranch()));
-        final String getRolesSql = "SELECT * from ROLE AS S where IF(?, BTECH = 1, IDD = 1) and MINCPI <= ? and MINPASSINGYEAR <= ? and MAXPASSINGYEAR >= ? and MAXACTIVEBACKLOGS >= ? and MAXTOTALBACKLOGS >= ? and (? & BRANCHVALUE) > 0";
-        return jdbcTemplate.query(getRolesSql, new Object[]{student.getProgramme().equals("BTech"),student.getCpi(),student.getPassingYear(), student.getPassingYear(), student.getActiveBacklogs(), student.getTotalBacklogs(), studentBranchValue},new BeanPropertyRowMapper<>(Role.class));
+        Date javaDate = new Date(); // Replace this with your Java Date
+
+        SimpleDateFormat mysqlDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        // Format the Java Date to a MySQL DATETIME string
+        String mysqlDatetime = mysqlDateFormat.format(javaDate);
+        final String getRolesSql = "SELECT * from ROLE AS S where IF(?, BTECH = 1, IDD = 1) and MINCPI <= ? and MINPASSINGYEAR <= ? and MAXPASSINGYEAR >= ? and MAXACTIVEBACKLOGS >= ? and MAXTOTALBACKLOGS >= ? and (? & BRANCHVALUE) > 0 and DEADLINE>?";
+        return jdbcTemplate.query(getRolesSql, new Object[]{student.getProgramme().equals("BTech"),student.getCpi(),student.getPassingYear(), student.getPassingYear(), student.getActiveBacklogs(), student.getTotalBacklogs(), studentBranchValue,mysqlDatetime},new BeanPropertyRowMapper<>(Role.class));
     }
     public List<Role> getRolesByCompanyId(Integer companyId){
         final String getRolesSql = "SELECT * from ROLE where CompanyID = ?";
         return jdbcTemplate.query(getRolesSql, new Object[]{companyId}, new BeanPropertyRowMapper<>(Role.class));
+    }
+
+    public List<Role> getRolesByCompanyIdRole(Integer companyId,String role){
+        final String getRolesSql = "SELECT * from ROLE where CompanyID = ? and ROLENAME=?";
+        return jdbcTemplate.query(getRolesSql, new Object[]{companyId,role}, new BeanPropertyRowMapper<>(Role.class));
     }
 
 }
