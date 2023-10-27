@@ -34,6 +34,8 @@ public class RoleController {
     StudentService studentService;
     @Autowired
     ResumeService resumeService;
+    @Autowired
+    EmailService emailService;
 
 
     @GetMapping("/role/create")
@@ -129,7 +131,7 @@ public class RoleController {
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        String headerValue = "attachment; filename = Role_" + id + "_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
         UserExcelExporter excelExporter = new UserExcelExporter(students, resumes);
@@ -137,4 +139,18 @@ public class RoleController {
         excelExporter.export(response);
 //        return "redirect: /roles";
     }
+
+    @PostMapping("/sendmail/{id}")
+    public void sendMail(@RequestParam(value = "list") List<String> StudentList, @PathVariable String id, Authentication auth){
+        User user = (User)auth.getPrincipal();
+        List<String> names = new ArrayList<>();
+        List<String> mailIds= new ArrayList<>();
+        for(String s : StudentList){
+            String[] parts = s.split("/");
+            names.add(parts[0]);
+            mailIds.add(parts[1]);
+        }
+        emailService.sendEmail(names, mailIds, companyService.getCompanyByID(Integer.parseInt(user.getUsername())).getCompanyName(), id);
+    }
+
 }

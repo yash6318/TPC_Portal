@@ -80,14 +80,17 @@ public class AdminController {
         String[] split_str = role_id.split("\\|");
         System.out.println(split_str[0] + " " + split_str[1]);
         List<Willingness> willingList = willingnessService.getWillingnessByRole(split_str[0], Integer.parseInt(split_str[1]));
-        List<Student> studentList = new ArrayList<>();
-        List<Resume> resumeList = new ArrayList<>();
+        List<Student> students = new ArrayList<>();
+        List<String> resumes = new ArrayList<>();
         for(Willingness willingness: willingList){
-            studentList.add(studentService.getStudentByRollNo(willingness.getRollNo()));
-            resumeList.add(resumeService.getResumeByKey(willingness.getRollNo(), willingness.getResumeName()));
+            students.add(studentService.getStudentByRollNo(willingness.getRollNo()));
+            resumes.add(resumeService.getResumeLinkByKey(willingness.getRollNo(), willingness.getResumeName()));
         }
-        model.addAttribute("studentList", studentList);
-        model.addAttribute("resumeList", resumeList);
-        return "admin-willing-students";
+        model.addAttribute("willings", willingList);
+        model.addAttribute("students", students);
+        model.addAttribute("resumes", resumes);
+        return "willingstudents";
     }
+
+
 }

@@ -5,19 +5,23 @@
 <body>
 
 <div class="container section my-3" id="roles-offered">
-    <h2 class="text-center" th:text = "'Willing Candidates for role' "></h2>
+    <h2 class="text-center" th:text = "'Willing Candidates for role: ' + ${willings[0].roleName}"></h2>
 </div>
 
 
-
+<form th:action="@{/sendmail/hello}" method = "post">
 <table class="container section my-3">
     <tr>
+        <th>Select</th>
+        <th>Index</th>
         <th>Roll Number</th>
         <th>Name</th>
         <th>Email ID</th>
         <th>Resume</th>
     </tr>
     <tr th:each = "student, iterStat : ${students}">
+        <td><input name = "list" type="checkbox" th:value="${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName} + '/' + ${student.instituteID}"></td>
+        <td th:text = "${iterStat.index + 1}"></td>
         <td th:text = "${student.rollNo}"></td>
         <td th:text = "${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName}">Maria Anders</td>
         <td th:text = "${student.instituteID}"></td>
@@ -26,6 +30,9 @@
         </td>
     </tr>
 </table>
-
+    <div class="d-flex flex-row justify-content-between">
+        <button type="submit" class="btn btn-dark my-4">Submit</button>
+    </div>
+</form>
 </body>
 </html>
