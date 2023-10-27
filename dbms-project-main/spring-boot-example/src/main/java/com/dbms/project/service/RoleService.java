@@ -27,4 +27,7 @@ public class RoleService {
     }
 
     public List<Role> getRolesByCompanyId(Integer CompanyID){ return roleDao.getRolesByCompanyId(CompanyID); }
+
+    public List<Role> getRolesByCompanyIdRole(Integer CompanyID,String role){return roleDao.getRolesByCompanyIdRole(CompanyID,role);}
+
 }
