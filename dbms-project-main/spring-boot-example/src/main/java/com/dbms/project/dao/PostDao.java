@@ -47,7 +47,13 @@ public class PostDao {
 
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS POST(postid int primary key AUTO_INCREMENT, title text, content text, `timestamp` timestamp, authorid int)";
+        String sql = "CREATE TABLE IF NOT EXISTS POST(" +
+                "postid int primary key AUTO_INCREMENT, " +
+                "title text, content text, " +
+                "`timestamp` timestamp, " +
+                "authorid int," +
+                "FOREIGN KEY (authorID) references User(username)" +
+                ")";
         jdbcTemplate.execute(sql);
     }
     public List<Post> getAllPosts(){

@@ -13,19 +13,20 @@ public class SpringBootExampleApplication implements CommandLineRunner {
 	@Autowired
 	private UserDao userdao;
 	@Autowired
-	private PostDao postDao;
+	private BranchDao branchDao;
+	@Autowired
+	private StudentDao studentDao;
 	@Autowired
 	private CompanyDao companyDao;
 	@Autowired
-	private StudentDao studentDao;
+	private PostDao postDao;
 	@Autowired
 	private ResumeDao resumeDao;
 	@Autowired
 	private RoleDao roleDao;
 	@Autowired
 	private WillingnessDao willingnessDao;
-	@Autowired
-	private BranchDao branchDao;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootExampleApplication.class, args);
 	}
@@ -33,14 +34,14 @@ public class SpringBootExampleApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		this.userdao.CreateTable();
-		this.postDao.CreateTable();
-		this.resumeDao.CreateTable();
-		this.companyDao.CreateTable();
-		this.studentDao.CreateTable();
-		this.roleDao.CreateTable();
-		this.willingnessDao.CreateTable();
 		this.branchDao.CreateTable();
 		this.branchDao.insertAll();
+		this.studentDao.CreateTable();
+		this.companyDao.CreateTable();
+		this.postDao.CreateTable();
+		this.resumeDao.CreateTable();
+		this.roleDao.CreateTable();
+		this.willingnessDao.CreateTable();
 		this.userdao.insertAdmin();
 	}
 }

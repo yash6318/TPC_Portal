@@ -34,7 +34,9 @@ public class UserDao {
     }
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS USER(username int, password varchar(255), designation ENUM('Student', 'Admin', 'Company') NOT NULL DEFAULT ('Student'))";
+        String sql = "CREATE TABLE IF NOT EXISTS USER(username int primary key, " +
+                "password varchar(255), " +
+                "designation ENUM('Student', 'Admin', 'Company') NOT NULL DEFAULT ('Student'))";
         jdbcTemplate.execute(sql);
     }
 

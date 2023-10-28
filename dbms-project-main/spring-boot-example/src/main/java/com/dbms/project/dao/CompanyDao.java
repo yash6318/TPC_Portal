@@ -35,7 +35,13 @@ public class CompanyDao {
 
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS COMPANY(companyID int primary key, companyName varchar(100), HREmail varchar(100), HRPhone char(10))";
+        String sql = "CREATE TABLE IF NOT EXISTS COMPANY(" +
+                "companyID int primary key, " +
+                "companyName varchar(100), " +
+                "HREmail varchar(100), " +
+                "HRPhone char(10)," +
+                "FOREIGN KEY (companyID) references User(username)" +
+                ")";
         jdbcTemplate.execute(sql);
     }
     public List<Company> getAllCompany(){

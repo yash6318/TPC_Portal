@@ -148,7 +148,9 @@ public class StudentDao {
                 "Xpercentage float not null," +
                 "classXIIBoard varchar(255) not null," +
                 "XIIpercentage float not null," +
-                "passingYear char(4) not null" +
+                "passingYear char(4) not null," +
+                "FOREIGN KEY (rollNo) references User(username)," +
+                "FOREIGN KEY (branch) references Branch(branchName)" +
                 ")";
         jdbcTemplate.execute(sql);
     }

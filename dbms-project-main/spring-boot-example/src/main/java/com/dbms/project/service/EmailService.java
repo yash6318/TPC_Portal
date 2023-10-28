@@ -20,6 +20,7 @@ public class EmailService {
         for(int i = 0; i < names.size(); i++){
             SimpleMailMessage message = new SimpleMailMessage();
             System.out.println(mailIds.get(i));
+//            message.setFrom("s82102569@gmail.com");
             message.setTo(mailIds.get(i));
             message.setSubject("Congratulations You Have Been Selected for the interview of " + roleName + "role.");
             message.setText("Greetings from " + companyName + "\n" + "Hi " + names.get(i) + ", You have been Selected for the interviews.\n \n Regards.\n" + companyName + "\n");

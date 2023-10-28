@@ -44,7 +44,9 @@ public class RoleDao {
                 "MAXTOTALBACKLOGS int," +
                 "DEADLINE datetime," +
                 "BRANCHVALUE int," +
-                "PRIMARY KEY (ROLENAME, COMPANYID))";
+                "PRIMARY KEY (ROLENAME, COMPANYID)," +
+                "FOREIGN KEY (companyID) references Company(companyID)" +
+                ")";
         jdbcTemplate.execute(roleSql);
 
     }

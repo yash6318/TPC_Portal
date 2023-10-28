@@ -34,8 +34,13 @@ public class BranchDao {
 
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS BRANCH(BranchID int primary key AUTO_INCREMENT, BranchName VARCHAR(100))";
+        String sql = "CREATE TABLE IF NOT EXISTS BRANCH(" +
+                "BranchName VARCHAR(100)," +
+                "BranchID int AUTO_INCREMENT primary key" +
+                ")";
+        String sql2="ALTER TABLE BRANCH ADD UNIQUE INDEX (`BranchName`)";
         jdbcTemplate.execute(sql);
+        jdbcTemplate.execute(sql2);
     }
 
     public Integer getBranchID(String BranchName){

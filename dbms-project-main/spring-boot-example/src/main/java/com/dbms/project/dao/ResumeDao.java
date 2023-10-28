@@ -38,7 +38,13 @@ public class ResumeDao {
 
 
     public void CreateTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS RESUME(resumeName varchar(50), resumeLink varchar(200), rollNo int,isVerified int,primary key(rollNo, resumeName))";
+        String sql = "CREATE TABLE IF NOT EXISTS RESUME(resumeName varchar(50), " +
+                "resumeLink varchar(200), " +
+                "rollNo int, " +
+                "isVerified int, " +
+                "primary key(rollNo, resumeName), " +
+                "FOREIGN KEY (rollNo) references Student(rollNo)" +
+                ")";
         jdbcTemplate.execute(sql);
     }
 
