@@ -97,14 +97,14 @@ public class RoleController {
         }
         List<Willingness> wills = willingnessService.getWillingnessByRole(id, Integer.parseInt(user.getUsername()));
         List<Student> students = new ArrayList<>();
-        List<String> resumes = new ArrayList<>();
+        List<Resume> resumes = new ArrayList<>();
 
         for(Willingness x : wills){
             students.add(studentService.getStudentByRollNo(x.getRollNo()));
-            resumes.add(resumeService.getResumeLinkByKey(x.getRollNo(), x.getResumeName()));
+            resumes.add(resumeService.getResumeByKey(x.getRollNo(), x.getResumeName()));
         }
 
-        model.addAttribute("willings", wills);
+        model.addAttribute("roleName", id);
         model.addAttribute("students", students);
         model.addAttribute("resumes", resumes);
         return "willingstudents";
@@ -140,8 +140,15 @@ public class RoleController {
 //        return "redirect: /roles";
     }
 
-    @PostMapping("/sendmail/{id}")
-    public void sendMail(@RequestParam(value = "list") List<String> StudentList, @PathVariable String id, Authentication auth){
+    @GetMapping("/roles/{id}/sendmail")
+    public String recieve(@PathVariable String id){
+        System.out.print(id);
+        return ("redirect:/roles/"+id);
+    }
+
+    @PostMapping("/roles/{id}/sendmail")
+    public String sendMail(@RequestParam(value = "list") List<String> StudentList, @PathVariable String id, Authentication auth, @RequestParam(value = "customText") String customText,
+     @RequestParam(value = "customSub") String customSub){
         User user = (User)auth.getPrincipal();
         List<String> names = new ArrayList<>();
         List<String> mailIds= new ArrayList<>();
@@ -150,7 +157,13 @@ public class RoleController {
             names.add(parts[0]);
             mailIds.add(parts[1]);
         }
-        emailService.sendEmail(names, mailIds, companyService.getCompanyByID(Integer.parseInt(user.getUsername())).getCompanyName(), id);
+
+        System.out.println(names);
+        System.out.println(customText);
+        System.out.println(customSub);
+        emailService.sendEmail(names, mailIds, companyService.getCompanyByID(Integer.parseInt(user.getUsername())).getCompanyName(), id, customText, customSub);
+        // show a notif or something saying: mail sent;
+        return ("redirect:/roles/" + id);
     }
 
 }

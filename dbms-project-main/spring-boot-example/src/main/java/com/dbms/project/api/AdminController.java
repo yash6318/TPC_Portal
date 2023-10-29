@@ -81,12 +81,12 @@ public class AdminController {
         System.out.println(split_str[0] + " " + split_str[1]);
         List<Willingness> willingList = willingnessService.getWillingnessByRole(split_str[0], Integer.parseInt(split_str[1]));
         List<Student> students = new ArrayList<>();
-        List<String> resumes = new ArrayList<>();
+        List<Resume> resumes = new ArrayList<>();
         for(Willingness willingness: willingList){
             students.add(studentService.getStudentByRollNo(willingness.getRollNo()));
-            resumes.add(resumeService.getResumeLinkByKey(willingness.getRollNo(), willingness.getResumeName()));
+            resumes.add(resumeService.getResumeByKey(willingness.getRollNo(), willingness.getResumeName()));
         }
-        model.addAttribute("willings", willingList);
+        model.addAttribute("roleName", role_id);
         model.addAttribute("students", students);
         model.addAttribute("resumes", resumes);
         return "willingstudents";
