@@ -1,15 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head th:replace="base :: head"></head>
+<head th:replace="base :: head">
+
+    <style>
+        /* Style for the popup container */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #333;
+            background: #fff;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        /* Style for the background overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+
+
+</head>
 <nav th:replace="base :: company-navbar"></nav>
 <body>
 
 <div class="container section my-3" id="roles-offered">
-    <h2 class="text-center" th:text = "'Willing Candidates for role: '"></h2>
+    <h2 class="text-center" th:text = "'Willing Candidates for role: ' + ${roleName}"></h2>
 </div>
 
 
-<form th:action="@{/sendmail/hello}" method = "post">
+<form th:action="@{/roles/{id}/sendmail (id = ${roleName})}" id = "myForm" method = "post">
 <table class="container section my-3">
     <tr>
         <th>Select</th>
@@ -21,18 +51,57 @@
     </tr>
     <tr th:each = "student, iterStat : ${students}">
         <td><input name = "list" type="checkbox" th:value="${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName} + '/' + ${student.instituteID}"></td>
+        <input type="hidden" id="customTextHidden" name="customText">
+        <input type="hidden" id="customSubHidden" name="customSub">
         <td th:text = "${iterStat.index + 1}"></td>
         <td th:text = "${student.rollNo}"></td>
         <td th:text = "${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName}">Maria Anders</td>
         <td th:text = "${student.instituteID}"></td>
         <td>
-            <a th:text = "${willings[iterStat.index].resumeName}" th:href="${'https://drive.google.com/file/d/'+resumes[iterStat.index]+'/view?usp=drive_link'}"></a>
+            <a th:text = "${resumes[iterStat.index].resumeName}" th:href="${'https://drive.google.com/file/d/'+resumes[iterStat.index].resumeLink+'/view?usp=drive_link'}"></a>
         </td>
     </tr>
 </table>
     <div class="d-flex flex-row justify-content-between">
-        <button type="submit" class="btn btn-dark my-4">Submit</button>
+        <button type = "button" onclick="openPopup()" class="btn btn-dark my-4">Submit</button>
     </div>
 </form>
+
+<!-- The popup container -->
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popupOverlay" style="display: none">
+    <div id = "popup">
+        <span onclick="closePopup()" class="close">&times;</span>
+        <h2>Custom Text</h2>
+        <input type="text" id="customSub" placeholder="Enter custom Subject">
+        <input type="text" id="customText" placeholder="Enter custom text">
+        <button onclick="submitWithCustomText()" class="btn btn-dark my-4">Submit with Custom Text</button>
+    </div>
+</div>
+
+<script>
+    function openPopup() {
+        document.getElementById('popupOverlay').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('popupOverlay').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function submitWithCustomText() {
+        const customText = document.getElementById('customText').value;
+        const customSub = document.getElementById('customSub').value;
+        // Set the custom text in a hidden field in the form
+        document.getElementById('customTextHidden').value = customText;
+        document.getElementById('customSubHidden').value = customSub;
+
+        // Submit the form after setting the custom text
+        document.getElementById('myForm').submit();
+        closePopup();
+    }
+</script>
+
 </body>
 </html>
