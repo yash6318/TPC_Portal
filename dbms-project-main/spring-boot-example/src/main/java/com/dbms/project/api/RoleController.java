@@ -148,7 +148,7 @@ public class RoleController {
 
     @PostMapping("/roles/{id}/sendmail")
     public String sendMail(@RequestParam(value = "list") List<String> StudentList, @PathVariable String id, Authentication auth, @RequestParam(value = "customText") String customText,
-     @RequestParam(value = "customSub") String customSub){
+     @RequestParam(value = "customSub") String customSub, Model model){
         User user = (User)auth.getPrincipal();
         List<String> names = new ArrayList<>();
         List<String> mailIds= new ArrayList<>();
@@ -161,7 +161,18 @@ public class RoleController {
         System.out.println(names);
         System.out.println(customText);
         System.out.println(customSub);
-        emailService.sendEmail(names, mailIds, companyService.getCompanyByID(Integer.parseInt(user.getUsername())).getCompanyName(), id, customText, customSub);
+
+        if(user.getDesignation().equals("Admin")){
+            emailService.sendEmail(names, mailIds, "Admin", "Admin", customText, customSub);
+        }
+        else if(user.getDesignation().equals("Company")){
+            emailService.sendEmail(names, mailIds, companyService.getCompanyByID(Integer.parseInt(user.getUsername())).getCompanyName(), id, customText, customSub);
+        }
+        else{
+            model.addAttribute("errorMessage", "Unauthorized Request!");
+            return "custom-error";
+        }
+
         // show a notif or something saying: mail sent;
         return ("redirect:/roles/" + id);
     }
