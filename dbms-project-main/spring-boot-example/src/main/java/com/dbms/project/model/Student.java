@@ -54,19 +54,19 @@ public class Student{
     @Min(value=0,message = "Active Backlogs cannot be negative")
     private int activeBacklogs;
     @Min(value = 0,message = "CPI cannot be negative")
-    @Max(value = 10,message = "Gaddari karbe")
+    @Max(value = 10,message = "Enter a valid value")
     private float cpi;
     @Size(min = 1,max = 255,message = "Enter your class X board name")
     @NotBlank(message = "Board cannot be blank")
     private String classXBoard;
     @Min(value = 0,message = "Cannot be negative")
-    @Max(value = 100,message = "Gaddari karbe")
+    @Max(value = 100,message = "Enter a valid value")
     private float Xpercentage;
     @Size(min = 1,max = 255,message = "Enter your class XII board name")
     @NotBlank(message = "Board cannot be blank")
     private String classXIIBoard;
     @Min(value = 0,message = "Cannot be negative")
-    @Max(value = 100,message = "Gaddari karbe")
+    @Max(value = 100,message = "Enter a valid value")
     private float XIIpercentage;
     @NotNull(message = "Expected passing year should be entered")
     private String passingYear;
