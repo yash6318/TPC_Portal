@@ -43,7 +43,7 @@ public class ResumeDao {
                 "rollNo int, " +
                 "isVerified int, " +
                 "primary key(rollNo, resumeName), " +
-                "FOREIGN KEY (rollNo) references Student(rollNo)" +
+                "FOREIGN KEY (rollNo) references Student(rollNo) on delete cascade on update cascade" +
                 ")";
         jdbcTemplate.execute(sql);
     }

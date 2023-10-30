@@ -40,7 +40,7 @@ public class CompanyDao {
                 "companyName varchar(100), " +
                 "HREmail varchar(100), " +
                 "HRPhone char(10)," +
-                "FOREIGN KEY (companyID) references User(username)" +
+                "FOREIGN KEY (companyID) references User(username) on delete cascade on update cascade" +
                 ")";
         jdbcTemplate.execute(sql);
     }

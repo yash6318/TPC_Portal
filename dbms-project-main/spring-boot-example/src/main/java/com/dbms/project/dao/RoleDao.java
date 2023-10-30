@@ -45,7 +45,7 @@ public class RoleDao {
                 "DEADLINE datetime," +
                 "BRANCHVALUE int," +
                 "PRIMARY KEY (ROLENAME, COMPANYID)," +
-                "FOREIGN KEY (companyID) references Company(companyID)" +
+                "FOREIGN KEY (companyID) references Company(companyID) on delete cascade on update cascade" +
                 ")";
         jdbcTemplate.execute(roleSql);
 

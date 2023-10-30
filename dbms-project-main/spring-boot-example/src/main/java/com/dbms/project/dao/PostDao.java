@@ -52,7 +52,7 @@ public class PostDao {
                 "title text, content text, " +
                 "`timestamp` timestamp, " +
                 "authorid int," +
-                "FOREIGN KEY (authorID) references User(username)" +
+                "FOREIGN KEY (authorID) references User(username) on delete cascade on update cascade" +
                 ")";
         jdbcTemplate.execute(sql);
     }

@@ -30,10 +30,10 @@ public class WillingnessDao {
                 "roleName varchar(200)," +
                 "rollNo int," +
                 "resumeName varchar(50)," +
-                "foreign key (rollNo) references Student(rollNo)," +
-                "foreign key (rollNo, resumeName) references Resume(rollNo, resumeName)," +
-                "foreign key (companyID) references  Company(companyID)," +
-                "foreign key (roleName, companyID) references Role(roleName, companyID)," +
+                "foreign key (rollNo) references Student(rollNo) on delete cascade on update cascade," +
+                "foreign key (rollNo, resumeName) references Resume(rollNo, resumeName) on delete cascade on update cascade," +
+                "foreign key (companyID) references  Company(companyID) on delete cascade on update cascade," +
+                "foreign key (roleName, companyID) references Role(roleName, companyID) on delete cascade on update cascade," +
                 "primary key (rollNo, companyID, roleName))";
         jdbcTemplate.execute(sql);
     }

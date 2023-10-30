@@ -149,8 +149,8 @@ public class StudentDao {
                 "classXIIBoard varchar(255) not null," +
                 "XIIpercentage float not null," +
                 "passingYear char(4) not null," +
-                "FOREIGN KEY (rollNo) references User(username)," +
-                "FOREIGN KEY (branch) references Branch(branchName)" +
+                "FOREIGN KEY (rollNo) references User(username) on delete cascade on update cascade," +
+                "FOREIGN KEY (branch) references Branch(branchName) on delete cascade on update cascade" +
                 ")";
         jdbcTemplate.execute(sql);
     }
