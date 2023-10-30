@@ -27,6 +27,15 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+        /*.input-container {*/
+        /*    display: flex;*/
+        /*    flex-direction: column;*/
+        /*    align-items: center;*/
+        /*}*/
+
+        /*#customText {*/
+        /*    margin-top: 10px;*/
+        /*}*/
     </style>
 
 
@@ -39,7 +48,8 @@
 </div>
 
 
-<form th:action="@{/roles/{id}/sendmail (id = ${roleName})}" id = "myForm" method = "post">
+<form th:action="@{/roles/{id}/sendmail (id = ${roleName})}" id = "myForm" method = "post"
+        class="d-flex flex-column justify-content-center align-items center">
 <table class="container section my-3">
     <tr>
         <th>Select</th>
@@ -62,23 +72,31 @@
         </td>
     </tr>
 </table>
-    <div class="d-flex flex-row justify-content-between">
-        <button type = "button" onclick="openPopup()" class="btn btn-dark my-4">Submit</button>
-    </div>
+    <button type = "button" onclick="openPopup()" class="btn btn-dark my-4 "
+            style="width: 20vw; margin-left: 40vw;"
+    >Submit</button>
+<!--    -->
+<!--    <div class="d-flex flex-row justify-content-between">-->
+<!--    </div>-->
 </form>
 
 <!-- The popup container -->
-<div class="overlay" id="overlay"></div>
-<div class="popup" id="popupOverlay" style="display: none">
-    <div id = "popup">
+<div class="overlay my-5" id="overlay">
+    <div class="popup" id="popupOverlay" style="display: none; margin-left: 30vw; width: 40vw;">
         <span onclick="closePopup()" class="close">&times;</span>
-        <h2>Custom Text</h2>
-        <input type="text" id="customSub" placeholder="Enter custom Subject">
-        <input type="text" id="customText" placeholder="Enter custom text">
-        <button onclick="submitWithCustomText()" class="btn btn-dark my-4">Submit with Custom Text</button>
+        <div id = "popup" class="d-flex flex-column g-1">
+
+            <h2 class="text-center">Custom Text</h2>
+            <div class="input-container d-flex flex-column my-2">
+                <input type="text" id="customSub" placeholder="Enter custom Subject">
+            </div>
+            <div class="input-container d-flex flex-column my-2">
+                <textarea type="text" id="customText" placeholder="Enter custom text"></textarea>
+            </div>
+            <button onclick="submitWithCustomText()" class="btn btn-dark my-4">Submit with Custom Text</button>
+        </div>
     </div>
 </div>
-
 <script>
     function openPopup() {
         document.getElementById('popupOverlay').style.display = 'block';
